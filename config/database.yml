@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: fantasy_golf_development
+  pool: 5
+  username: Rob
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: fantasy_golf_test
+  pool: 5
+  username: Rob
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: fantasy_golf_production
+  pool: 5
+  username: Rob
+  password:
