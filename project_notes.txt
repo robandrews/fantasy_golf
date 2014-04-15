@@ -1,0 +1,10 @@
+user has a roster
+
+roster has 8 players
+
+touranment has tournament_placings
+
+players have tournament_placings
+
+
+
