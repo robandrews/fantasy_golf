@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>Players List</h1>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Birthday</th>
+        <th>Height</th>
+        <th>Weight</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@players.each do |player|%>
+      <a href=<%=player.url%>>
+        <div class=player>
+          <tr>
+            <td><img src=<%=player.picture_url%> width=100> </td>
+            <td><%=player.name%></td>
+            <td><%=player.birthdate%></td>
+            <td><%=player.string_height%></td>
+            <td><%=player.weight%></td>
+          </tr>
+        </div>
+      </a>
+      <%end%>
+    </tbody>
+  </table>
+</div>

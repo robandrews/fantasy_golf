@@ -2,11 +2,16 @@
 #
 # Table name: players
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#  url        :string(255)
+#  id          :integer          not null, primary key
+#  first_name  :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  url         :string(255)
+#  picture_url :string(255)
+#  birthdate   :date
+#  weight      :integer
+#  height      :integer
+#  last_name   :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

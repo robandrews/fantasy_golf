@@ -12,7 +12,6 @@
 #  updated_at    :datetime
 #
 
-class TournamentStanding < ActiveRecord::Base
-  
+class TournamentStanding < ActiveRecord::Base  
   belongs_to :tournament
 end
