@@ -16,12 +16,13 @@
 
 <body>
   <%= render "layouts/nav" %>
-  <%if notice%>
-    <div class="alert alert-info"><%= notice %></div>
-  <%elsif alert%>
-    <div class="alert alert-danger"><%= alert %></div>
-  <%end%>
-
+  <div class="errors">
+    <%if notice%>
+    <div class="alert alert-info yellow-alerts"><%= notice %></div>
+    <%elsif alert%>
+    <div class="alert alert-danger red-alerts"><%= alert %></div>
+    <%end%>
+  </div>
   <%= yield %>
 
 </body>

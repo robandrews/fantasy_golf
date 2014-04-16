@@ -5,7 +5,9 @@ class LeaguesController < ApplicationController
   def create
     @league = League.new(league_params)
     if @league.save
-      redirect_to @league
+      # for some reason this results in a failure
+      # render :json => league_url(@league.id)
+      render :json => [@league, league_url(@league)]
     else
       flash[:errors] = @league.errors.full_messages
     end

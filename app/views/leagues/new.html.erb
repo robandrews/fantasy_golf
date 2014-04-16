@@ -11,7 +11,7 @@
    </div>
   <br>
 
-<button class="btn btn-block btn-default create-league">Submit</button>
+<button class="btn btn-block btn-default fat create-league">Create League</button>
 </div>
 <script>
 $.fn.pressEnter = function(fn) {  
@@ -49,29 +49,19 @@ $(document).on('add', function() {
 
 
 $("button.create-league").click(function(event){
-  var emails = []
   var league_name = $("#league-name").val()
-  var spans = $(".email_invites").find(".email")
-  for (var i = 0; i < spans.length; i++){
-    emails.push(spans[i].innerHTML)
-  }
   
-  $.ajax({
-    url: "/leagues",
-    type: "POST",
-    data: {league: {
-      invitees: emails,
-      name: league_name
-    }},
-    success: function(resp){
-      alert("league saved")
-    }
-  })
+  if(league_name){
+    saveLeague(event, league_name);
+  }else{
+    debugger
+    $(".red-alerts").html("The league must have a title")
+  }
 })
 
 $('#league-invitee-textfield').keyup(function(e){
   var str = $(e.target).val();
-  var regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
+  var regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.{1}[a-zA-Z]+$/
   if (str.match(regex)){
     $(e.target).parent().removeClass("has-error").addClass("has-success");
   }else{
@@ -79,4 +69,33 @@ $('#league-invitee-textfield').keyup(function(e){
   }
 })
 
+
+var throwTitleError = function(){
+  $("#league-name").popover({
+    content: "The league tile cannot be blank!"
+  })
+}
+
+var saveLeague = function(event, league_name){ 
+  var emails = []
+  var spans = $(".email_invites").find(".email")
+  for (var i = 0; i < spans.length; i++){
+    emails.push(spans[i].innerHTML)
+  }
+  $.ajax({
+    url: "/leagues",
+    type: "POST",
+    data: {league: {
+      invitees: emails,
+      name: league_name
+    }},
+    dataType: "json",
+    success: function(resp){
+      window.location = resp[1];
+    },
+    error: function(resp){
+      alert("failure");
+    }
+  })
+}
 </script>
