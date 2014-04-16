@@ -25,13 +25,12 @@ class User < ActiveRecord::Base
 
   has_many :roster_memberships
   has_many :players, :through => :roster_memberships, :source => :player
-  
+  has_many :league_memberships
+  has_many :leagues, :through => :league_memberships
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          
   def name
     [self.first_name,self.last_name].join(" ")
   end
-  
-
 end

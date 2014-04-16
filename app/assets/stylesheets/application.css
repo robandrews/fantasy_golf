@@ -11,3 +11,12 @@
  *= require_self
  *= require_tree .
  */
+
+.remove-invitee{
+  color:black;
+}
+
+.remove-invitee:hover{
+  color:red;
+  cursor:pointer;
+}

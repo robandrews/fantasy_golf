@@ -1,3 +1,6 @@
+league has many users
+user has many leagues
+
 user has a roster
 
 roster has 8 players
@@ -6,5 +9,5 @@ touranment has tournament_placings
 
 players have tournament_placings
 
-
+Then he can add email addresses to a list to send out invitation links with a SHA key that will grant them access to the league
 

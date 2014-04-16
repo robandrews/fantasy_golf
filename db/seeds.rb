@@ -56,6 +56,9 @@ RosterMembership.create!(:user_id => rob.id, :player_id => 20)
 RosterMembership.create!(:user_id => rob.id, :player_id => 30)
 RosterMembership.create!(:user_id => rob.id, :player_id => 40)
 
+league = League.create!(:name => "The League")
+
+LeagueMembership.create!(:user_id => rob.id, :league_id => league.id)
 print"#######################################################\n"
 p "Finished seeding database in #{Time.now - start} seconds"
 print"#######################################################\n"
