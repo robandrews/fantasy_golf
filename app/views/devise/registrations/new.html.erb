@@ -1,4 +1,6 @@
+<div class="background augusta">
 <div class="container">
+  <div class="col-md-3 col-offset-1 box">
 <h2>Sign up</h2>
 
   <%= form_for(resource, :as => resource_name, :url => user_registration_path, :html => {role: "form"}) do |f| %>
@@ -23,4 +25,6 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
+</div>
 </div>

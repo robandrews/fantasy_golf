@@ -6,4 +6,6 @@ FantasyGolf::Application.routes.draw do
   resources :leagues do
     resources :divisions
   end
+  
+  resources :tournaments
 end
