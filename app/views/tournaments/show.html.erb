@@ -1,15 +1,23 @@
-<h1><%=@tournament.name%></h1>
-<h3><%=@tournament.start_date%> - <%=@tournament.end_date%></h3>
+<div class="container">
+  <h1><%=@tournament.name%></h1>
+  <h3><%=@tournament.start_date%> - <%=@tournament.end_date%></h3>
 
-<table class="table tournament">
-<%@tournament.tournament_standings.each do |player|%>
-
-<thead>
-  <th>Position</th>
-  <th></th>
-  <th></th>
-</thead>
-
-<%end%>
-
-</table>
+  <table class="table tournament">
+    <thead>
+      <th>Position</th>
+      <th>Player ID</th>
+      <th>Winnings</th>
+      <th>To Par</th>
+    </thead>
+    <tbody>
+      <%@tournament.tournament_standings.reverse.each do |player|%>
+      <tr>
+        <td><%=player.position%></td>
+        <td><%=player.player_id%></td>
+        <td><%=player.winnings%></td>
+        <td><%=player.to_par%></td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>

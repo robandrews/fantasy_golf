@@ -16,6 +16,7 @@ class Tournament < ActiveRecord::Base
   has_many :players, :through => :tournament_standings
   
   validates :start_date, :end_date, :name, :uniqueness => true
+  
   def get_scores
     page = Nokogiri::HTML(RestClient.get(self.url))
 
