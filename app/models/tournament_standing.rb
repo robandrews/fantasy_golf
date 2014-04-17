@@ -14,4 +14,10 @@
 
 class TournamentStanding < ActiveRecord::Base  
   belongs_to :tournament
+  belongs_to :player#,
+  # :class_name => "Player",
+  # :foreign_key => :player_id,
+  # :primary_key => :id
+  validates :tournament_id, :winnings, presence: true
+  
 end

@@ -27,6 +27,9 @@ class User < ActiveRecord::Base
   has_many :players, :through => :roster_memberships, :source => :player
   has_many :league_memberships
   has_many :leagues, :through => :league_memberships
+  
+  has_many :league_moderatorships
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          

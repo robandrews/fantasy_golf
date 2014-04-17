@@ -5,8 +5,8 @@ class LeaguesController < ApplicationController
   def create
     @league = League.new(league_params)
     if @league.save
-      # for some reason this results in a failure
-      # render :json => league_url(@league.id)
+      LeagueModeratorship.create!(:user_id => current_user.id, :league_id => @league.id)
+      LeagueMembership.create!(:user_id => current_user.id, :league_id => @league.id)
       render :json => [@league, league_url(@league)]
     else
       flash[:errors] = @league.errors.full_messages
@@ -19,6 +19,6 @@ class LeaguesController < ApplicationController
   
   protected
   def league_params
-    params.require(:league).permit(:name, :invitees)
+    params.require(:league).permit(:name)
   end
 end

@@ -9,6 +9,10 @@
 #
 
 class League < ActiveRecord::Base
+  validates :name, :presence => true
+  
   has_many :league_memberships
   has_many :members, :through => :league_memberships, :source => :user
+  has_many :league_moderatorships
+  has_many :moderators, :through => :league_moderatorships, :source => :user
 end

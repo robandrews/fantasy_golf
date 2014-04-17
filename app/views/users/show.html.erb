@@ -1,11 +1,14 @@
-<h2>Summary for <%=@user.name%></h2>
-<h3>My leagues</h3>
-<table border="0" cellspacing="5" cellpadding="5">
-  <tr><th>League</th><th>Standing</th></tr>
-  <%@user.leagues.each do |league|%>
+<div class="container">
+  <h2>Summary for <%=@user.name%></h2>
+  <h3>My leagues</h3>
+  <table class="table">
+    
+    <tr><th>League</th><th>Standing</th></tr>
+    <%@user.leagues.each do |league|%>
     <tr><td><a href="<%=league_url(league)%>"><%=league.name%></a></td><td>0</td></tr>
-  <%end%>
-</table>
+    <%end%>
+  </table>
 
-<%=link_to "Create a new league", new_league_url%>
-
+  <%=link_to "Create a new league", new_league_url%><br>
+  <a href="#">Join a league</a>
+</div>
