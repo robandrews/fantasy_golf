@@ -11,3 +11,30 @@ players have tournament_placings
 
 Then he can add email addresses to a list to send out invitation links with a SHA key that will grant them access to the league
 
+
+
+Lineups - draft 7 play 4 - lock in @ first tee time (time zone dependent) (if LATE, take top four guys listed and half the points.)
+
+Free Agency pool - chosen by president, add/drop functionality for admin, Mike always admin. [terms for free agency] - need to track how many free agency transactions a user has done, and then total points for season --> ONLY ALLOWED 2 PER MONTH -- countdown until free agent pickup is complete [any 12 hour block up through midnight PST Wednesday]
+
+Trades - user needs to be able to look at everyone elses roster, and then propose trade (all player stats)  ==> propose/approve model
+
+if roster.length < 7 (after trade), you can pick free agents(through normal free agent channels)
+
+IR list (field in the player schema)
+
+Archives + mailer for summary weekend
+
+
+Team Page
+
+Current standing in division and league
+
+Playoffs(take 10), top 2 in each division, 2 wildcard (point bonuses going into the playoffs) - majors are worth double, WCG events are worth 1.5, PGA is worth .5 that week.
+
+
+
+Trophy Corner
+
+Bylaws
+

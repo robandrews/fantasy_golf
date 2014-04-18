@@ -6,6 +6,6 @@ FantasyGolf::Application.routes.draw do
   resources :leagues do
     resources :divisions
   end
-  
+  resources :league_memberships, :only => [:new, :create]
   resources :tournaments
 end

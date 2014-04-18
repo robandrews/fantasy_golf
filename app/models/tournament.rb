@@ -9,12 +9,15 @@
 #  url        :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  complete   :boolean
+#  season_id  :integer
+#  week       :integer
 #
 
 class Tournament < ActiveRecord::Base 
   has_many :tournament_standings, :dependent => :destroy
   has_many :players, :through => :tournament_standings
-  
+  belongs_to :season
   validates :start_date, :end_date, :name, :uniqueness => true
   
   def get_scores

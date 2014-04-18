@@ -10,7 +10,7 @@
       <th>To Par</th>
     </thead>
     <tbody>
-      <%@tournament.tournament_standings.reverse.each do |player|%>
+      <%@tournament.tournament_standings.sort_by{|t| t.winnings}.reverse.each do |player|%>
       <tr>
         <td><%=player.position%></td>
         <td><%=player.player_id%></td>

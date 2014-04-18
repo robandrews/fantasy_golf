@@ -45,36 +45,42 @@ namespace :db do
   
   
   desc "Seed all tournaments"
-  task tournament_seed: :environment do
+  task season_seed: :environment do
+    
+    season = Season.create!(:name => "2013-2014", :start_date => Date.new(2013, 10, 10))
     
     tournament_data = [
       {:name=>"Hyundai Tournament of Champions",
       :url => "https://sports.yahoo.com/golf/pga/leaderboard/2014/1",
       :start_date => Date.new(2014, 1, 3),
-      :end_date => Date.new(2014, 1, 6)},
+      :end_date => Date.new(2014, 1, 6),
+      :season_id => season.id},
     
       {:name=>"Shell Houston Open",
       :url => "https://sports.yahoo.com/golf/pga/leaderboard/2014/18",
       :start_date => Date.new(2014, 4, 3),
-      :end_date => Date.new(2014, 4, 6)},
+      :end_date => Date.new(2014, 4, 6),
+      :season_id => season.id},
     
     
       {:name=>"The Masters",
       :url => "https://sports.yahoo.com/golf/pga/leaderboard/2014/15",
       :start_date => Date.new(2014, 4, 10),
-      :end_date => Date.new(2014, 4, 13)},
+      :end_date => Date.new(2014, 4, 13),
+      :season_id => season.id},
     
       {:name=>"Valero Texas Open",
       :url => "https://sports.yahoo.com/golf/pga/leaderboard/2014/44",
       :start_date => Date.new(2014, 3, 27),
-      :end_date => Date.new(2014, 3, 30)},
+      :end_date => Date.new(2014, 3, 30),
+      :season_id => season.id},
       
       {:name=>"RBC Heritage",
       :url => "https://sports.yahoo.com/golf/pga/leaderboard/2014/16",
       :start_date => Date.new(2014, 4, 17),
-      :end_date => Date.new(2014, 4, 20)}    
+      :end_date => Date.new(2014, 4, 20),
+      :season_id => season.id}    
     ]
-    
     
     tournament_data.each do |tournament|
       time = Time.now

@@ -9,6 +9,9 @@
 #  url        :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  complete   :boolean
+#  season_id  :integer
+#  week       :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
