@@ -35,6 +35,7 @@
 #links-right{
   margin-right:40px;
 }
+
 .box {
    -moz-box-shadow:    inset 0 0 10px #000000;
    -webkit-box-shadow: inset 0 0 10px #000000;
@@ -49,4 +50,8 @@
   border: 1px dotted black;
   margin: 0 1em 1em 0;
   height: 50px;
+}
+
+.portlet{
+  cursor:move;
 }

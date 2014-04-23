@@ -14,3 +14,28 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(function() {
+  $( ".column" ).sortable({
+    connectWith: ".column",
+    handle: ".portlet-header",
+    placeholder: "portlet-placeholder ui-corner-all"
+  });
+
+  $( ".portlet" )
+  .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+  .find( ".portlet-header" )
+  .addClass( "ui-widget-header ui-corner-all" );
+  
+  $("#submit-roster").click(function(event){
+    console.log("here")
+    
+    $.ajax({
+      url: document.URL.substring(0, document.URL.length-5),
+      type: "PUT",
+      
+    })
+  })
+});
+

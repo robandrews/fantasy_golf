@@ -1,3 +1,19 @@
+4/23 UPDATE
+
+Now we have roster id and player attributes listed on the edit roster page
+Need an AJAX call to collect a has of roster_membership IDs and whether they are active or bench.
+
+Server-side validation of correct roster numbers
+
+
+
+
+
+
+
+
+
+
 Lineups - draft 7 play 4 - lock in @ first tee time (time zone dependent) (if LATE, take top four guys listed and half the points.)
 
 Free Agency pool - chosen by president, add/drop functionality for admin, Mike always admin. [terms for free agency] - need to track how many free agency transactions a user has done, and then total points for season --> ONLY ALLOWED 2 PER MONTH -- countdown until free agent pickup is complete [any 12 hour block up through midnight PST Wednesday]

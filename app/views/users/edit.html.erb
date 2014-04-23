@@ -1,33 +1,14 @@
 <div class="container">
   <h3>Set your roster</h3>
 
-  <style>
-
-  </style>
-  <script>
-  $(function() {
-    $( ".column" ).sortable({
-      connectWith: ".column",
-      handle: ".portlet-header",
-      placeholder: "portlet-placeholder ui-corner-all"
-    });
- 
-    $( ".portlet" )
-    .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
-    .find( ".portlet-header" )
-    .addClass( "ui-widget-header ui-corner-all" );
-  });
-  </script>
-</head>
-
 <div class="row">
  
   <div class="col-md-5 col-offset-1">
     <h4>Active</h4>
     <ul class="list-group">
       <div class="column active">
-        <%@active_players.each do |player|%>
-        <div class="portlet">
+        <%@active_players.each do |roster_membership, player|%>
+        <div class="portlet" data-id="<%=roster_membership.id%>">
           <li class="list-group-item">
             <div class="portlet-header">
               <img src="<%=player.picture_url%>" width=40>
@@ -43,8 +24,8 @@
     <h4>Bench</h4>
     <ul class="list-group">
       <div class="column bench">
-        <%@bench_players.each do |player|%>
-        <div class="portlet">
+        <%@bench_players.each do |roster_membership, player|%>
+        <div class="portlet" data-id="<%=roster_membership.id%>">
           <li class="list-group-item">
             <div class="portlet-header">
               <img src="<%=player.picture_url%>" width=40>
