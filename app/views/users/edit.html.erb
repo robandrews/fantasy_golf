@@ -1,0 +1,60 @@
+<div class="container">
+  <h3>Set your roster</h3>
+
+  <style>
+  .portlet-placeholder {
+    border: 1px dotted black;
+    margin: 0 1em 1em 0;
+    height: 50px;
+  }
+  </style>
+  <script>
+  $(function() {
+    $( ".column" ).sortable({
+      connectWith: ".column",
+      handle: ".portlet-header",
+      placeholder: "portlet-placeholder ui-corner-all"
+    });
+ 
+    $( ".portlet" )
+    .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+    .find( ".portlet-header" )
+    .addClass( "ui-widget-header ui-corner-all" );
+  });
+  </script>
+</head>
+
+<div class="row">
+ 
+  <div class="col-md-5 col-offset-1">
+    <h4>Active</h4>
+    <ul class="list-group">
+      <div class="column active">
+        <%@active_players.each do |player|%>
+        <div class="portlet">
+          <li class="list-group-item">
+            <div class="portlet-header"><a href="<%=player.url%>"><%=player.name%></a></div>
+          </li>
+        </div>
+        <%end%>
+ 
+      </div>
+    </ul>
+  </div>
+  <div class="col-md-5">
+    <h4>Bench</h4>
+    <ul class="list-group">
+      <div class="column bench">
+        <%@bench_players.each do |player|%>
+        <div class="portlet">
+          <li class="list-group-item">
+            <div class="portlet-header"><a href="<%=player.url%>"><%=player.name%></a></div>
+          </li>
+        </div>
+        <%end%>
+      </div>
+    </ul>
+  </div>
+</div>
+
+</div>

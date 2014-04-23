@@ -5,7 +5,11 @@ FantasyGolf::Application.routes.draw do
   resources :players, :only => [:index]
   resources :leagues do
     resources :divisions
+    resources :users, :only => [:edit]
   end
   resources :league_memberships, :only => [:new, :create]
-  resources :tournaments
+  
+  resources :seasons do
+    resources :tournaments, :only => [:show]
+  end
 end

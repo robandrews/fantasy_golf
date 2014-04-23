@@ -14,11 +14,16 @@ Division.create!(:name => "Moe Norman", :league_id => league.id)
 Division.create!(:name => "Horton Smith", :league_id => league.id)
 
 DivisionMembership.create!(:user_id => rob.id, :division_id => division.id)
-RosterMembership.create!(:user_id => rob.id, :player_id => 20)
-RosterMembership.create!(:user_id => rob.id, :player_id => 30)
-RosterMembership.create!(:user_id => rob.id, :player_id => 40)
-RosterMembership.create!(:user_id => rob.id, :player_id => 319)
 
+RosterMembership.create!(:user_id => rob.id, :player_id => 20, :active => true)
+RosterMembership.create!(:user_id => rob.id, :player_id => 30, :active => true)
+RosterMembership.create!(:user_id => rob.id, :player_id => 40, :active => true)
+RosterMembership.create!(:user_id => rob.id, :player_id => 319, :active => true)
+
+RosterMembership.create!(:user_id => rob.id, :player_id => 210, :active => false)
+RosterMembership.create!(:user_id => rob.id, :player_id => 220, :active => false)
+RosterMembership.create!(:user_id => rob.id, :player_id => 240, :active => false)
+RosterMembership.create!(:user_id => rob.id, :player_id => 329, :active => false)
 
 season = Season.create!(:name => "2013-2014", 
 :start_date => Date.new(2014, 1, 3),

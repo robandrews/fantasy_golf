@@ -55,14 +55,16 @@ namespace :db do
   task season_seed: :environment do
     Tournament.delete_all
     TournamentStanding.delete_all
+    Season.delete_all
+    Week.delete_all
     
-    season = Season.create!(:name => "2013-2014", 
+    season = Season.create!(:name => "2014", 
     :start_date => Date.new(2014, 1, 3),
     :end_date => Date.new(2014, 9, 28))
 
     weeks = {}
     (1..16).each do |w|
-      weeks[w] = Week.create!(:order => w, :season_id => season.id)
+      weeks[w] = Week.create!(:week_order => w, :season_id => season.id)
     end
     
     

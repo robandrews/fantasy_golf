@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423015949) do
+ActiveRecord::Schema.define(version: 20140423181031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "archived_weeks", force: true do |t|
+    t.integer  "league_id"
+    t.integer  "season_id"
+    t.integer  "week_id"
+    t.text     "roster"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "archived_weeks", ["league_id"], name: "index_archived_weeks_on_league_id", using: :btree
+  add_index "archived_weeks", ["week_id"], name: "index_archived_weeks_on_week_id", using: :btree
 
   create_table "division_memberships", force: true do |t|
     t.integer  "division_id"
@@ -89,6 +101,7 @@ ActiveRecord::Schema.define(version: 20140423015949) do
     t.integer  "player_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",     default: false
   end
 
   create_table "season_performances", force: true do |t|
@@ -135,12 +148,12 @@ ActiveRecord::Schema.define(version: 20140423015949) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",  null: false
+    t.string   "encrypted_password",     default: "",  null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,   null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -149,7 +162,7 @@ ActiveRecord::Schema.define(version: 20140423015949) do
     t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
-    t.float    "season_points"
+    t.float    "season_points",          default: 0.0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -159,7 +172,7 @@ ActiveRecord::Schema.define(version: 20140423015949) do
     t.integer  "season_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "order"
+    t.integer  "week_order"
   end
 
 end

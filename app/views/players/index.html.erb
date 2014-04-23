@@ -8,7 +8,8 @@
         <th>Birthday</th>
         <th>Height</th>
         <th>Weight</th>
-      </tr>
+        <th>Career Earnings</th>
+     </tr>
     </thead>
     <tbody>
       <%@players.each do |player|%>
@@ -20,6 +21,7 @@
             <td><%=player.birthdate%></td>
             <td><%=player.string_height%></td>
             <td><%=player.weight%></td>
+            <td><%="$#{number_with_delimiter(player.career_earnings, :delimiter => ",")}"%>
           </tr>
         </div>
       </a>
