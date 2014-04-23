@@ -2,11 +2,7 @@
   <h3>Set your roster</h3>
 
   <style>
-  .portlet-placeholder {
-    border: 1px dotted black;
-    margin: 0 1em 1em 0;
-    height: 50px;
-  }
+
   </style>
   <script>
   $(function() {
@@ -33,11 +29,13 @@
         <%@active_players.each do |player|%>
         <div class="portlet">
           <li class="list-group-item">
-            <div class="portlet-header"><a href="<%=player.url%>"><%=player.name%></a></div>
+            <div class="portlet-header">
+              <img src="<%=player.picture_url%>" width=40>
+              <a href="<%=player.url%>"><%=player.name%></a>
+            </div>
           </li>
         </div>
-        <%end%>
- 
+        <%end%> 
       </div>
     </ul>
   </div>
@@ -48,13 +46,16 @@
         <%@bench_players.each do |player|%>
         <div class="portlet">
           <li class="list-group-item">
-            <div class="portlet-header"><a href="<%=player.url%>"><%=player.name%></a></div>
+            <div class="portlet-header">
+              <img src="<%=player.picture_url%>" width=40>
+              <a href="<%=player.url%>"><%=player.name%></a>
+            </div>
           </li>
         </div>
         <%end%>
       </div>
     </ul>
   </div>
-</div>
-
+  <div class="col-md-4 col-md-offset-4">
+  <button type="button" class="btn btn-lg" id="submit-roster">Submit Roster</button>
 </div>
