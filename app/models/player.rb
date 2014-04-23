@@ -22,7 +22,7 @@
 class Player < ActiveRecord::Base
   has_many :tournament_standings,
   :class_name => "TournamentStanding",
-  :foreign_key => :player_id,
+  :foreign_key => :yahoo_id,
   :primary_key => :yahoo_id
   
   has_many :roster_memberships
@@ -39,6 +39,7 @@ class Player < ActiveRecord::Base
   def name
     [self.first_name, self.last_name].join(" ")
   end
+
   
   def self.construct_from_url(url)
     attrs = {}

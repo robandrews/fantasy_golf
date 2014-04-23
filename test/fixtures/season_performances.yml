@@ -1,22 +1,23 @@
 # == Schema Information
 #
-# Table name: tournaments
+# Table name: season_performances
 #
 #  id         :integer          not null, primary key
-#  name       :string(255)
-#  start_date :date
-#  end_date   :date
-#  url        :string(255)
+#  user_id    :integer
+#  season_id  :integer
+#  points     :integer
 #  created_at :datetime
 #  updated_at :datetime
-#  complete   :boolean
-#  week_id    :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  user_id: 1
+  season_id: 1
+  points: 1
 
 two:
-  name: MyString
+  user_id: 1
+  season_id: 1
+  points: 1

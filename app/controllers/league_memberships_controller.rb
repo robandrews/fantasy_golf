@@ -8,9 +8,9 @@ class LeagueMembershipsController < ApplicationController
     
     if @membership.save
       redirect_to @league
+      flash[:notice] = "You have sucessfully joined #{@league.name}"
     else
       @membership.errors.full_messages
     end
-    
   end
 end

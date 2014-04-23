@@ -41,51 +41,76 @@ namespace :db do
         p Player.create(attrs)
       end
     end
+    
+    missing_urls = 
+          ["http://sports.yahoo.com/golf/pga/players/Dustin+Johnson/9267"]
+    
+    missing_urls.each do |url|
+      Player.build_from_url(url)
+    end   
   end
   
   
   desc "Seed all tournaments"
   task season_seed: :environment do
+    Tournament.delete_all
+    TournamentStanding.delete_all
     
-    season = Season.create!(:name => "2013-2014", :start_date => Date.new(2013, 10, 10))
+    season = Season.create!(:name => "2013-2014", 
+    :start_date => Date.new(2014, 1, 3),
+    :end_date => Date.new(2014, 9, 28))
+
+    weeks = {}
+    (1..16).each do |w|
+      weeks[w] = Week.create!(:order => w, :season_id => season.id)
+    end
+    
     
     tournament_data = [
-      {:name=>"Hyundai Tournament of Champions",
-      :url => "https://sports.yahoo.com/golf/pga/leaderboard/2014/1",
+      {:name => "Hyundai", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/1",
       :start_date => Date.new(2014, 1, 3),
       :end_date => Date.new(2014, 1, 6),
-      :season_id => season.id},
+      :week_id => weeks[1].id},
     
-      {:name=>"Shell Houston Open",
-      :url => "https://sports.yahoo.com/golf/pga/leaderboard/2014/18",
-      :start_date => Date.new(2014, 4, 3),
-      :end_date => Date.new(2014, 4, 6),
-      :season_id => season.id},
+      {:name => "Sony Open", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/7",
+      :start_date => Date.new(2014, 1, 9),
+      :end_date => Date.new(2014, 1, 12),
+      :week_id => weeks[2].id,},
     
+      {:name => "Humana Challenge", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/3",
+      :start_date => Date.new(2014, 1, 16),
+      :end_date => Date.new(2014, 1, 19),
+      :week_id => weeks[3].id},
     
-      {:name=>"The Masters",
-      :url => "https://sports.yahoo.com/golf/pga/leaderboard/2014/15",
-      :start_date => Date.new(2014, 4, 10),
-      :end_date => Date.new(2014, 4, 13),
-      :season_id => season.id},
-    
-      {:name=>"Valero Texas Open",
-      :url => "https://sports.yahoo.com/golf/pga/leaderboard/2014/44",
-      :start_date => Date.new(2014, 3, 27),
-      :end_date => Date.new(2014, 3, 30),
-      :season_id => season.id},
+      {:name => "Farmers", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/6",
+      :start_date => Date.new(2014, 1, 23),
+      :end_date => Date.new(2014, 1, 26),
+      :week_id => weeks[4].id},
       
-      {:name=>"RBC Heritage",
-      :url => "https://sports.yahoo.com/golf/pga/leaderboard/2014/16",
-      :start_date => Date.new(2014, 4, 17),
-      :end_date => Date.new(2014, 4, 20),
-      :season_id => season.id}    
+      {:name => "WM Phoenix Open", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/4",
+      :start_date => Date.new(2014, 1, 30),
+      :end_date => Date.new(2014, 2, 2),
+      :week_id => weeks[5].id},
+      
+      {:name => "Pebble Beach", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/5",
+      :start_date => Date.new(2014, 2, 6),
+      :end_date => Date.new(2014, 2, 9),
+      :week_id => weeks[6].id},
+      
+      {:name => "Northern Trust", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/8",
+      :start_date => Date.new(2014, 2, 13),
+      :end_date => Date.new(2014, 2, 16),
+      :week_id => weeks[7].id}
     ]
     
     tournament_data.each do |tournament|
       time = Time.now
       tournament["complete"] = tournament[:end_date] < Date.new(time.year, time.month, time.day)
       Tournament.create!(tournament)
+    end
+    
+    Tournament.all.each do |tournament|
+      tournament.get_scores
     end
   end
 end

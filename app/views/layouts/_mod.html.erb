@@ -1,0 +1,5 @@
+<div class="col-md-3 pull-right">
+<%if @league.moderators.include?(current_user)%>
+<%=@league.secret_sauce%>
+<%end%>
+</div>

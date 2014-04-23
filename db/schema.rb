@@ -11,10 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418043552) do
+ActiveRecord::Schema.define(version: 20140423015949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "division_memberships", force: true do |t|
+    t.integer  "division_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "divisions", force: true do |t|
+    t.integer  "league_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "friendly_id_slugs", force: true do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "league_memberships", force: true do |t|
     t.integer  "user_id"
@@ -35,7 +62,10 @@ ActiveRecord::Schema.define(version: 20140418043552) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "secret_sauce"
+    t.string   "slug"
   end
+
+  add_index "leagues", ["slug"], name: "index_leagues_on_slug", unique: true, using: :btree
 
   create_table "players", force: true do |t|
     t.string   "first_name"
@@ -61,6 +91,14 @@ ActiveRecord::Schema.define(version: 20140418043552) do
     t.datetime "updated_at"
   end
 
+  create_table "season_performances", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "season_id"
+    t.integer  "points"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "seasons", force: true do |t|
     t.string   "name"
     t.date     "start_date"
@@ -77,6 +115,9 @@ ActiveRecord::Schema.define(version: 20140418043552) do
     t.string   "position"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "fantasy_points"
+    t.integer  "int_position"
+    t.integer  "yahoo_id"
   end
 
   add_index "tournament_standings", ["player_id"], name: "index_tournament_standings_on_player_id", using: :btree
@@ -90,8 +131,7 @@ ActiveRecord::Schema.define(version: 20140418043552) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "complete"
-    t.integer  "season_id"
-    t.integer  "week"
+    t.integer  "week_id"
   end
 
   create_table "users", force: true do |t|
@@ -109,9 +149,17 @@ ActiveRecord::Schema.define(version: 20140418043552) do
     t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
+    t.float    "season_points"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "weeks", force: true do |t|
+    t.integer  "season_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "order"
+  end
 
 end

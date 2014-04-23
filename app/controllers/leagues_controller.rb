@@ -14,7 +14,9 @@ class LeaguesController < ApplicationController
   end
   
   def show
-    @league = League.find(params[:id])
+    @league = League.friendly.find(params[:id])
+    @divisions = @league.divisions
+    redirect_to root_url unless @league.members.include?(current_user)
   end
   
   protected

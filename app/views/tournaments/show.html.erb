@@ -8,14 +8,16 @@
       <th>Player ID</th>
       <th>Winnings</th>
       <th>To Par</th>
+      <th>Fantasy Points</th>
     </thead>
     <tbody>
       <%@tournament.tournament_standings.sort_by{|t| t.winnings}.reverse.each do |player|%>
       <tr>
         <td><%=player.position%></td>
-        <td><%=player.player_id%></td>
-        <td><%=player.winnings%></td>
+        <td><%=@players[player.player_id]%></td>
+        <td><%="$#{player.winnings}"%></td>
         <td><%=player.to_par%></td>
+        <td><%=player.fantasy_points %></td>
       </tr>
       <%end%>
     </tbody>

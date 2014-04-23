@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: division_memberships
+#
+#  id          :integer          not null, primary key
+#  division_id :integer
+#  user_id     :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  division_id: 1
+  user_id: 1
+
+two:
+  division_id: 1
+  user_id: 1

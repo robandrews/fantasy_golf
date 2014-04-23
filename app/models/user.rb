@@ -17,6 +17,7 @@
 #  updated_at             :datetime
 #  first_name             :string(255)
 #  last_name              :string(255)
+#  season_points          :float
 #
 
 class User < ActiveRecord::Base
@@ -27,13 +28,36 @@ class User < ActiveRecord::Base
   has_many :players, :through => :roster_memberships, :source => :player
   has_many :league_memberships
   has_many :leagues, :through => :league_memberships
-  
   has_many :league_moderatorships
   
+  has_many :division_memberships
+  
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-         
+  :recoverable, :rememberable, :trackable, :validatable
+  
+  def initialize
+    self.season_points = 0
+  end    
+  
   def name
     [self.first_name,self.last_name].join(" ")
+  end
+  
+  # not working
+  def score_week(week)
+    tournaments = Week.find(week).tournaments
+    points = 0
+    self.players.each do |player|
+      tournaments.each do |tournament|
+        place = player.tournament_standings.where("tournament_id = ? AND yahoo_id = ?",
+            tournament.id, player.yahoo_id).first
+        points += place.fantasy_points unless place.nil?
+      end
+    end
+    p ("#{self.name} now has #{points}")
+  end  
+  
+  def incremenet_score(num)
+    self.season_points += num
   end
 end
