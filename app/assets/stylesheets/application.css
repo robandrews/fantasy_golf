@@ -55,3 +55,12 @@
 .portlet{
   cursor:move;
 }
+
+.background{
+  background-image:url("https://s3-us-west-1.amazonaws.com/fantasy-golf/grass_low.jpg");
+  margin-bottom:-50px;
+}
+
+.container{
+  background-color:white;
+}

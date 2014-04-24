@@ -16,7 +16,11 @@
 //= require_tree .
 
 
-$(function() {
+//Using documetn on page load to coerce turbolinks into loading our javascript
+
+
+
+var ready = function() {
   $( ".column" ).sortable({
     connectWith: ".column",
     handle: ".portlet-header",
@@ -28,14 +32,43 @@ $(function() {
   .find( ".portlet-header" )
   .addClass( "ui-widget-header ui-corner-all" );
   
+  
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-Token': AUTH_TOKEN
+    }
+  });
+  
   $("#submit-roster").click(function(event){
-    console.log("here")
+    var return_hash = {roster_changes: {}}
+    
+    var makeData = function(){
+      $("div.active").find(".portlet").each(function(){
+        return_hash["roster_changes"][$(this).data("id")] = true
+      });
+      
+      $("div.bench").find(".portlet").each(function(){
+        return_hash["roster_changes"][$(this).data("id")] = false
+      });
+    }
+    
+    makeData();
     
     $.ajax({
-      url: document.URL.substring(0, document.URL.length-5),
+      url: document.URL.slice(0, -5),
       type: "PUT",
-      
+      data: return_hash,
+      success:function(){
+        location.reload();
+      },
+      error:function(){
+         location.reload();
+      }
     })
+    
   })
-});
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
 
