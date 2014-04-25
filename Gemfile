@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'bootstrap-kaminari-views'
-gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
 gem 'friendly_id', '~> 5.0.0'
 gem 'jbuilder', '~> 1.2'
