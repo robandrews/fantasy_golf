@@ -11,5 +11,7 @@
 // about supported directives.
 //
 //= require turbolinks
+//= require typeahead.jquery
+//= require bloodhound
 //= require select2
 //= require_tree .
