@@ -4,7 +4,7 @@ class PlayersController < ApplicationController
     @players = Player.order(:last_name).page params[:page]    
     respond_to do |format|
       format.html
-      format.json {render :json => @all_ players}
+      format.json {render :json => @all_players}
     end
   end
 end

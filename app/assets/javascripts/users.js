@@ -52,10 +52,7 @@ var ready = function() {
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     limit: 10,
     prefetch: {
-      url: document.domain + '/players.json',
-      // the json file contains an array of strings, but the Bloodhound
-      // suggestion engine expects JavaScript objects so this converts all of
-      // those strings
+      url: "http://localhost:3000/players.json",
       filter: function(list) {
         return $.map(list, function(player) { return { name: (player["first_name"] + " " + player["last_name"]),
                                                        id: player["id"],
@@ -63,22 +60,35 @@ var ready = function() {
       }
     }
   });
- 
-  // kicks off the loading/processing of `local` and `prefetch`
+   
   players.initialize();
- 
-  // passing in `null` for the `options` arguments will result in the default
-  // options being used
+
   $('#prefetch .typeahead').typeahead(null, {
     name: 'players',
     displayKey: 'name',
-    // `ttAdapter` wraps the suggestion engine in an adapter that
-    // is compatible with the typeahead jQuery plugin
-    source: players.ttAdapter()
+    source: players.ttAdapter(),
+    templates: {
+        empty: [
+          '<div class="empty-message">',
+          'Unable to find any players that match the current query',
+          '</div>'
+        ].join('\n'),
+        suggestion: name.id 
+      }
+  })
+  
+  $("#free-agent-add-button").click(function(event){
+    var name = $("#free-agent-select-list").find(":selected").text()
+    $("#player-name").html(name)
+    $('.confirm-add-free-agent').modal({
+      keyboard: false
+    });
   });
   
-  
+  $("#free-agent-select-list").select2();
 };
+
+$(document).ready();
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

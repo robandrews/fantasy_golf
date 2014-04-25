@@ -5,6 +5,9 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    # this will eventually need to be a more sophisticated SQL query to weed out players who are already taken
+    @available_players = Player.all
+    
     @league_id = params[:league_id]
     active = @user.roster_memberships.where(:active => true)
     bench = @user.roster_memberships.where(:active => false)

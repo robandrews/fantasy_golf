@@ -9,6 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require select2
+ *= require select2-bootstrap
  *= require_tree .
  */
 
@@ -67,4 +69,73 @@
 
 .emphasized-or{
   font-size:5em;
+}
+
+.roster-edit{
+  margin-bottom:300px;
+}
+
+
+.twitter-typeahead {
+    width: 100%;
+}
+
+.twitter-typeahead .tt-query,
+.twitter-typeahead .tt-hint {
+	margin-bottom: 0;
+}
+.input-group .form-control.tt-query:not(:first-child):not(:last-child) {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+.tt-hint {
+	display: block;
+	width: 100%;
+	height: 56px;
+	padding: 14px 16px;
+	font-size: 18px;
+	line-height: 25px;
+	color: #999;
+	vertical-align: middle;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+	      transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.tt-dropdown-menu {
+	min-width: 160px;
+    width: 100%;
+	margin-top: 2px;
+	padding: 5px 0;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+	      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+	background-clip: padding-box;
+}
+.tt-suggestion {
+	display: block;
+	padding: 3px 20px;
+}
+.tt-suggestion:hover {
+	color: #fff;
+	background-color: #428bca;
+  cursor:pointer;
+}
+.tt-suggestion:hover a {
+	color: #fff;
+}
+.tt-suggestion p {
+	margin: 0;
+}
+
+
+.empty-message{
+  color:red;
+  padding-left:10px;
 }
