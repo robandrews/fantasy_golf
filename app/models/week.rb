@@ -6,7 +6,7 @@
 #  season_id  :integer
 #  created_at :datetime
 #  updated_at :datetime
-#  order      :integer
+#  week_order :integer
 #
 
 class Week < ActiveRecord::Base

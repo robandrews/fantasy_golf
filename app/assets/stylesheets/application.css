@@ -50,8 +50,8 @@
 
 .portlet-placeholder {
   border: 1px dotted black;
-  margin: 0 1em 1em 0;
-  height: 50px;
+  height: 60px;
+  background-color:green;
 }
 
 .portlet{
@@ -138,4 +138,17 @@
 .empty-message{
   color:red;
   padding-left:10px;
+}
+
+.roster-selection{
+  height:325px;
+  overflow:auto;
+}
+
+div.portlet .drop-player-button {
+  display: none; /* Hide button */
+}
+
+div.portlet:hover .drop-player-button {
+   display: block; /* On :hover of div show button */
 }

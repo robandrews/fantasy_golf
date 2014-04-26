@@ -7,6 +7,7 @@
 #  player_id  :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  active     :boolean          default(FALSE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

@@ -26,6 +26,8 @@ class Player < ActiveRecord::Base
   :primary_key => :yahoo_id
   
   has_many :roster_memberships
+  has_many :free_agent_offers
+  
   validates :yahoo_id, :uniqueness => true
   validates :url, :first_name, :last_name, :presence => true
   

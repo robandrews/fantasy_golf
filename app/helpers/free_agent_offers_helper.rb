@@ -1,0 +1,2 @@
+module FreeAgentOffersHelper
+end

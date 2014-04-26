@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: free_agent_offers
+#
+#  id          :integer          not null, primary key
+#  player_id   :integer
+#  expiry_date :datetime
+#  created_at  :datetime
+#  updated_at  :datetime
+#  name        :string(255)
+#  user_name   :string(255)
+#  contested   :boolean          default(FALSE)
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This model initially had no columns defined.  If you add columns to the

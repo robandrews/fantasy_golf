@@ -17,7 +17,7 @@
 #  updated_at             :datetime
 #  first_name             :string(255)
 #  last_name              :string(255)
-#  season_points          :float
+#  season_points          :float            default(0.0)
 #
 
 class User < ActiveRecord::Base

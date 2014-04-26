@@ -46,49 +46,38 @@ var ready = function() {
     
   })
   
-  
-  var players = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    limit: 10,
-    prefetch: {
-      url: "http://localhost:3000/players.json",
-      filter: function(list) {
-        return $.map(list, function(player) { return { name: (player["first_name"] + " " + player["last_name"]),
-                                                       id: player["id"],
-                                                        picture_url: player["picture_url"]}; });
-      }
-    }
-  });
-   
-  players.initialize();
-
-  $('#prefetch .typeahead').typeahead(null, {
-    name: 'players',
-    displayKey: 'name',
-    source: players.ttAdapter(),
-    templates: {
-        empty: [
-          '<div class="empty-message">',
-          'Unable to find any players that match the current query',
-          '</div>'
-        ].join('\n'),
-        suggestion: name.id 
-      }
-  })
-  
   $("#free-agent-add-button").click(function(event){
     var name = $("#free-agent-select-list").find(":selected").text()
-    $("#player-name").html(name)
-    $('.confirm-add-free-agent').modal({
-      keyboard: false
-    });
+    if(name != "Choose a free agent"){
+      $(".player-name").html(name)
+      $('.confirm-add-free-agent').modal();
+    }
+  });
+  
+  $(".drop-player-button").click(function(event){
+    var name = $(event.target).parent().find("a").first().text();
+    var id = $(event.target).parent().parent().parent().data("id");
+    $(".drop-player-form").attr("action", "/roster_memberships/" + id);
+    $(".player-name").html(name);
+    $('.drop-player').modal();
   });
   
   $("#free-agent-select-list").select2();
+  
+  $("#free-agent-confirmed").click(function(event){
+    $("#free-agent-form").submit();
+  })
+  
+  $("#player-drop-confirmed").click(function(event){
+    $(".drop-player-form").submit();
+  })
+      
+      
 };
 
 $(document).ready();
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
+
+
