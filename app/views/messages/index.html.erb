@@ -16,7 +16,7 @@
   
   <ul class="message-list">
     <%@messages.each do |message|%>
-      <li><%=message.subject%>  by <%=message.sender_name%></li>
+      <a href="<%= league_message_url(:league_id => @league.slug, :id => message.id) %>"><li><%=message.subject%>  by <%=message.sender_name%></li></a>
     <%end%>
   </ul>
   

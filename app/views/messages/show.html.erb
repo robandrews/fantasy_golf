@@ -1,0 +1,32 @@
+<div class="container">
+  <h2>Messages</h2>
+
+  <div class="row">
+ 
+    <ul class="nav nav-tabs league-nav">
+      <li><a href="<%=league_url(@league)%>">Overview</a></li>
+      <li><a href=<%=league_url(@league) + "/users/#{current_user.id}/edit"%>>My Roster</a></li>
+      <li><a href="<%=league_messages_url(@league.slug)%>" class="active">Messages</a></li>
+      <li><a href="<%=league_bylaws_url%>">Bylaws</a></li>
+    </ul>
+ 
+  </div>
+
+<h4><%= @message.subject %></h4>
+<p><%= @message.body %></p>
+<br />
+
+<ul>
+<%@message.replies.each do |reply|%>
+<li><%= reply.body %> <p><%= reply.sender_name %> on <%= reply.created_at %></li>
+<%end%>
+</ul>
+
+<h4> Leave a reply </h4>
+  <form action="<%=league_messages_url%>" method="POST" accept-charset="utf-8">
+    <textarea name="message[body]" placeholder="Message body"></textarea>
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+    <input type="hidden" name="message[parent_id]" value="<%= @message.id %>">
+    <p><input type="submit" value="Submit &rarr;"></p>
+  </form>
+</div>

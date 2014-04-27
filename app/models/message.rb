@@ -13,10 +13,16 @@
 #
 
 class Message < ActiveRecord::Base
-  validates :league_id, :subject, :body, presence: true
+  validates :league_id, :body, presence: true
   
   belongs_to :sender,
   :class_name => "User",
   :foreign_key => :sender_id,
   :primary_key => :id
+  
+  has_many :replies,
+  :class_name => "Message",
+  :foreign_key => :parent_id,
+  :primary_key => :id
+  
 end
