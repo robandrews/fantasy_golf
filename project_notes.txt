@@ -1,10 +1,8 @@
-
 -User profile refactor eventually - important because we need to keep track of several league dependent metrics [number of free agency pickups, rosters, etc]
 
 -The free agent pool should not include players that are taken by other members of the league
 
 -Trade interface/routes/schema
-
 
 Trade schema
 
