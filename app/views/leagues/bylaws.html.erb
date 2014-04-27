@@ -1,0 +1,175 @@
+<div class="container">
+<div class="row">
+    <h2 class="col-md-6">Bylaws: <%=@league.name%></h2>
+</div>
+  <ul class="nav nav-tabs league-nav">
+    <li><a href="<%=league_url(@league)%>">Overview</a></li>
+    <li><a href=<%=league_url(@league) + "/users/#{current_user.id}/edit"%>>My Roster</a></li>
+    <li><a href="#">Messages</a></li>
+        <li class="active"><a href="#">Bylaws</a></li>
+  </ul>
+  
+  <div class="document">
+  <h4><strong>Article I</strong></h4>
+  <p> Whereas from this time, until the end of time, this League shall be known as the Dalai Lama Golf League.</p>
+  
+  <h4><strong>Article II</h4></strong> 
+  <p>The purpose of the Dalai Lama Golf League is to determine the Grand Champion of the year and the winner of the Gunga Gulunga Trophy.</p>
+  
+  
+  <h4><strong>Article III</strong></h4>
+  <p>The League will consist of 20 teams, separated into four divisions of five teams apiece. Teams may be owned individually or jointly. To have a team in good standing for the season, owner(s) must have paid dues in full before the draft.</p>
+  
+  <h4><strong>Article IV</strong></h4>
+  <p>The League shall be governed as a fully representative democracy. Each team shall have an equal voting share in the governance of the League, and in all league affairs. To ensure smooth operations within the League, the following officers will have special duties including, but not limited to their outlines below.</p>
+  
+  <ul>
+  <li>Commissioner 
+    <p>
+      The commissioner is the figurehead of the league. He is charged with
+      maintaining order within the ranks and casting a tiebreaking vote if
+      necessary. The commissioner is responsible for the general well-being
+      of the league and insuring the longevity of our sacred institution.
+      Other tasks within the realm of the commissioner are:
+    </p>
+    <ul>
+      <li>Keeping track of the overall league points standing</li>
+      <li>More or less a ‘Monarch of Britain’ type figurehead</li>
+    </ul>
+  </li>
+  
+  <li>President:
+    <ul>
+      <li>Will oversee the Golf League season </li>
+      <li>Will handle any disputes within the Golf League</li>
+      <li>Will take charge of any Golf League trip</li>
+    </ul>
+  </li>
+  
+  <li>Vice President:</li>
+    <ul>
+      <li>In charge of recording and sending out scores each week during the
+        Golf League season</li>
+      <li>Calculate each team’s points every week and update the team
+        standings</li>
+      <li>Email the aforementioned scores out within 24 hours of the final putt
+        dropping</li>
+      <li>Will collect ideas and present any rule changes to the Golf League
+        members</li>
+    </ul>
+  
+  <li>Secretary:
+    <ul>
+      <li>Responsible for recording all Golf League Draft information </li>
+      <li>Responsible for any record keeping, including rule changes</li>
+      <li>Handles all free agent and trade claims</li>
+      <li>In charge of setting draft date</li>
+    </ul>
+  </li>
+    
+    <li>Treasurer:
+      <ul>
+        <li>Responsible for all financial aspects of the Golf League</li>
+        <li>In charge of collecting dues for each Golf League season</li>
+        <li>In charge of making payments and paying skins to winners</li>
+        <li>Handles all sidebet transactions and scores</li>
+      </ul>
+    </li>
+    
+    <li>Grand Champion of the Year 
+      <p> 
+        Current holder of the Gunga Gulunga trophy. Only job is to generally
+        shove the fact that they won down everyone else’s throat for a
+        year.
+      </p>
+    </li>
+    
+    <li>Chief Sacko
+      <p>
+        Incumbent manager of the worst team from the previous year. As
+        punishment for his utter incompetency, the Chief Sacko must perform a
+        bevy of undesirable tasks until a new Chief Sacko can be crowned.
+        These tasks include, but are not limited to:
+      </p>      
+      <ul>
+        <li>Living with a year’s worth of crippling shame</li>
+        <li>Mailing out of weekly starting lineups</li>
+        <li>Purchase of one keg for league trip</li>
+      </ul>
+    </li>
+    
+  </ul>
+  
+  
+  <h4><strong>Article V</strong></h4> 
+  <p>The league shall uphold standards of law and decorum consummate of Golf’s identity as the ultimate Gentleman’s game. From this point, hitherto forthwith, all rules and regulations of the League shall be laid out, in plain English, in this document and serve as our beacon and guide in times of disagreement. These Bylaws shall serve as the final word in all disputes regarding the rules laid down hence. Amending the rules can only be done by receiving a vote in the affirmative from 2/3 of the league members. Unless in an emergency situation, as decreed by the Commissioner in the event of no rule being present to govern subsequent actions, rule amendments can only be proposed and voted upon during the League’s offseason.</p>
+  
+
+<ol class="rules">
+  
+  <li>Roster
+    <ol>
+      <li>Draft 7 players</li>
+      <li>Start 4 players</li>
+      <li>Majors
+        <ol>
+          <li>Start as many players as you have playing</li> 
+          <li>Not WGC events</li>
+        </ol>
+      <li>Playoff rosters:
+        <ol>
+          <li>Start as many players as you have playing</li>
+        </ol> 
+      </li>
+      
+      <li> Tiger is not available to be drafted:
+        <ol>
+          <li> Tiger is deemed unfit for our league player pool due to his
+               unsurpassed track record of dominance and ability to have every
+               golf fan to want to root for him
+         </li>
+       </ol>
+     </li>
+       
+     <li>Starting lineups must be highlighted on Google Docs each week
+      <ol>
+        <li>Deadline is the before the first tee time of the 1st round of every
+        tournament</li>
+        <li>If lineup is not posted to Google Docs, the top 4 players listed on
+            your lineup will be started and 0.5x points will be given</li>
+      </ol>
+      </li>
+    </li>
+    </ol>
+  </li>
+    
+    <li>Player Pool:
+      <ol>
+        <li>A concrete list will be made available before draft.</li>
+        <li>Teams can add to list until the commissioner deems it “official”
+          <ol>
+            <li>No players will be added once deemed official</li>
+            <li>Player additions must be OK’d by league board</li>
+          </ol>
+        </li>
+        <li>Players Eliminated from League Play:
+          <ol>
+            <li>Rory Sabbatini, Kevin Na, Paul Goydos, Vijay Singh, Tiger
+                Woods</li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    
+   <li>Draft
+     <ol>
+       <li>The draft shall take place in the twilight of December</li>
+       <li>Mike doing something ridiculous and arbitrary that in no way shape or form mirrors real life will inevitably decide the draft order. In the spirit of the moment he will decide whether the draft will be decided in reverse order or regular order as he makes a video on someone’s iPhone. I implore you all to just get the grumbling out of the way before draft day, we all know it’s retarded but I guess Mike gets his rocks off with fomenting controversy.</li>
+     </ol>
+   </li>
+   
+   
+   
+   </ol> <!-- end of ol class="rules"  -->
+  </div> <!--div class="document"-->
+</div> <!--div class="container"-->

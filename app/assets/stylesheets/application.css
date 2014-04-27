@@ -152,3 +152,11 @@ div.portlet .drop-player-button {
 div.portlet:hover .drop-player-button {
    display: block; /* On :hover of div show button */
 }
+
+ol ol{
+  list-style-type:lower-alpha;
+}
+
+ol ol ol{
+  list-style-type:lower-roman;
+}

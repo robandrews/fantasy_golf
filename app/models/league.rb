@@ -21,8 +21,9 @@ class League < ActiveRecord::Base
   has_many :members, :through => :league_memberships, :source => :user
   has_many :league_moderatorships
   has_many :moderators, :through => :league_moderatorships, :source => :user
-  
   has_many :divisions
+  
+  has_one :bylaw
   
   def make_secret_sauce
     self.secret_sauce = SecureRandom.base64(16)

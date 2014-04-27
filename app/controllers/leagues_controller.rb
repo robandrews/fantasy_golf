@@ -19,8 +19,7 @@ class LeaguesController < ApplicationController
     redirect_to root_url unless @league.members.include?(current_user)
   end
   
-  protected
-  def league_params
-    params.require(:league).permit(:name)
+  def bylaws
+    @league = League.friendly.find(params[:league_id])
   end
 end

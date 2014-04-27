@@ -16,6 +16,8 @@ Trade schema
 
 We could make a player group polymorphic - use that for both rosters and trades
 
+need to make a bylaws controller - allow for editing using htmyl5 and individualized bylaws on a per-league basis
+
 
 
 Lineups - draft 7 play 4 - lock in @ first tee time (time zone dependent) (if LATE, take top four guys listed and half the points.)

@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: messages
+#
+#  id         :integer          not null, primary key
+#  sender_id  :integer
+#  subject    :string(255)
+#  body       :text
+#  league_id  :integer
+#  parent_id  :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sender_id: 1
+  subject: MyString
+  body: MyText
+  league_id: 1
+  parent_id: 1
+
+two:
+  sender_id: 1
+  subject: MyString
+  body: MyText
+  league_id: 1
+  parent_id: 1

@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>Messages</h2>
+
+  <div class="row">
+ 
+    <ul class="nav nav-tabs league-nav">
+      <li><a href="<%=league_url(@league)%>">Overview</a></li>
+      <li><a href=<%=league_url(@league) + "/users/#{current_user.id}/edit"%>>My Roster</a></li>
+      <li><a href="#" class="active">Messages</a></li>
+      <li><a href="<%=league_bylaws_url%>">Bylaws</li>
+    </ul>
+ 
+  </div>
+  
+  <a href="<%=new_league_message_url(@league)%>">Create a new message</a>
+  
+  <ul class="message-list">
+    <%@messages.each do |message|%>
+      <li><%=message.subject%>  by <%=message.sender_name%></li>
+    <%end%>
+  </ul>
+  
+</div>

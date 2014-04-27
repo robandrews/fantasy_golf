@@ -1,17 +1,14 @@
 <div class="container">
   <div class="row">
     <h2 class="col-md-6"><%=@league.name%></h2>
-
-    <h3>
-      <%=render "layouts/mod"%>
-    </h3>
   </div>
   
   
   <ul class="nav nav-tabs league-nav">
     <li class="active"><a href="#">Overview</a></li>
     <li><a href=<%=league_url(@league) + "/users/#{current_user.id}/edit"%>>My Roster</a></li>
-    <li><a href="#">Messages</a></li>
+    <li><a href="<%=league_messages_url(@league)%>">Messages</a></li>
+    <li><a href="<%=league_bylaws_url(@league)%>">Bylaws</a></li>
   </ul>
   
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140426010647) do
+ActiveRecord::Schema.define(version: 20140427200534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(version: 20140426010647) do
 
   add_index "archived_weeks", ["league_id"], name: "index_archived_weeks_on_league_id", using: :btree
   add_index "archived_weeks", ["week_id"], name: "index_archived_weeks_on_week_id", using: :btree
+
+  create_table "bylaws", force: true do |t|
+    t.integer  "league_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "division_memberships", force: true do |t|
     t.integer  "division_id"
@@ -95,6 +102,17 @@ ActiveRecord::Schema.define(version: 20140426010647) do
   end
 
   add_index "leagues", ["slug"], name: "index_leagues_on_slug", unique: true, using: :btree
+
+  create_table "messages", force: true do |t|
+    t.integer  "sender_id"
+    t.string   "subject"
+    t.text     "body"
+    t.integer  "league_id"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "sender_name"
+  end
 
   create_table "players", force: true do |t|
     t.string   "first_name"
