@@ -37,5 +37,4 @@ Playoffs(take 10), top 2 in each division, 2 wildcard (point bonuses going into 
 
 Trophy Corner
 
-Bylaws
-
+Flair (current champ has trophy next to their name, comissioner able to edit all flair)
