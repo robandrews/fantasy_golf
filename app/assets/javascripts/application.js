@@ -15,6 +15,8 @@
 //= require jquery.ui.all
 //= require bloodhound
 //= require typeahead.jquery
+//= require advanced.js
+//= require wysihtml5.js
 //= require turbolinks
 //= require select2
 //= require_tree .

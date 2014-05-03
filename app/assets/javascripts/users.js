@@ -40,7 +40,7 @@ var ready = function() {
         location.reload();
       },
       error:function(){
-         location.reload();
+        location.reload();
       }
     })
     
@@ -54,13 +54,7 @@ var ready = function() {
     }
   });
   
-  $(".drop-player-button").click(function(event){
-    var name = $(event.target).parent().find("a").first().text();
-    var id = $(event.target).parent().parent().parent().data("id");
-    $(".drop-player-form").attr("action", "/roster_memberships/" + id);
-    $(".player-name").html(name);
-    $('.drop-player').modal();
-  });
+ 
   
   $("#free-agent-select-list").select2();
   
@@ -72,10 +66,27 @@ var ready = function() {
     $(".drop-player-form").submit();
   })
       
-      
+  $( ".show-free-agent" ).click(function() {
+    $( ".roster" ).addClass( "hidden");
+    $( ".trade" ).addClass( "hidden");
+    $( ".free-agent" ).removeClass( "hidden");
+    return false;
+  });
+  
+  $( ".show-trade" ).click(function() {
+    $( ".roster" ).addClass( "hidden");
+    $( ".free-agent" ).addClass( "hidden");
+    $( ".trade" ).removeClass( "hidden");
+  });
+  
+  $( ".show-roster" ).click(function() {
+    $( ".free-agent" ).addClass( "hidden");
+    $( ".trade" ).addClass( "hidden");
+    $( ".roster" ).removeClass( "hidden");
+    return false;
+  });
+  
 };
-
-$(document).ready();
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

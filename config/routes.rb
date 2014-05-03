@@ -9,10 +9,10 @@ FantasyGolf::Application.routes.draw do
   resources :players, :only => [:index]
   resources :leagues do
     resources :divisions
-    resources :users, :only => [:edit, :update]
+    resources :league_memberships
     resources :free_agent_offers
     resources :messages
-    get "bylaws"
+    resources :bylaws
   end
   
   resources :league_memberships, :only => [:new, :create]

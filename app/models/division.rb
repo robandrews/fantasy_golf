@@ -12,7 +12,7 @@
 class Division < ActiveRecord::Base
   belongs_to :league
   has_many :division_memberships
-  has_many :members, :through => :division_memberships, :source => :user
+  has_many :members, :through => :division_memberships, :source => :league_membership
   
   validates :name, :presence => true
 end

@@ -5,8 +5,8 @@
  
     <ul class="nav nav-tabs league-nav">
       <li><a href="<%=league_url(@league)%>">Overview</a></li>
-      <li><a href=<%=league_url(@league) + "/users/#{current_user.id}/edit"%>>My Roster</a></li>
-      <li><a href="#" class="active">Messages</a></li>
+            <li><a href=<%=league_url(@league) + "/league_memberships/#{@league_membership.id}/edit"%>>My Roster</a></li>
+      <li class="active"><a href="#">Messages</a></li>
       <li><a href="<%=league_bylaws_url%>">Bylaws</li>
     </ul>
  

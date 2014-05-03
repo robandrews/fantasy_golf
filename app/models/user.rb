@@ -23,19 +23,11 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  
-  has_many :roster_memberships
-  has_many :players, :through => :roster_memberships, :source => :player
+
   has_many :league_memberships
   has_many :leagues, :through => :league_memberships
+  
   has_many :league_moderatorships
-  has_many :division_memberships
-  has_many :interested_parties
-
-  has_many :messages,
-  :class_name => "Message",
-  :foreign_key => :sender_id,
-  :primary_key => :id
   
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable

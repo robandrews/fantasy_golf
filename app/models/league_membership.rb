@@ -12,4 +12,14 @@
 class LeagueMembership < ActiveRecord::Base  
   belongs_to :league
   belongs_to :user
+  
+  has_many :division_memberships
+  has_many :interested_parties
+  has_many :roster_memberships
+  has_many :players, :through => :roster_memberships, :source => :player
+
+  has_many :messages,
+  :class_name => "Message",
+  :foreign_key => :sender_id,
+  :primary_key => :id
 end

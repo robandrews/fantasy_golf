@@ -5,7 +5,7 @@ rob = User.create!(:first_name => "Rob", :last_name => "Andrews", :email => "rob
 :password => "password", :password_confirmation => "password")
 
 league = League.create!(:name => "Dalai Lama Golf League")
-LeagueMembership.create!(:user_id => rob.id, :league_id => league.id)
+rob_member = LeagueMembership.create!(:user_id => rob.id, :league_id => league.id, :name => rob.name)
 LeagueModeratorship.create!(:user_id => rob.id, :league_id => league.id)
 
 division = Division.create!(:name => "Ben Hogan", :league_id => league.id)
@@ -13,30 +13,50 @@ Division.create!(:name => "Bobby Jones", :league_id => league.id)
 Division.create!(:name => "Moe Norman", :league_id => league.id)
 Division.create!(:name => "Horton Smith", :league_id => league.id)
 
-DivisionMembership.create!(:user_id => rob.id, :division_id => division.id)
+DivisionMembership.create!(:league_membership_id => rob_member.id, :division_id => division.id)
 
-RosterMembership.create!(:user_id => rob.id, :player_id => 20, :active => true)
-RosterMembership.create!(:user_id => rob.id, :player_id => 30, :active => true)
-RosterMembership.create!(:user_id => rob.id, :player_id => 40, :active => true)
-RosterMembership.create!(:user_id => rob.id, :player_id => 319, :active => true)
+RosterMembership.create!(:league_membership_id => rob_member.id, :player_id => 20, :active => true)
+RosterMembership.create!(:league_membership_id => rob_member.id, :player_id => 30, :active => true)
+RosterMembership.create!(:league_membership_id => rob_member.id, :player_id => 40, :active => true)
+RosterMembership.create!(:league_membership_id => rob_member.id, :player_id => 319, :active => true)
 
-RosterMembership.create!(:user_id => rob.id, :player_id => 210, :active => false)
-RosterMembership.create!(:user_id => rob.id, :player_id => 220, :active => false)
-RosterMembership.create!(:user_id => rob.id, :player_id => 240, :active => false)
-RosterMembership.create!(:user_id => rob.id, :player_id => 329, :active => false)
+RosterMembership.create!(:league_membership_id => rob_member.id, :player_id => 210, :active => false)
+RosterMembership.create!(:league_membership_id => rob_member.id, :player_id => 220, :active => false)
+RosterMembership.create!(:league_membership_id => rob_member.id, :player_id => 240, :active => false)
+RosterMembership.create!(:league_membership_id => rob_member.id, :player_id => 329, :active => false)
+
+
+
+
+
+
+greg = User.create!(:first_name => "Greg", :last_name => "Andrews", :email => "greg@gmail.com",
+:password => "password", :password_confirmation => "password")
+greg_member = LeagueMembership.create!(:user_id => greg.id, :league_id => league.id, :name => greg.name)
+DivisionMembership.create!(:league_membership_id => greg_member.id, :division_id => division.id)
+
+
+RosterMembership.create!(:league_membership_id => greg_member.id, :player_id => 22, :active => true)
+RosterMembership.create!(:league_membership_id => greg_member.id, :player_id => 32, :active => true)
+RosterMembership.create!(:league_membership_id => greg_member.id, :player_id => 42, :active => true)
+RosterMembership.create!(:league_membership_id => greg_member.id, :player_id => 322, :active => true)
+
+RosterMembership.create!(:league_membership_id => greg_member.id, :player_id => 212, :active => false)
+RosterMembership.create!(:league_membership_id => greg_member.id, :player_id => 222, :active => false)
+RosterMembership.create!(:league_membership_id => greg_member.id, :player_id => 242, :active => false)
+RosterMembership.create!(:league_membership_id => greg_member.id, :player_id => 328, :active => false)
+
+
+
 
 season = Season.create!(:name => "2013-2014", 
 :start_date => Date.new(2014, 1, 3),
-:end_date => Date.new(2014, 9, 28),
-:league_id => league.id)
+:end_date => Date.new(2014, 9, 28))
 
 weeks = {}
 (1..16).each do |w|
-  weeks[w] = Week.create!(:order => w, :season_id => season.id)
+  weeks[w] = Week.create!(:week_order => w, :season_id => season.id)
 end
-
-Tournament.create!(
-:complete => true)
 
 Tournament.create!(:name => "Sony Open", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/7",
 :start_date => Date.new(2014, 1, 9),

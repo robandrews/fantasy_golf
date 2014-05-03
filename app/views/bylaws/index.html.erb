@@ -4,8 +4,8 @@
 </div>
   <ul class="nav nav-tabs league-nav">
     <li><a href="<%=league_url(@league)%>">Overview</a></li>
-    <li><a href=<%=league_url(@league) + "/users/#{current_user.id}/edit"%>>My Roster</a></li>
-    <li><a href="#">Messages</a></li>
+    <li><a href=<%=league_url(@league) + "/league_memberships/#{@league_membership.id}/edit"%>>My Roster</a></li>
+        <li><a href="<%=league_messages_url(@league)%>">Messages</a></li>
         <li class="active"><a href="#">Bylaws</a></li>
   </ul>
   

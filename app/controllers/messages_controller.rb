@@ -3,6 +3,9 @@ class MessagesController < ApplicationController
   def index
     @league = League.friendly.find(params[:league_id])
     @messages = Message.where(:league_id => @league.id, :parent_id => 0)
+    @league_membership = LeagueMembership.where("user_id = ? AND league_id = ?",
+                                                current_user.id, @league.id).first
+    
   end
   
   def new
@@ -33,6 +36,8 @@ class MessagesController < ApplicationController
   def show
     @league = League.friendly.find(params[:league_id])
     @message = Message.find(params[:id])
+    @league_membership = LeagueMembership.where("user_id = ? AND league_id = ?",
+                                                current_user.id, @league.id).first
   end
   
   protected

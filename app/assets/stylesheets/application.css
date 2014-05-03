@@ -58,24 +58,6 @@
   cursor:move;
 }
 
-.background{
-  background-image:url("https://s3-us-west-1.amazonaws.com/fantasy-golf/grass_low.jpg");
-  margin-bottom:-50px;
-}
-
-.container{
-  background-color:white;
-}
-
-.emphasized-or{
-  font-size:5em;
-}
-
-.roster-edit{
-  margin-bottom:300px;
-}
-
-
 .twitter-typeahead {
     width: 100%;
 }
@@ -146,11 +128,11 @@
 }
 
 div.portlet .drop-player-button {
-  display: none; /* Hide button */
+  display: none;
 }
 
 div.portlet:hover .drop-player-button {
-   display: block; /* On :hover of div show button */
+   display: block;
 }
 
 ol ol{

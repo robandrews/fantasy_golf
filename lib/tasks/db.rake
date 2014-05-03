@@ -46,7 +46,7 @@ namespace :db do
           ["http://sports.yahoo.com/golf/pga/players/Dustin+Johnson/9267"]
     
     missing_urls.each do |url|
-      Player.build_from_url(url)
+      Player.construct_from_url(url)
     end   
   end
   
