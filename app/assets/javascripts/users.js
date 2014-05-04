@@ -54,7 +54,13 @@ var ready = function() {
     }
   });
   
- 
+  $(".drop-player-button").click(function(event){
+    var name = $(event.target).parent().find("a").first().text();
+    var id = $(event.target).parent().parent().parent().data("id");
+    $(".drop-player-form").attr("action", "/roster_memberships/" + id);
+    $(".player-name").html(name);
+    $('.drop-player').modal();
+  });
   
   $("#free-agent-select-list").select2();
   
