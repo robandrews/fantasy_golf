@@ -9,7 +9,9 @@ FantasyGolf::Application.routes.draw do
   resources :players, :only => [:index]
   resources :leagues do
     resources :divisions
-    resources :league_memberships
+    resources :league_memberships do
+      get "players", to: 'league_memberships#players'
+    end
     resources :free_agent_offers
     resources :messages
     resources :bylaws

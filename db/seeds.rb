@@ -26,10 +26,6 @@ RosterMembership.create!(:league_membership_id => rob_member.id, :player_id => 2
 RosterMembership.create!(:league_membership_id => rob_member.id, :player_id => 329, :active => false)
 
 
-
-
-
-
 greg = User.create!(:first_name => "Greg", :last_name => "Andrews", :email => "greg@gmail.com",
 :password => "password", :password_confirmation => "password")
 greg_member = LeagueMembership.create!(:user_id => greg.id, :league_id => league.id, :name => greg.name)
@@ -46,7 +42,21 @@ RosterMembership.create!(:league_membership_id => greg_member.id, :player_id => 
 RosterMembership.create!(:league_membership_id => greg_member.id, :player_id => 242, :active => false)
 RosterMembership.create!(:league_membership_id => greg_member.id, :player_id => 328, :active => false)
 
+mike = User.create!(:first_name => "Mike", :last_name => "Desantis", :email => "mike@gmail.com",
+:password => "password", :password_confirmation => "password")
+mike_member = LeagueMembership.create!(:user_id => mike.id, :league_id => league.id, :name => mike.name)
+DivisionMembership.create!(:league_membership_id => mike_member.id, :division_id => division.id)
 
+
+RosterMembership.create!(:league_membership_id => mike_member.id, :player_id => 2, :active => true)
+RosterMembership.create!(:league_membership_id => mike_member.id, :player_id => 3, :active => true)
+RosterMembership.create!(:league_membership_id => mike_member.id, :player_id => 4, :active => true)
+RosterMembership.create!(:league_membership_id => mike_member.id, :player_id => 5, :active => true)
+
+RosterMembership.create!(:league_membership_id => mike_member.id, :player_id => 6, :active => false)
+RosterMembership.create!(:league_membership_id => mike_member.id, :player_id => 7, :active => false)
+RosterMembership.create!(:league_membership_id => mike_member.id, :player_id => 8, :active => false)
+RosterMembership.create!(:league_membership_id => mike_member.id, :player_id => 9, :active => false)
 
 
 season = Season.create!(:name => "2013-2014", 

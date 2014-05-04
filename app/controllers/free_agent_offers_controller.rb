@@ -12,7 +12,6 @@ class FreeAgentOffersController < ApplicationController
     offer.interested_parties.build(:league_membership_id => league_membership.id)
     
     if offer.save
-      # redirect_to :controller => "FreeAgentOffers", :actions => "get", :id => params[:league_id]
       redirect_to league_free_agent_offers_url
     else
       flash[:errors] = "Unable to process free agent request at this time"
@@ -21,6 +20,6 @@ class FreeAgentOffersController < ApplicationController
   end
   
   def index
-    @offers = FreeAgentOffer.all
+    @offers = FreeAgentOffer.where("expiry_date > ?", DateTime.now)
   end
 end

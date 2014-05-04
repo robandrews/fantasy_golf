@@ -86,9 +86,19 @@ var ready = function() {
     return false;
   });
   
+  $(".tradee-selector").on("change", function(){
+    $.ajax({
+      url: document.URL.slice(0,-5) + "/players",
+      type: "GET",
+      dataType:"html",
+      data: {tradee: $(".tradee-selector").find(":selected").data("id")},
+      success:function(resp){
+        console.log(resp);
+        $(".tradee-list").html(resp);
+      }
+    });
+  });
 };
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
-
-

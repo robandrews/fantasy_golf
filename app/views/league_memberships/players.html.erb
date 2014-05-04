@@ -1,0 +1,3 @@
+<% @league_membership.players.each do |player| %>
+  <li><input type='checkbox' data-id='<%= player.id %>'><%=player.name%></li><br />
+<%   end %>

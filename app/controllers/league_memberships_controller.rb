@@ -18,10 +18,9 @@ class LeagueMembershipsController < ApplicationController
     @available_players = Player.all
     @league_membership = LeagueMembership.find(params[:id])
     @league = League.friendly.find(params[:league_id])
-    
+    @league_members = @league.league_memberships.map{|lm| lm if lm != @league_membership}.compact
     active = @league_membership.roster_memberships.where(:active => true)
     bench = @league_membership.roster_memberships.where(:active => false)
-    
     @active_players = {}
     @bench_players = {}
     
@@ -61,4 +60,15 @@ class LeagueMembershipsController < ApplicationController
       render status: 500
     end
   end  
+  
+  def players
+    p params
+    league_membership = LeagueMembership.find(params[:tradee])
+    resp = []
+    league_membership.players.each do |player|
+      resp << "<li><input type='checkbox' data-id='#{player.id}'>#{player.name}</li><br />"
+    end
+    render text: resp.join("\n").html_safe
+  end
+  
 end

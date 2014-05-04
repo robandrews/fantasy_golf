@@ -107,18 +107,33 @@
   <div class="trade hidden">
     <h2>Trade with league member</h2>
   
-    <select class="trade-selector">
-      <% @league.members.each do |member| %>
-      <option><%= member.name %></option>
-      <% end %>
-    </select>
+  
   
     <div class="row">
-    
-      <form action="trade-submit" method="post">
+      <div class="col-md-5">
+        <ul class="trader-list">
+          <% @league_membership.players.each do |player| %>
+          <li><input type="checkbox" data-id="<%= player.id %>"><%= player.name %></li><br />
+          <% end %>
+        </ul>
+      </div>
+    </div>
       
-        <input type="submit" value="Continue &rarr;">
-      </form>
+      <div class="col-md-5">
+        <div class="form-group">
+          <select class="tradee-selector form-control">
+            <% @league_members.each do |member| %>
+            <option data-id="<%= member.id %>"><%= member.name %></option>
+            <% end %>
+          </select>
+      
+          <ul class="tradee-list">
+            <% @league_members.first.players.each do |player|%>
+            <li><input type="checkbox" data-id="<%= player.id %>"><%= player.name %></li><br />
+            <%end%>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
   <div class="modal fade confirm-add-free-agent" tabindex="-1" role="dialog" aria-hidden="true">
@@ -168,6 +183,4 @@
       </div>      
     </div>
   </div>
-
-  
 </div>

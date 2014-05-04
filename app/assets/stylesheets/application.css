@@ -142,3 +142,40 @@ ol ol{
 ol ol ol{
   list-style-type:lower-roman;
 }
+
+/*wysihtml5 styling*/
+#toolbar [data-wysihtml5-action] {
+  float: right;
+}
+
+#toolbar,
+textarea {
+  width: 920px;
+  padding: 5px;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 80px;
+  border: 2px solid black;
+  font-family: Verdana;
+  font-size: 11px;
+}
+
+textarea:focus {
+  color: black;
+  border: 2px solid black;
+}
+
+.wysihtml5-command-active {
+  font-weight: bold;
+}
+
+[data-wysihtml5-dialog] {
+  margin: 5px 0 0;
+  padding: 5px;
+  border: 1px solid #666;
+}

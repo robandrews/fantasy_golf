@@ -3,7 +3,12 @@
 
   <ul>
     <%@offers.each do |free_agent_offer|%>
-    <li><%=free_agent_offer.user_name%>'s bid for <%=free_agent_offer.name%> expires in <%=distance_of_time_in_words(Time.now, free_agent_offer.expiry_date)%>.  Currently the bid is <%=free_agent_offer.contested ? "contested":"uncontested"%></li>
+    <li data-id="<%= free_agent_offer.id %>"><%=free_agent_offer.user_name%> bid for <%=free_agent_offer.name%> expires in <%=distance_of_time_in_words(Time.now, free_agent_offer.expiry_date)%>.  Currently the bid is <%=free_agent_offer.contested ? "contested" : "uncontested"%>
+    
+    
+    <button class="contest-free-agent">Contest Bid</button>
+    
+    </li>
     <%end%>
   </ul>
 </div>
