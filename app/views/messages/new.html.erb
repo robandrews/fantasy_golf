@@ -2,9 +2,16 @@
 <h2> Create a new message </h2>
 
 
-<form action="<%=league_messages_url%>" method="POST" accept-charset="utf-8">  
-  <input type="text" name="message[subject]" placeholder="Subject">
-  <textarea name="message[body]" placeholder="Message body"></textarea>
+<form role="form" action="<%=league_messages_url%>" method="POST" accept-charset="utf-8">  
+  
+  <div class="form-group">
+     <label for="message-subject">Subject</label>
+    <input type="text" class="form-control" name="message[subject]" id="message-subject" placeholder="Subject">
+   </div>
+   
+  <div class="form-group">
+  <textarea class="form-control" name="message[body]" placeholder="Message body"></textarea>
+</div>
   <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
   <p><input type="submit" value="Submit &rarr;"></p>
 </form>

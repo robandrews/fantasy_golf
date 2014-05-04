@@ -143,6 +143,10 @@ ol ol ol{
   list-style-type:lower-roman;
 }
 
+.trader-list{
+  margin-top:30px;
+}
+
 /*wysihtml5 styling*/
 #toolbar [data-wysihtml5-action] {
   float: right;

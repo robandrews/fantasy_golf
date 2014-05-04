@@ -10,7 +10,6 @@ var ready = function() {
   .find( ".portlet-header" )
   .addClass( "ui-widget-header ui-corner-all" );
   
-  
   $.ajaxSetup({
     headers: {
       'X-CSRF-Token': AUTH_TOKEN

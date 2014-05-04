@@ -13,7 +13,7 @@
   </div>
 
 <h4><%= @message.subject %></h4>
-<p><%= @message.body %></p>
+<%= @message.body.html_safe %>
 <br />
 
 <ul>
@@ -63,7 +63,9 @@
     </div>
     
   </div>
-  <textarea id="create-note-textarea" placeholder="Begin note..."></textarea>
+  <textarea id="create-note-textarea" placeholder="Begin reply..."></textarea>
+<br />
+  <button class="create-note">Submit Reply</button>
 </form>
 
 <script>
@@ -73,7 +75,7 @@
   });
 </script>
 
-<button class="create-note">Create Note</button>
+
   
 
 <%= link_to "Back to Messages", league_messages_url(@league.slug) %>
