@@ -62,7 +62,6 @@ class LeagueMembershipsController < ApplicationController
   end  
   
   def players
-    p params
     league_membership = LeagueMembership.find(params[:tradee])
     resp = []
     league_membership.players.each do |player|

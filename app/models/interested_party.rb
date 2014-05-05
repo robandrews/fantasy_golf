@@ -12,4 +12,6 @@
 class InterestedParty < ActiveRecord::Base
   belongs_to :league_membership
   belongs_to :free_agent_offer
+  
+  validates_uniqueness_of :free_agent_offer_id, :scope => :league_membership_id
 end

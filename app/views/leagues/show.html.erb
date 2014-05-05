@@ -4,12 +4,7 @@
   </div>
   
   
-  <ul class="nav nav-tabs league-nav">
-    <li class="active"><a href="#">Overview</a></li>
-    <li><a href=<%=league_url(@league) + "/league_memberships/#{@league_membership.id}/edit"%>>My Roster</a></li>
-    <li><a href="<%=league_messages_url(@league)%>">Messages</a></li>
-    <li><a href="<%=league_bylaws_url(@league)%>">Bylaws</a></li>
-  </ul>
+<%= render partial: "layouts/league_nav", locals: {active: 1, league: @league, league_membership: @league_membership} %>
   
   
   <div class="row league_standings">

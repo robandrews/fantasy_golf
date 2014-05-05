@@ -1,14 +1,7 @@
 <div class="container roster-edit">
-  <h2>Set your roster</h2>
+  <h2>Roster Management</h2>
 
-  <div class="row">
-    <ul class="nav nav-tabs league-nav">
-      <li><a href="<%=league_url(@league.id)%>">Overview</a></li>
-      <li class="active"><a href="#">My Roster</a></li>
-      <li><a href="<%=league_messages_url(@league.id)%>">Messages</a></li>
-      <li><a href="<%=league_bylaws_url%>">Bylaws</a></li>
-    </ul> 
-  </div>
+  <%= render partial: "layouts/league_nav", locals: {active: 2, league: @league, league_membership: @league_membership} %>
    
   <div class="btn-group btn-group-justified">
     <div class="btn-group">

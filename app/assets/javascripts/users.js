@@ -112,6 +112,19 @@ var ready = function() {
     $(event.target).toggleClass("selected");
   });
   
+  $(".contest-free-agent").click(function(event){
+    $.ajax({
+      url: document.URL + "/" + $(event.target).data("id"),
+      type: "PUT",
+      success:function(){
+        location.reload();
+      },
+      error:function(){
+        location.reload();
+      }
+    })
+  });
+  
 };
 
 

@@ -9,5 +9,7 @@ Bundler.require(:default, Rails.env)
 module FantasyGolf
   class Application < Rails::Application
     CURRENT_WEEK = 1
+    
+    config.time_zone = 'Pacific Time (US & Canada)'
   end
 end

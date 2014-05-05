@@ -2,12 +2,7 @@
 <div class="row">
     <h2 class="col-md-6">Bylaws: <%=@league.name%></h2>
 </div>
-  <ul class="nav nav-tabs league-nav">
-    <li><a href="<%=league_url(@league)%>">Overview</a></li>
-    <li><a href=<%=league_url(@league) + "/league_memberships/#{@league_membership.id}/edit"%>>My Roster</a></li>
-        <li><a href="<%=league_messages_url(@league)%>">Messages</a></li>
-        <li class="active"><a href="#">Bylaws</a></li>
-  </ul>
+  <%= render partial: "layouts/league_nav", locals: {active: 5, league: @league, league_membership: @league_membership} %>
   
   <div class="document">
   <h4><strong>Article I</strong></h4>

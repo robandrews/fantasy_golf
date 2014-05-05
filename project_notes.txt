@@ -11,18 +11,13 @@ Trade schema
 -proposer player group
 -proposee player group
 
-
 We could make a player group polymorphic - use that for both rosters and trades
 
 need to make a bylaws controller - allow for editing using htmyl5 and individualized bylaws on a per-league basis
 
 general optimization including prefetching message replies, among several others
 
-Lineups - draft 7 play 4 - lock in @ first tee time (time zone dependent) (if LATE, take top four guys listed and half the points.)
-
 Trades - user needs to be able to look at everyone elses roster, and then propose trade (all player stats)  ==> propose/approve model
-
-if roster.length < 7 (after trade), you can pick free agents(through normal free agent channels)
 
 IR list (field in the player schema)
 

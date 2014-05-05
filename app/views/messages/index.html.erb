@@ -1,16 +1,7 @@
 <div class="container">
   <h2>Messages</h2>
 
-  <div class="row">
- 
-    <ul class="nav nav-tabs league-nav">
-      <li><a href="<%=league_url(@league)%>">Overview</a></li>
-            <li><a href=<%=league_url(@league) + "/league_memberships/#{@league_membership.id}/edit"%>>My Roster</a></li>
-      <li class="active"><a href="#">Messages</a></li>
-      <li><a href="<%=league_bylaws_url%>">Bylaws</li>
-    </ul>
- 
-  </div>
+    <%= render partial: "layouts/league_nav", locals: {active: 4, league: @league, league_membership: @league_membership} %>
   
   <a href="<%=new_league_message_url(@league)%>">Create a new message</a>
   

@@ -1,12 +1,19 @@
 <div class="container">
-  <h1>Free Agent Activity</h1>
 
+
+
+  <h2>Free Agent Activity</h2>
+  <%= render partial: "layouts/league_nav", locals: {active: 3, league: @league, league_membership: @league_membership} %>
   <ul>
     <%@offers.each do |free_agent_offer|%>
-    <li data-id="<%= free_agent_offer.id %>"><%=free_agent_offer.user_name%> bid for <%=free_agent_offer.name%> expires in <%=distance_of_time_in_words(Time.now, free_agent_offer.expiry_date)%>.  Currently the bid is <%=free_agent_offer.contested ? "contested" : "uncontested"%>
+    <li data-id="<%= free_agent_offer.id %>">
+      <%=free_agent_offer.user_name%> bid for <%=free_agent_offer.name%>     
+      expires at <%= (free_agent_offer.expiry_date.to_s(:pretty)) %> PST 
+      (in <%=distance_of_time_in_words(Time.now, free_agent_offer.expiry_date)%>).
+      Currently the bid is <%=free_agent_offer.interested_parties.length > 1 ? "contested" : "uncontested"%>
     
     
-    <button class="contest-free-agent">Contest Bid</button>
+    <button class="contest-free-agent" data-id="<%= free_agent_offer.id %>">Contest Bid</button>
     
     </li>
     <%end%>
