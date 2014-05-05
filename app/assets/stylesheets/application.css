@@ -147,6 +147,18 @@ ol ol ol{
   margin-top:30px;
 }
 
+.selectable{
+  cursor:pointer;
+}
+
+.selectable-resp{
+  cursor:pointer;
+}
+
+.selected{
+  background-color:#0BD72F;
+}
+
 /*wysihtml5 styling*/
 #toolbar [data-wysihtml5-action] {
   float: right;

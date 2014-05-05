@@ -107,13 +107,14 @@
   <div class="trade hidden">
     <h2>Trade with league member</h2>
   
-  
-  
     <div class="row">
       <div class="col-md-5">
-        <ul class="trader-list">
+        <ul class="list-group trader-list">
           <% @league_membership.players.each do |player| %>
-          <li><input type="checkbox" data-id="<%= player.id %>"><%= player.name %></li><br />
+          <li data-id="<%= player.id %>" class="list-group-item selectable">
+            <img src="<%=player.picture_url%>" width=40>
+            <%= player.name %>
+          </li><br />
           <% end %>
         </ul>
       </div>
@@ -126,9 +127,12 @@
             <% end %>
           </select>
       
-          <ul class="tradee-list">
+          <ul class="list-group tradee-list">
             <% @league_members.first.players.each do |player|%>
-            <li><input type="checkbox" data-id="<%= player.id %>"><%= player.name %></li><br />
+           <li data-id="<%= player.id %>" class="list-group-item selectable">
+             <img src="<%=player.picture_url%>" width=40>
+             <%= player.name %>
+           </li><br />
             <%end%>
           </ul>
         </div>

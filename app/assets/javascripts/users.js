@@ -98,12 +98,23 @@ var ready = function() {
       dataType:"html",
       data: {tradee: $(".tradee-selector").find(":selected").data("id")},
       success:function(resp){
-        console.log(resp);
         $(".tradee-list").html(resp);
+        $(".selectable-resp").click(function(event){
+          $(event.target).toggleClass("selected");
+        });
       }
     });
+    
+    
+  });  
+  
+  $(".selectable").click(function(event){
+    $(event.target).toggleClass("selected");
   });
+  
 };
+
+
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

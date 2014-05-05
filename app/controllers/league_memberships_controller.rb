@@ -66,9 +66,14 @@ class LeagueMembershipsController < ApplicationController
     league_membership = LeagueMembership.find(params[:tradee])
     resp = []
     league_membership.players.each do |player|
-      resp << "<li><input type='checkbox' data-id='#{player.id}'>#{player.name}</li><br />"
+      resp << build_player_resp(player)
     end
     render text: resp.join("\n").html_safe
+  end
+  
+  def build_player_resp(player)
+    "<li data-id='#{player.id}' class='list-group-item selectable-resp'>
+    <img src='#{player.picture_url}' width=40>#{player.name}</li><br />"
   end
   
 end
