@@ -5,26 +5,29 @@
     
   <div class="trades-list">
     <%@trades.each do |trade|%>
-    <% proposer = @league_memberships.select{|lm| lm.id == trade.proposer_id}.first.name %>
-    <% proposee = @league_memberships.select{|lm| lm.id == trade.proposee_id}.first.name %>
-
-
-  <!-- none of this shows up yet.... -->
-    <div class="trade-card">
-      <div class="col-5-md">
-        <%= proposer%> proposes a trade with <%= proposee%>.
-        <% trade.trade_groups.first.players do |player| %>
+    <% proposer = @league_memberships.select{|lm| lm.id == trade.proposer_id}.first %>
+    <% proposee = @league_memberships.select{|lm| lm.id == trade.proposee_id}.first %>
+    
+    <div class="row">
+      <div class="col-md-12 <%= "tradeable" if @league_membership == proposee %>" data-id="trade<%= trade.id %>">
+        <div class="trade-info">
+        <%= proposer == @league_membership ? "You" : proposer.name%> 
+        proposed a trade with 
+        <%= proposee == @league_membership ? "You" : proposee.name%>
+        on <%= trade.created_at.to_s(:pretty) %>.
+        
         <ul class="list-group">
+          <% trade.trade_groups.first.players.each do |player| %>
+        
           <li class="list-group-item">
             <img src="<%=player.picture_url%>" width=40>
             <a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a>
           </li>
+
+          <% end %>
         </ul>
-        <% end %>
-      </div>
-      
-      <div class="col-5-md">
-        <% trade.trade_groups.last.players do |player| %>
+        <h3>FOR</h3>
+        <% trade.trade_groups.last.players.each do |player| %>
         <ul class="list-group">
           <li class="list-group-item">
             <img src="<%=player.picture_url%>" width=40>
@@ -32,11 +35,11 @@
           </li> 
         </ul>
         <% end %>
-      </div>  
+        
+      </div>
     </div>
-    
+    </div>
     <% end %>
+
   </div>
-  
-  
 </div>

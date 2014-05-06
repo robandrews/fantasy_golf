@@ -174,6 +174,34 @@ var ready = function() {
   // using autosize plugin to handle textarea resizing
   $("textarea").autosize();
   
+  
+  // Expose buttons for trades
+  // $(".trade").on("mouseenter", function(event){
+  //   var tradeId = $(event.target).data("id")
+  //   console.log(tradeId);
+  //   $("div").find("[data-id='" + tradeId + "']").switchClass("col-md-12", "col-md-9", 500);
+  //   return false;
+  // });
+  //   
+  // $(".trade").on("mouseleave", function(event){
+  //   var tradeId = $(event.target).data("id")
+  //   $("div").find("[data-id='" + tradeId + "']").switchClass("col-md-9", "col-md-12", 500);
+  //   return false;
+  // });
+  // 
+  $(".tradeable").hover(
+    function(){
+    console.log(this);
+    $(this).children().switchClass("col-md-12", "col-md-10", 500);
+    return false;
+  }, 
+    function(){
+      $(this).children().switchClass("col-md-10", "col-md-12", 500);
+      return false;
+    }
+  );
+  
+  
 };
 
 
