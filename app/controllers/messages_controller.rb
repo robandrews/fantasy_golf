@@ -3,8 +3,7 @@ class MessagesController < ApplicationController
   def index
     @league = League.friendly.find(params[:league_id])
     @messages = Message.where(:league_id => @league.id, :parent_id => 0)
-    @league_membership = LeagueMembership.where("user_id = ? AND league_id = ?",
-                                                current_user.id, @league.id).first
+    @league_membership = LeagueMembership.find_by_user_id_and_league_id(current_user.id, @league.id)
     
   end
   
@@ -21,9 +20,9 @@ class MessagesController < ApplicationController
     @message.parent_id = 0 if @message.parent_id.nil?
     
     if @message.save
-      flash[:notice] = "Message saved successfully"
+      
       if @message.parent_id == 0
-        redirect_to league_messages_url(params[:league_id])
+        redirect_to league_message_url(params[:league_id], @message)
       else
         redirect_to league_message_url(:league_id => params[:league_id], :id => @message.parent_id)
       end
@@ -36,8 +35,7 @@ class MessagesController < ApplicationController
   def show
     @league = League.friendly.find(params[:league_id])
     @message = Message.find(params[:id])
-    @league_membership = LeagueMembership.where("user_id = ? AND league_id = ?",
-                                                current_user.id, @league.id).first
+    @league_membership = LeagueMembership.find_by_user_id_and_league_id(current_user.id, @league.id)
   end
   
   protected

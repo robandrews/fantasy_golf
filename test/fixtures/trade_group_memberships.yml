@@ -1,14 +1,12 @@
 # == Schema Information
 #
-# Table name: league_memberships
+# Table name: trade_group_memberships
 #
-#  id            :integer          not null, primary key
-#  user_id       :integer
-#  league_id     :integer
-#  created_at    :datetime
-#  updated_at    :datetime
-#  season_points :float            default(0.0)
-#  name          :string(255)
+#  id             :integer          not null, primary key
+#  player_id      :integer
+#  trade_group_id :integer
+#  created_at     :datetime
+#  updated_at     :datetime
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

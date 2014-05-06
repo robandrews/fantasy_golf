@@ -74,5 +74,4 @@ class LeagueMembershipsController < ApplicationController
     "<li data-id='#{player.id}' class='list-group-item selectable-resp'>
     <img src='#{player.picture_url}' width=40>#{player.name}</li><br />"
   end
-  
 end

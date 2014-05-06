@@ -15,6 +15,7 @@ FantasyGolf::Application.routes.draw do
     resources :free_agent_offers
     resources :messages
     resources :bylaws
+    resources :trades
   end
   
   resources :league_memberships, :only => [:new, :create]

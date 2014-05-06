@@ -51,7 +51,7 @@
 .portlet-placeholder {
   border: 1px dotted black;
   height: 60px;
-  background-color:green;
+  background-color:#0BD72F;
 }
 
 .portlet{
@@ -157,6 +157,9 @@ ol ol ol{
 
 .selected{
   background-color:#0BD72F;
+  -moz-box-shadow:    inset 0 0 10px #000000;
+  -webkit-box-shadow: inset 0 0 10px #000000;
+  box-shadow:         inset 0 0 10px #000000;
 }
 
 /*wysihtml5 styling*/

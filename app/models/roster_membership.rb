@@ -13,6 +13,4 @@
 class RosterMembership < ActiveRecord::Base
   belongs_to :league_membership 
   belongs_to :player
-  
-  validates :player_id, :uniqueness => :true
 end

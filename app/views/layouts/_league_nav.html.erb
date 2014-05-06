@@ -2,6 +2,7 @@
   <ul class="nav nav-tabs league-nav">
     <li class="<%= 'active' if active == 1  %>"><a href="<%=league_url(league.id)%>">Overview</a></li>
     <li class="<%= 'active' if active == 2  %>"><a href=<%=league_url(league) + "/league_memberships/#{league_membership.id}/edit"%>>My Roster</a></li>
+    <li class="<%= 'active' if active == 6  %>"><a href=<%=league_trades_url(league)%>>Trades</a></li>
     <li class="<%= 'active' if active == 3  %>"><a href=<%=league_free_agent_offers_url(league)%>>Waiver Wire</a></li>
     <li class="<%= 'active' if active == 4  %>"><a href="<%=league_messages_url(league.id)%>">Messages</a></li>
     <li class="<%= 'active' if active == 5  %>"><a href="<%=league_bylaws_url(league)%>">Bylaws</a></li>

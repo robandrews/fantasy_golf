@@ -1,0 +1,42 @@
+<div class="container">
+  <h2>Trades</h2>
+
+  <%= render partial: "layouts/league_nav", locals: {active: 6, league: @league, league_membership: @league_membership} %>
+    
+  <div class="trades-list">
+    <%@trades.each do |trade|%>
+    <% proposer = @league_memberships.select{|lm| lm.id == trade.proposer_id}.first.name %>
+    <% proposee = @league_memberships.select{|lm| lm.id == trade.proposee_id}.first.name %>
+
+
+  <!-- none of this shows up yet.... -->
+    <div class="trade-card">
+      <div class="col-5-md">
+        <%= proposer%> proposes a trade with <%= proposee%>.
+        <% trade.trade_groups.first.players do |player| %>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <img src="<%=player.picture_url%>" width=40>
+            <a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a>
+          </li>
+        </ul>
+        <% end %>
+      </div>
+      
+      <div class="col-5-md">
+        <% trade.trade_groups.last.players do |player| %>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <img src="<%=player.picture_url%>" width=40>
+            <a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a>
+          </li> 
+        </ul>
+        <% end %>
+      </div>  
+    </div>
+    
+    <% end %>
+  </div>
+  
+  
+</div>

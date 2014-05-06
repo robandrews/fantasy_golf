@@ -122,14 +122,18 @@
       
           <ul class="list-group tradee-list">
             <% @league_members.first.players.each do |player|%>
-           <li data-id="<%= player.id %>" class="list-group-item selectable">
-             <img src="<%=player.picture_url%>" width=40>
-             <%= player.name %>
-           </li><br />
+            <li data-id="<%= player.id %>" class="list-group-item selectable">
+              <img src="<%=player.picture_url%>" width=40>
+              <%= player.name %>
+            </li><br />
             <%end%>
           </ul>
         </div>
       </div>
+    </div>
+    
+    <div row>
+      <button class="btn btn-lg submit-trade">Submit Trade</button>
     </div>
   </div>
   
