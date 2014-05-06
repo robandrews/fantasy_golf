@@ -14,7 +14,12 @@
  *= require_tree .
  */
 
-
+.nav-title{
+  font-family: 'Graduate', cursive;
+  font-size:1.5em;
+  margin-top:10px;
+  text-decoration:none;
+}
 
 .remove-invitee{
   color:black;

@@ -13,7 +13,7 @@
         <div class="trade-info">
         <%= proposer == @league_membership ? "You" : proposer.name%> 
         proposed a trade with 
-        <%= proposee == @league_membership ? "You" : proposee.name%>
+        <%= proposee == @league_membership ? "you" : proposee.name%>
         on <%= trade.created_at.to_s(:pretty) %>.
         
         <ul class="list-group">

@@ -23,4 +23,4 @@ FantasyGolf::Application.routes.draw do
   resources :seasons do
     resources :tournaments, :only => [:show]
   end
-end
+end 
