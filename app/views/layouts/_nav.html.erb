@@ -1,8 +1,21 @@
 <nav class="navbar navbar-default" role="navigation" id="top-nav">
   <div class="container-fluid">
     <ul class="nav navbar-nav" id="links-left">
-      <li><a href="<%= user_url(current_user) %>"><span class="nav-title"><img src=https://s3-us-west-1.amazonaws.com/fantasy-golf/bushwood-logo-sm.jpg>
-        Bushwood C.C. Fantasy Golf</span></a></li>
+      <li>
+        <%if user_signed_in?%>
+        <a href="<%= user_url(current_user) %>">
+          <span class="nav-title">
+            <img src=https://s3-us-west-1.amazonaws.com/fantasy-golf/bushwood-logo-sm.jpg>
+            Bushwood C.C. Fantasy Golf
+          </span>
+        </a>
+        <% else %>
+        <span class="nav-title">
+          <img src=https://s3-us-west-1.amazonaws.com/fantasy-golf/bushwood-logo-sm.jpg>
+          Bushwood C.C. Fantasy Golf
+        </span>
+        <% end %>
+      </li>
     </ul>
     <ul class="nav navbar-nav pull-right" id="links-right">  
       <%if user_signed_in?%>
@@ -17,8 +30,8 @@
         </ul>
       </li>
       <%else%>
-        <li><%=link_to "Sign In", new_user_session_url%></li>
-        <li><%=link_to "Sign Up", new_user_registration_url%></li>
+      <li><%=link_to "Sign In", new_user_session_url%></li>
+      <li><%=link_to "Sign Up", new_user_registration_url%></li>
       <%end%>
     </ul>
   </div>
