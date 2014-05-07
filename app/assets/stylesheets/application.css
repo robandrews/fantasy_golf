@@ -23,12 +23,21 @@
   text-decoration:none;
 }
 
+body
+{ 
+background-image:url('https://s3-us-west-1.amazonaws.com/fantasy-golf/gopher2.jpg ');
+background-repeat:no-repeat;
+background-attachment:fixed;
+background-size:cover;
+}
+
 .container{
   -moz-box-shadow:    inset 0 0 10px #000000;
   -webkit-box-shadow: inset 0 0 10px #000000;
   box-shadow:         inset 0 0 10px #000000;
   background-color:white;
   padding:20px;
+  margin-bottom:50px;
 }
 
 .document{
