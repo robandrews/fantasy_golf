@@ -38,6 +38,8 @@ GEM
     bootstrap-kaminari-views (0.0.3)
       kaminari (>= 0.13)
       rails (>= 3.1)
+    bootstrap-sass (3.1.1.0)
+      sass (~> 3.2)
     builder (3.1.4)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -169,6 +171,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-kaminari-views
+  bootstrap-sass (~> 3.1.1)
   debugger
   devise
   friendly_id (~> 5.0.0)
