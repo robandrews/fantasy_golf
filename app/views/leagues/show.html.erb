@@ -2,32 +2,31 @@
   <div class="row">
     <h2 class="col-md-6"><%=@league.name%></h2>
   </div>
-  
-  
-<%= render partial: "layouts/league_nav", locals: {active: 1, league: @league, league_membership: @league_membership} %>
-  
-  
-  <div class="row league_standings">
-    <%@divisions.each do |division|%>
-    <h3><%=division.name%></h3>
-    <table class="table table-condensed">
+      <%= render partial: "layouts/league_nav", locals: {active: 1, league: @league, league_membership: @league_membership} %>
       
-      <thead>
+  <div class="document">
+    <div class="row league_standings">
+      <%@divisions.each do |division|%>
+      <h3><%=division.name%></h3>
+      <table class="table table-condensed">
+      
+        <thead>
+          <tr>
+            <th>Position</th>
+            <th>Name</th>
+            <th>Season Points</th>
+          </tr>
+        </thead>
+        <%division.members.each_with_index do |member, index|%>
         <tr>
-          <th>Position</th>
-          <th>Name</th>
-          <th>Season Points</th>
-        </tr>
-      </thead>
-      <%division.members.each_with_index do |member, index|%>
-      <tr>
-        <td><%=index+1%>
-          <td><%=member.name%></td>
-          <td><%=member.season_points%></td>
-        </tr>
+          <td><%=index+1%>
+            <td><%=member.name%></td>
+            <td><%=member.season_points%></td>
+          </tr>
+          <%end%>
+        </table>
         <%end%>
-      </table>
-      <%end%>
+      </div>
     </div>
   </div>
 </div>

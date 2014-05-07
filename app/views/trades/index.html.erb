@@ -8,38 +8,45 @@
     <% proposer = @league_memberships.select{|lm| lm.id == trade.proposer_id}.first %>
     <% proposee = @league_memberships.select{|lm| lm.id == trade.proposee_id}.first %>
     
-    <div class="row">
-      <div class="col-md-12 <%= "tradeable" if @league_membership == proposee %>" data-id="trade<%= trade.id %>">
+    <div class="trade">
+      
+      <div class="row">
+        <div class="col-md-12 <%= "tradeable" if @league_membership == proposee %>" data-id="trade<%= trade.id %>">
         <div class="trade-info">
-        <%= proposer == @league_membership ? "You" : proposer.name%> 
-        proposed a trade with 
-        <%= proposee == @league_membership ? "you" : proposee.name%>
-        on <%= trade.created_at.to_s(:pretty) %>.
+            
+            <%= proposer == @league_membership ? "You" : proposer.name%> 
+            proposed a trade with 
+            <%= proposee == @league_membership ? "you" : proposee.name%>
+            on <%= trade.created_at.to_s(:pretty) %>.
+            
+            <% if @league_membership == proposee %>
+            <span>
+              <div class="btn-group btn-group-xs">
+                <button type="button" class="btn btn-success trade-button hidden">Accept</button><button type="button" class="btn btn-danger trade-button hidden">Deny</button>
+              </div>
+            </span>
+            <% end %>
+            
+            
+        <br />
+            |<% trade.trade_groups.first.players.each do |player| %>
         
-        <ul class="list-group">
-          <% trade.trade_groups.first.players.each do |player| %>
+            <a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a> |
+            <% end %>
+            FOR
+            |<% trade.trade_groups.last.players.each do |player| %>
+            <a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a> |
+            <% end %>
         
-          <li class="list-group-item">
-            <img src="<%=player.picture_url%>" width=40>
-            <a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a>
-          </li>
+          </div>
 
-          <% end %>
-        </ul>
-        <h3>FOR</h3>
-        <% trade.trade_groups.last.players.each do |player| %>
-        <ul class="list-group">
-          <li class="list-group-item">
-            <img src="<%=player.picture_url%>" width=40>
-            <a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a>
-          </li> 
-        </ul>
-        <% end %>
-        
-      </div>
+        </div>
+      </div>     
     </div>
-    </div>
-    <% end %>
-
+    <% end %>  
   </div>
+    
+      
+
+
 </div>

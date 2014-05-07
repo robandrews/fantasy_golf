@@ -3,6 +3,7 @@
 
     <%= render partial: "layouts/league_nav", locals: {active: 4, league: @league, league_membership: @league_membership} %>
   
+
   <a href="<%=new_league_message_url(@league)%>">Create a new message</a>
   
   <ul class="message-list">
@@ -10,5 +11,6 @@
       <a href="<%= league_message_url(:league_id => @league.slug, :id => message.id) %>"><li><%=message.subject%>  by <%=message.sender_name%></li></a>
     <%end%>
   </ul>
+
   
 </div>

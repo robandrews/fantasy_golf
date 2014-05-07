@@ -14,9 +14,7 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require jquery.autosize.min
-//= require bloodhound
-//= require typeahead.jquery
-//= require advanced.js
+//= require bootstrap
 //= require wysihtml5.js
 //= require turbolinks
 //= require select2
@@ -176,27 +174,13 @@ var ready = function() {
   
   
   // Expose buttons for trades
-  // $(".trade").on("mouseenter", function(event){
-  //   var tradeId = $(event.target).data("id")
-  //   console.log(tradeId);
-  //   $("div").find("[data-id='" + tradeId + "']").switchClass("col-md-12", "col-md-9", 500);
-  //   return false;
-  // });
-  //   
-  // $(".trade").on("mouseleave", function(event){
-  //   var tradeId = $(event.target).data("id")
-  //   $("div").find("[data-id='" + tradeId + "']").switchClass("col-md-9", "col-md-12", 500);
-  //   return false;
-  // });
-  // 
   $(".tradeable").hover(
     function(){
-    console.log(this);
-    $(this).children().switchClass("col-md-12", "col-md-10", 500);
+    $(this).parent().parent().find("button").fadeIn().removeClass("hidden");
     return false;
   }, 
     function(){
-      $(this).children().switchClass("col-md-10", "col-md-12", 500);
+      $(this).parent().parent().find("button").fadeOut().addClass("hidden", 500);
       return false;
     }
   );
