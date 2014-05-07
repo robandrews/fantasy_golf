@@ -7,6 +7,7 @@ FantasyGolf::Application.routes.draw do
   
   
   resources :players, :only => [:index]
+  
   resources :leagues do
     resources :divisions
     resources :league_memberships do
@@ -14,7 +15,7 @@ FantasyGolf::Application.routes.draw do
     end
     resources :free_agent_offers
     resources :messages
-    resources :bylaws
+    resource :bylaws
     resources :trades
   end
   

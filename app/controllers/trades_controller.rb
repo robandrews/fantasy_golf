@@ -20,7 +20,22 @@ class TradesController < ApplicationController
     @league = League.friendly.find(params[:league_id])
     @league_memberships = LeagueMembership.all
     @league_membership = LeagueMembership.find_by_user_id_and_league_id(current_user.id, @league.id)
-    @trades = Trade.all(:include => :trade_groups)
-
+    @trades = Trade.where(:pending => true)
+  end
+  
+  def update
+    @trade = Trade.find(params[:id])
+    Trade.trasaction do
+      
+      if @trade.update_attributes(:accepted => params[:accepted],
+                                  :pending => params[:pending])
+        @trade.execute
+        flash[:notice] = "You #{@trade.accepted ? "accepted" : "denied"} trade."
+        render :json => trade, status: 200
+      else
+        flash[:errors] = "Trade submission failed"
+        render :json => trade.errors.full_messages, status: :unprocessable_entity
+      end
+    end
   end
 end

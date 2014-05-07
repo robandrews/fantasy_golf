@@ -17,8 +17,6 @@ need to make a bylaws controller - allow for editing using htmyl5 and individual
 
 general optimization including prefetching message replies, among several others
 
-Trades - user needs to be able to look at everyone elses roster, and then propose trade (all player stats)  ==> propose/approve model
-
 IR list (field in the player schema)
 
 Archives + mailer for summary weekend

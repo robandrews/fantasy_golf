@@ -22,7 +22,8 @@
             <% if @league_membership == proposee %>
             <span>
               <div class="btn-group btn-group-xs">
-                <button type="button" class="btn btn-success trade-button hidden">Accept</button><button type="button" class="btn btn-danger trade-button hidden">Deny</button>
+                <button type="button" class="btn btn-success trade-button hidden" data-id="<%= trade.id %>">Accept</button>
+                <button type="button" class="btn btn-danger trade-button hidden" data-id="<%= trade.id %>">Deny</button>
               </div>
             </span>
             <% end %>
@@ -45,8 +46,6 @@
     </div>
     <% end %>  
   </div>
-    
-      
 
 
 </div>

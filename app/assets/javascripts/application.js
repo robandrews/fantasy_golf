@@ -185,7 +185,20 @@ var ready = function() {
     }
   );
   
-  
+  $(".trade-button").click(function(event){
+    var accepted = $(event.target).text() == "Accept" ? true : false;
+    $.ajax({
+      url:document.URL + "/" + $(event.target).data("id"),
+      type:"PUT",
+      data:{accepted: accepted, pending: false},
+      success:function(resp){
+        location.reload();
+      },
+      error:function(resp){
+        location.reload();
+      }
+    });
+  })
 };
 
 

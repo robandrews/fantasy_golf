@@ -26,8 +26,7 @@ class Trade < ActiveRecord::Base
   
   has_many :trade_groups
   
-  
-  # not finished
+  # not done yet!!
   def execute
     Trade.transaction do
       traders = 
