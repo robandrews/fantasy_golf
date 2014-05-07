@@ -15,6 +15,7 @@
 //= require jquery.ui.all
 //= require jquery.autosize.min
 //= require bootstrap
+//= require advanced
 //= require wysihtml5.js
 //= require turbolinks
 //= require select2
@@ -199,6 +200,93 @@ var ready = function() {
       }
     });
   })
+  
+  
+  // Create league javascript
+  $.fn.pressEnter = function(fn) {  
+    return this.each(function() {  
+      $(this).bind('enterPress', fn);
+      $(this).keyup(function(e){
+        if(e.keyCode == 13)
+        {
+          $(this).trigger("enterPress");
+        }
+      })
+    });  
+  }; 
+ 
+  $('#league-invitee-textfield').pressEnter(function(event){
+    event.preventDefault();
+    if($(event.target).parent().hasClass("has-success")){
+      var email = "<span class='email'>" + event.target.value + "</span>";
+      var close_button = "<span class='glyphicon glyphicon-remove pull-right remove-invitee'></span>"
+      var invitee = "<li class='list-group-item email_invites'>"+email                +close_button+"</li>";
+      $(invitee).hide().appendTo("#invited").slideDown("fast");
+      event.target.value = "";
+      $(document).trigger("add");
+    }
+  });
+
+  $(document).on('add', function() {
+    $(".remove-invitee").click(function(event){
+      $removedInvitee = $(event.target).parent()
+      // $removedInvitee.hide("slide",{direction:'right'}, 1000);
+      $removedInvitee.hide('fast', function(){ $removedInvitee.remove(); });
+    })
+  });
+
+
+
+  $("button.create-league").click(function(event){
+    var league_name = $("#league-name").val()
+  
+    if(league_name){
+      saveLeague(event, league_name);
+    }else{
+      debugger
+      $(".red-alerts").html("The league must have a title")
+    }
+  });
+
+  $('#league-invitee-textfield').keyup(function(e){
+    var str = $(e.target).val();
+    var regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.{1}[a-zA-Z]+$/
+    if (str.match(regex)){
+      $(e.target).parent().removeClass("has-error").addClass("has-success");
+    }else{
+      $(e.target).parent().removeClass("has-success").addClass("has-error");
+    }
+  });
+
+
+  var throwTitleError = function(){
+    $("#league-name").popover({
+      content: "The league tile cannot be blank!"
+    })
+  };
+
+  var saveLeague = function(event, league_name){ 
+    var emails = []
+    var spans = $(".email_invites").find(".email")
+    for (var i = 0; i < spans.length; i++){
+      emails.push(spans[i].innerHTML)
+    }
+    $.ajax({
+      url: "/leagues",
+      type: "POST",
+      data: {league: {
+        invitees: emails,
+        name: league_name
+      }},
+      dataType: "json",
+      success: function(resp){
+        window.location = resp[1];
+      },
+      error: function(resp){
+        alert("failure");
+      }
+    })
+  };
 };
 
 

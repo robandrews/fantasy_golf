@@ -11,5 +11,8 @@ module FantasyGolf
     CURRENT_WEEK = 1
     
     config.time_zone = 'Pacific Time (US & Canada)'
+    
+    config.assets.enabled = true
+    config.assets.paths << "#{Rails.root}/vendor/assets/fonts"
   end
 end
