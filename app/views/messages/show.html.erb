@@ -1,77 +1,87 @@
 <div class="container">
   <h2>Messages</h2>
 
-    <%= render partial: "layouts/league_nav", locals: {active: 4, league: @league, league_membership: @league_membership} %>
+  <%= render partial: "layouts/league_nav", locals: {active: 4, league: @league, league_membership: @league_membership} %>
 
-<h4><%= @message.subject %></h4>
-<%= @message.body.html_safe %>
-<br />
-
-<ul>
-<%@message.replies.each do |reply|%>
-<li>
-  <%= reply.body.html_safe %> <p><%= reply.sender_name %> on <%= reply.created_at.to_s(:pretty) %>
-  </li>
-<%end%>
-</ul>
-<br /><br />
-<h4> Leave a reply </h4>
-
-<form id="note-add-form" action="<%= league_messages_url(@league) %>" method="POST">
-  
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <div id="toolbar" style="display: none;">
-    <a data-wysihtml5-command="bold" title="CTRL+B">bold</a> |
-    <a data-wysihtml5-command="italic" title="CTRL+I">italic</a> |
-    <a data-wysihtml5-command="underline" title="CTRL-U">underline</a> |
-    <a data-wysihtml5-command="createLink">insert link</a> |
-    <a data-wysihtml5-command="insertImage">insert image</a> |
-    <a data-wysihtml5-command="insertUnorderedList">insertUnorderedList</a> |
-    <a data-wysihtml5-command="insertOrderedList">insertOrderedList</a> |
-    <a data-wysihtml5-command="undo">undo</a> |
-    <a data-wysihtml5-command="redo">redo</a>
-    
-    <div data-wysihtml5-dialog="createLink" style="display: none;">
-      <label>
-        Link:
-        <input data-wysihtml5-dialog-field="href" value="http://">
-      </label>
-      <a data-wysihtml5-dialog-action="save">OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
-    </div>
-    
-    <div data-wysihtml5-dialog="insertImage" style="display: none;">
-      <label>
-        Image:
-        <input data-wysihtml5-dialog-field="src" value="http://">
-      </label>
-      <label>
-        Align:
-        <select data-wysihtml5-dialog-field="className">
-          <option value="">default</option>
-          <option value="wysiwyg-float-left">left</option>
-          <option value="wysiwyg-float-right">right</option>
-        </select>
-      </label>
-      <a data-wysihtml5-dialog-action="save">OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
-    </div>
-    
+  <div class="jumbotron">
+    <h2><%= @message.subject %></h2>
+    <p><%= @message.body.html_safe %></p>
   </div>
-  <textarea id="create-note-textarea" name="message[body]" placeholder="Begin reply..."></textarea>
-<br />
+  <br />
 
-  <input type="hidden" name="message[parent_id]" value="<%= @message.id %>">
-  <button class="create-note">Submit Reply</button>
-</form>
+  <% replies = @message.replies %>
+  <% unless replies.empty? %>
+  <h3>Replies</h3>
 
-<script>
-  var editor = new wysihtml5.Editor("create-note-textarea", {
-    toolbar:        "toolbar",
-    parserRules:    wysihtml5ParserRules
-  });
-</script>
+  <ul>
+    <%@message.replies.each do |reply|%>
+    <li>
+      <%= reply.body.html_safe %> <p><%= reply.sender_name %> on <%= reply.created_at.to_s(:pretty) %>
+      </li>
+      <%end%>
+    </ul>
+
+    <% end %>
+
+
+    <br /><br />
+    <h4> Leave a reply </h4>
+
+    <form class="form" id="note-add-form" action="<%= league_messages_url(@league) %>" method="POST">
+  
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <div id="toolbar" style="display: none;">
+        <a data-wysihtml5-command="bold" title="CTRL+B">bold</a> |
+        <a data-wysihtml5-command="italic" title="CTRL+I">italic</a> |
+        <a data-wysihtml5-command="underline" title="CTRL-U">underline</a> |
+        <a data-wysihtml5-command="createLink">insert link</a> |
+        <a data-wysihtml5-command="insertImage">insert image</a> |
+        <a data-wysihtml5-command="insertUnorderedList">insertUnorderedList</a> |
+        <a data-wysihtml5-command="insertOrderedList">insertOrderedList</a> |
+        <a data-wysihtml5-command="undo">undo</a> |
+        <a data-wysihtml5-command="redo">redo</a>
+    
+        <div data-wysihtml5-dialog="createLink" style="display: none;">
+          <label>
+            Link:
+            <input data-wysihtml5-dialog-field="href" value="http://">
+          </label>
+          <a data-wysihtml5-dialog-action="save">OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
+        </div>
+    
+        <div data-wysihtml5-dialog="insertImage" style="display: none;">
+          <label>
+            Image:
+            <input data-wysihtml5-dialog-field="src" value="http://">
+          </label>
+          <label>
+            Align:
+            <select data-wysihtml5-dialog-field="className">
+              <option value="">default</option>
+              <option value="wysiwyg-float-left">left</option>
+              <option value="wysiwyg-float-right">right</option>
+            </select>
+          </label>
+          <a data-wysihtml5-dialog-action="save">OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
+        </div>
+    
+      </div>
+      <textarea class="form-control" id="create-note-textarea" name="message[body]" placeholder="Begin reply..."></textarea>
+      <br />
+
+      <input type="hidden" name="message[parent_id]" value="<%= @message.id %>">
+      <button class="create-note">Submit Reply</button>
+    </form>
+
+    <script>
+    var editor = new wysihtml5.Editor("create-note-textarea", {
+      toolbar:        "toolbar",
+      parserRules:    wysihtml5ParserRules
+    });
+    </script>
 
 
   
 
-<%= link_to "Back to Messages", league_messages_url(@league.slug) %>
-</div>
+    <%= link_to "Back to Messages", league_messages_url(@league.slug) %>
+  </div>

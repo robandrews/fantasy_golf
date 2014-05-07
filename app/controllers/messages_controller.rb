@@ -2,9 +2,8 @@ class MessagesController < ApplicationController
   
   def index
     @league = League.friendly.find(params[:league_id])
-    @messages = Message.where(:league_id => @league.id, :parent_id => 0)
+    @messages = Message.where(:league_id => @league.id, :parent_id => 0).includes(:replies).reverse
     @league_membership = LeagueMembership.find_by_user_id_and_league_id(current_user.id, @league.id)
-    
   end
   
   def new
