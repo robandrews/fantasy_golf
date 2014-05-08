@@ -25,16 +25,15 @@ class TradesController < ApplicationController
   
   def update
     @trade = Trade.find(params[:id])
-    Trade.trasaction do
-      
+    Trade.transaction do      
       if @trade.update_attributes(:accepted => params[:accepted],
                                   :pending => params[:pending])
         @trade.execute
         flash[:notice] = "You #{@trade.accepted ? "accepted" : "denied"} trade."
-        render :json => trade, status: 200
+        render :json => @trade, status: 200
       else
         flash[:errors] = "Trade submission failed"
-        render :json => trade.errors.full_messages, status: :unprocessable_entity
+        render :json => @trade.errors.full_messages, status: :unprocessable_entity
       end
     end
   end

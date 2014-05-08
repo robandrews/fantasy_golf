@@ -33,10 +33,13 @@ class Trade < ActiveRecord::Base
         [LeagueMembership.find(self.proposer_id), LeagueMembership.find(self.proposee_id)] 
       other_id = {traders[0] => traders[1], traders[1] => traders[0]}
       traders.each do |trader|
+        puts "Trader: #{trader}"
         group = self.trade_groups.select{|group| group.league_membership_id == trader.id}.first
-        roster_memberships = trader.roster_memberships.select{|rm| group.players.map{|p| p.id}.include?(rm.player_id)}
-        roster_memberships.each do |rm|
-          rm.update_attributes!(:league_membership_id => other_id[trader].id)
+        puts "Player group: #{group}"
+        player_roster_memberships = trader.roster_memberships.select{|rm| group.players.map{|p| p.id}.include?(rm.player_id)}
+        puts "Players roster memberships #{player_roster_memberships}"
+        player_roster_memberships.each do |rm|
+          p rm.update_attributes!(:league_membership_id => other_id[trader].id)
         end
       end      
       self.update_attributes(:accepted => true, :pending => false)
