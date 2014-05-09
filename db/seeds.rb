@@ -2,59 +2,6 @@ require 'open-uri'
 start = Time.now
 
 
-
-
-greg = User.create(:first_name => "Greg", :last_name => "Andrews", :email => "greg@gmail.com",
-:password => "password", :password_confirmation => "password")
-greg_member = LeagueMembership.create(:user_id => greg.id, :league_id => league.id, :name => greg.name)
-DivisionMembership.create(:league_membership_id => greg_member.id, :division_id => division.id)
-
-
-RosterMembership.create(:league_membership_id => greg_member.id, :player_id => 22, :active => true)
-RosterMembership.create(:league_membership_id => greg_member.id, :player_id => 32, :active => true)
-RosterMembership.create(:league_membership_id => greg_member.id, :player_id => 42, :active => true)
-RosterMembership.create(:league_membership_id => greg_member.id, :player_id => 322, :active => true)
-
-RosterMembership.create(:league_membership_id => greg_member.id, :player_id => 212, :active => false)
-RosterMembership.create(:league_membership_id => greg_member.id, :player_id => 222, :active => false)
-RosterMembership.create(:league_membership_id => greg_member.id, :player_id => 242, :active => false)
-RosterMembership.create(:league_membership_id => greg_member.id, :player_id => 328, :active => false)
-
-mike = User.create(:first_name => "Mike", :last_name => "Desantis", :email => "mike@gmail.com",
-:password => "password", :password_confirmation => "password")
-mike_member = LeagueMembership.create(:user_id => mike.id, :league_id => league.id, :name => mike.name)
-DivisionMembership.create(:league_membership_id => mike_member.id, :division_id => division.id)
-
-
-RosterMembership.create(:league_membership_id => mike_member.id, :player_id => 2, :active => true)
-RosterMembership.create(:league_membership_id => mike_member.id, :player_id => 3, :active => true)
-RosterMembership.create(:league_membership_id => mike_member.id, :player_id => 4, :active => true)
-RosterMembership.create(:league_membership_id => mike_member.id, :player_id => 5, :active => true)
-
-RosterMembership.create(:league_membership_id => mike_member.id, :player_id => 6, :active => false)
-RosterMembership.create(:league_membership_id => mike_member.id, :player_id => 7, :active => false)
-RosterMembership.create(:league_membership_id => mike_member.id, :player_id => 8, :active => false)
-RosterMembership.create(:league_membership_id => mike_member.id, :player_id => 9, :active => false)
-
-
-morgan = User.create(:first_name => "Morgan", :last_name => "Priestley", :email => "morgan@gmail.com",
-:password => "password", :password_confirmation => "password")
-morgan_member = LeagueMembership.create(:user_id => morgan.id, :league_id => league.id, :name => morgan.name)
-DivisionMembership.create(:league_membership_id => morgan_member.id, :division_id => division.id)
-
-
-RosterMembership.create(:league_membership_id => morgan_member.id, :player_id => 12, :active => true)
-RosterMembership.create(:league_membership_id => morgan_member.id, :player_id => 13, :active => true)
-RosterMembership.create(:league_membership_id => morgan_member.id, :player_id => 14, :active => true)
-RosterMembership.create(:league_membership_id => morgan_member.id, :player_id => 15, :active => true)
-
-RosterMembership.create(:league_membership_id => morgan_member.id, :player_id => 16, :active => false)
-RosterMembership.create(:league_membership_id => morgan_member.id, :player_id => 17, :active => false)
-RosterMembership.create(:league_membership_id => morgan_member.id, :player_id => 18, :active => false)
-RosterMembership.create(:league_membership_id => morgan_member.id, :player_id => 19, :active => false)
-
-
-
 season = Season.create(:name => "2013-2014", 
 :start_date => Date.new(2014, 1, 3),
 :end_date => Date.new(2014, 9, 28))
