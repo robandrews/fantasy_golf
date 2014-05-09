@@ -119,7 +119,6 @@ var ready = function() {
     $( ".roster" ).addClass( "hidden");
     $( ".trade" ).addClass( "hidden");
     $( ".free-agent" ).removeClass( "hidden");
-    return false;
   });
   
   $( ".show-trade" ).click(function() {
