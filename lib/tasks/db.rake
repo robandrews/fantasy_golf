@@ -118,7 +118,7 @@ namespace :db do
   
   
   desc "Seed gunga galunga league"
-  task gunga_seed: environment do
+  task gunga_seed: :environment do
     league = League.create(:name => "Dalai Lama Golf League")
     
     ben_hogan = Division.create(:name => "Ben Hogan", :league_id => league.id)
