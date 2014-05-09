@@ -20,11 +20,11 @@ Cron jobs for free agents
 
 indices...
 
-User show pages
-
 Mailers
 
 Trades should be league specific
+
+BUG: where clicking my roster from a league_membership_show allows user to edit
 
 Free agents shouldn't be able to be added if they are in a league member's roster
 

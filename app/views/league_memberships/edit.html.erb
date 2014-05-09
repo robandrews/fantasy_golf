@@ -78,32 +78,32 @@
 
       
       <div class="col-md-12">
-    <form role="form" action="<%=league_free_agent_offers_url%>" method="POST" id="free-agent-form">
-      <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>" >
-      <div class="row">
+        <form role="form" action="<%=league_free_agent_offers_url%>" method="POST" id="free-agent-form">
+          <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>" >
+          <div class="row">
 
           
-        <div class="form-group">
-          <div class="col-sm-10">
-            <select class="form-control" id="free-agent-select-list" name="player_id">
-              <option value="" disabled selected>Choose a free agent</option>
-              <%@available_players.each do |player|%>
-              <option value="<%=player.id%>"><%=player.name%></option>
-              <%end%>
-            </select>
-          </div>
-        </div>
+            <div class="form-group">
+              <div class="col-sm-10">
+                <select class="form-control" id="free-agent-select-list" name="player_id">
+                  <option value="" disabled selected>Choose a free agent</option>
+                  <%@available_players.each do |player|%>
+                  <option value="<%=player.id%>"><%=player.name%></option>
+                  <%end%>
+                </select>
+              </div>
+            </div>
     
-        <div class="form-group">
-          <div class="col-sm-2">
-            <button class="btn btn-default" id='free-agent-add-button' type="button">Add</button>
-          </div>
+            <div class="form-group">
+              <div class="col-sm-2">
+                <button class="btn btn-default" id='free-agent-add-button' type="button">Add</button>
+              </div>
 
         
-      </div>
-        <div style="height:250px;"></div>
-      </div>
-    </form>
+            </div>
+            <div style="height:250px;"></div>
+          </div>
+        </form>
         
       </div>
     </div>

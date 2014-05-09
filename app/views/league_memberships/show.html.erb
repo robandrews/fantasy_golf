@@ -1,7 +1,7 @@
 <div class="container">
 
     <h2><%=@league.name%></h2>
-  <%= render partial: "layouts/league_nav", locals: {active: 1, league: @league, league_membership: @league_membership} %>
+  <%= render partial: "layouts/league_nav", locals: {active: 1, league: @league, league_membership: @current_league_membership} %>
   
   <h4>Summary for <%= @league_membership.name %></h4>  
   <canvas id="canvas" height="450" width="800"></canvas>

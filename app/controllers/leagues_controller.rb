@@ -17,7 +17,6 @@ class LeaguesController < ApplicationController
     @league = League.friendly.find(params[:id])
     @divisions = @league.divisions
     @league_membership = LeagueMembership.find_by_user_id_and_league_id(current_user.id, @league.id)
-    redirect_to root_url unless @league.members.include?(current_user)
   end
   
   def bylaws
