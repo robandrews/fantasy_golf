@@ -136,6 +136,30 @@
       <button class="btn btn-lg submit-trade">Submit Trade</button>
     </div>
   </div>
+
+
+  <div class="modal fade confirm-trade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Confirm Trade</h4>
+        </div>
+        <div class="modal-body">
+          <p>You are about to propose with trade to <span class="tradee-name"></span>.</p><br />
+          <p>Are you sure you want to do this?</p>
+        </div>
+                      
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
+          <button type="button" class="btn btn-primary" id="trade-request-confirmed">Let's do it</button>
+        </div>
+      </div>      
+    </div>
+  </div>  
+  
+  
   
   <div class="modal fade confirm-add-free-agent" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">

@@ -17,6 +17,7 @@
 //= require bootstrap
 //= require advanced
 //= require wysihtml5.js
+//= require chart.js
 //= require turbolinks
 //= require select2
 //= require_tree .
@@ -68,7 +69,7 @@ var ready = function() {
       }
     })
     
-  })
+  })  
   
   // Launches modal to confirm free agent petition
   $("#free-agent-add-button").click(function(event){
@@ -155,8 +156,17 @@ var ready = function() {
     $(event.target).toggleClass("selected");
   });
   
+  
+  // Launches modal to confirm trade
+  
+  $(".submit-trade").click(function(event){
+    var name = $(".tradee-selector").find(":selected").text();
+    $(".tradee-name").html(name);
+    $('.confirm-trade').modal();
+  });
+  
   // ajax request to submit trade
-  $(".submit-trade").click(function(){
+  $("#trade-request-confirmed").click(function(){
     $.ajax({
       url:document.URL.slice(0,-25) + "trades",
       type:"POST",

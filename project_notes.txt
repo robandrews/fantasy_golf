@@ -10,12 +10,17 @@ Team Page
 
 Playoffs(take 10), top 2 in each division, 2 wildcard (point bonuses going into the playoffs) - majors are worth double, WCG events are worth 1.5, PGA is worth .5 that week.
 
+
+
 To-Do in order of importance
 
-
-Modal to confirm trade
-
 Ability to sort trades by active/all
+
+Cron jobs for free agents
+
+indices...
+
+User show pages
 
 Mailers
 
@@ -29,3 +34,4 @@ Trophy Corner
 Flair (current champ has trophy next to their name, comissioner able to edit all flair)
 
 Bylaw editing using wysihtml5
+

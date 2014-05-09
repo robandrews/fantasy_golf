@@ -14,6 +14,12 @@ class LeagueMembershipsController < ApplicationController
     end
   end
 
+
+  def show
+    @league = League.friendly.find(params[:league_id])
+    @league_membership = LeagueMembership.find(params[:id])
+  end
+  
   def edit
     @available_players = Player.all
     @league_membership = LeagueMembership.find(params[:id])
@@ -72,6 +78,6 @@ class LeagueMembershipsController < ApplicationController
   
   def build_player_resp(player)
     "<li data-id='#{player.id}' class='list-group-item selectable-resp'>
-    <img src='#{player.picture_url}' width=40>#{player.name}</li><br />"
+    <img src='#{player.picture_url}' width=40>#{player.name}</li>"
   end
 end

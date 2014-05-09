@@ -20,7 +20,7 @@
         <%division.members.each_with_index do |member, index|%>
         <tr>
           <td><%=index+1%>
-            <td><%=member.name%></td>
+            <td><%=link_to member.name, league_league_membership_url(@league, member)%></td>
             <td><%=member.season_points%></td>
           </tr>
           <%end%>
