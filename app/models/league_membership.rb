@@ -24,4 +24,21 @@ class LeagueMembership < ActiveRecord::Base
   :class_name => "Message",
   :foreign_key => :sender_id,
   :primary_key => :id
+  
+  def get_active_and_bench_players
+    active = self.roster_memberships.where(:active => true)
+    bench = self.roster_memberships.where(:active => false)
+    active_players = {}
+    bench_players = {}
+    
+    active.each do |roster_membership|
+      active_players[roster_membership] = Player.find(roster_membership.player_id)
+    end
+    
+    bench.each do |roster_membership|
+      bench_players[roster_membership] = Player.find(roster_membership.player_id)
+    end
+    
+    [active_players, bench_players]
+  end
 end

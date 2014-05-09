@@ -22,23 +22,13 @@ class LeagueMembershipsController < ApplicationController
   end
   
   def edit
-    @available_players = Player.all
-    @league_membership = LeagueMembership.find(params[:id])
     @league = League.friendly.find(params[:league_id])
     @league_members = @league.league_memberships.map{|lm| lm if lm != @league_membership}.compact
-    active = @league_membership.roster_memberships.where(:active => true)
-    bench = @league_membership.roster_memberships.where(:active => false)
-    @active_players = {}
-    @bench_players = {}
+    @league_membership = LeagueMembership.find(params[:id])
+    validate_ownership(@league, @league_membership)
     
-    active.each do |roster_membership|
-      @active_players[roster_membership] = Player.find(roster_membership.player_id)
-    end
-    
-    bench.each do |roster_membership|
-      @bench_players[roster_membership] = Player.find(roster_membership.player_id)
-    end
-
+    @available_players = Player.all
+    @active_players, @bench_players = @league_membership.get_active_and_bench_players
   end
   
   def update
@@ -80,5 +70,11 @@ class LeagueMembershipsController < ApplicationController
   def build_player_resp(player)
     "<li data-id='#{player.id}' class='list-group-item selectable-resp'>
     <img src='#{player.picture_url}' width=40>#{player.name}</li>"
+  end
+  
+  protected
+  def validate_ownership(league, league_membership)
+    current_membership = LeagueMembership.find_by_user_id_and_league_id(current_user.id, league.id)
+    redirect_to league unless league_membership == current_membership
   end
 end
