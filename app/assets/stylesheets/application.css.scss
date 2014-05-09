@@ -34,6 +34,31 @@ background-attachment:fixed;
 background-size:cover;
 }
 
+textarea{ height:auto;}
+
+.trade-group-for{
+  font-size:2.5em;
+  text-align:center;
+}
+
+.trade-title{
+  margin-left:20%;
+}
+.trade-card{
+border:2px solid #a1a1a1;
+padding:10px 10px 0px 10px;
+background:#dddddd;
+border-radius:25px;
+margin:10px 0px;
+}
+.free-agent-card{
+  border:2px solid #a1a1a1;
+  padding:10px 10px 0px 10px;
+  background:#dddddd;
+  border-radius:25px;
+  margin:10px 0px;
+}
+
 .devise-box{
   margin-left:50px;
 }
@@ -158,7 +183,6 @@ background-size:cover;
 .tt-suggestion p {
 	margin: 0;
 }
-
 
 .empty-message{
   color:red;

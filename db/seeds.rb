@@ -1,29 +1,7 @@
 require 'open-uri'
 start = Time.now
 
-rob = User.create(:first_name => "Rob", :last_name => "Andrews", :email => "rob@gmail.com",
-:password => "password", :password_confirmation => "password")
 
-league = League.create(:name => "Dalai Lama Golf League")
-rob_member = LeagueMembership.create(:user_id => rob.id, :league_id => league.id, :name => rob.name)
-LeagueModeratorship.create(:user_id => rob.id, :league_id => league.id)
-
-division = Division.create(:name => "Ben Hogan", :league_id => league.id)
-Division.create(:name => "Bobby Jones", :league_id => league.id)
-Division.create(:name => "Moe Norman", :league_id => league.id)
-Division.create(:name => "Horton Smith", :league_id => league.id)
-
-DivisionMembership.create(:league_membership_id => rob_member.id, :division_id => division.id)
-
-RosterMembership.create(:league_membership_id => rob_member.id, :player_id => 20, :active => true)
-RosterMembership.create(:league_membership_id => rob_member.id, :player_id => 30, :active => true)
-RosterMembership.create(:league_membership_id => rob_member.id, :player_id => 40, :active => true)
-RosterMembership.create(:league_membership_id => rob_member.id, :player_id => 319, :active => true)
-
-RosterMembership.create(:league_membership_id => rob_member.id, :player_id => 210, :active => false)
-RosterMembership.create(:league_membership_id => rob_member.id, :player_id => 220, :active => false)
-RosterMembership.create(:league_membership_id => rob_member.id, :player_id => 240, :active => false)
-RosterMembership.create(:league_membership_id => rob_member.id, :player_id => 329, :active => false)
 
 
 greg = User.create(:first_name => "Greg", :last_name => "Andrews", :email => "greg@gmail.com",

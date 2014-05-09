@@ -4,24 +4,24 @@
   <%= render partial: "layouts/league_nav", locals: {active: 6, league: @league, league_membership: @league_membership} %>
     
     
-    <h4><%= "Currently there are no pending trades..." if @trades.empty? %></h4>
+  <h4><%= "Currently there are no pending trades..." if @trades.empty? %></h4>
     
   <div class="trades-list">
     <%@trades.each do |trade|%>
     <% proposer = @league_memberships.select{|lm| lm.id == trade.proposer_id}.first %>
     <% proposee = @league_memberships.select{|lm| lm.id == trade.proposee_id}.first %>
     
-    <div class="trade">
+    <div class="trade-card">
       
       <div class="row">
         <div class="col-md-12 <%= "tradeable" if @league_membership == proposee %>" data-id="trade<%= trade.id %>">
-        <div class="trade-info">
+          <div class="trade-info">
             
-            <%= proposer == @league_membership ? "You" : proposer.name%> 
+            <span class="trade-title"><%= proposer == @league_membership ? "You" : proposer.name%> 
             proposed a trade with 
             <%= proposee == @league_membership ? "you" : proposee.name%>
             on <%= trade.created_at.to_s(:pretty) %>.
-            
+
             <% if @league_membership == proposee %>
             <span>
               <div class="btn-group btn-group-xs">
@@ -30,18 +30,29 @@
               </div>
             </span>
             <% end %>
-            
-            
-        <br />
-            |<% trade.trade_groups.first.players.each do |player| %>
+          </span>
+            <hr>
         
-            <a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a> |
-            <% end %>
-            FOR
-            |<% trade.trade_groups.last.players.each do |player| %>
-            <a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a> |
-            <% end %>
-        
+            <div class="col-md-4 col-md-offset-1 trade-group">
+              <ul class="list-group">
+                <% trade.trade_groups.first.players.each do |player| %>       
+
+                <li class="list-group-item"><a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a></li>
+                <% end %>
+              </ul>
+            </div>
+            
+            <div class="col-md-2 trade-group-for">
+              FOR
+            </div>
+              
+            <div class="col-md-4">
+              <ul class="list-group trade-group">
+                <% trade.trade_groups.last.players.each do |player| %>
+                <li class="list-group-item"><a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a></li>
+                <% end %>
+              </ul>
+            </div>
           </div>
 
         </div>

@@ -47,12 +47,14 @@
       </div>
     
     </div>
-    <textarea class= "form-control" id="create-note-textarea" name="message[body]" placeholder="Message body..."></textarea>
+    <textarea rows="8" class= "form-control" id="create-note-textarea" name="message[body]" placeholder="Message body..."></textarea>
   <br />
 </div>
-    <button class="create-note">Submit Reply</button>
+    <button class="create-note btn btn-default">Submit Message</button>
   </form>
 
+  <%= link_to "Back to messages", league_messages_url(@league) %>
+  
   <script>
     var editor = new wysihtml5.Editor("create-note-textarea", {
       toolbar:        "toolbar",
