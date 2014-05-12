@@ -27,7 +27,7 @@ class Tournament < ActiveRecord::Base
     has_many :players, :through => :tournament_standings
     belongs_to :week
     validates :name, :uniqueness => true
-    validates :week_id, :url, :name, :presence => true
+    validates :week_id, :name, :presence => true
   
     def get_scores
       page = Nokogiri::HTML(RestClient.get(self.url))

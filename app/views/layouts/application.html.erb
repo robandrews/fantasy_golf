@@ -13,7 +13,9 @@
 </head>
 
 <body>
+  <% if user_signed_in?%>
   <%= render "layouts/nav" %>
+  <%end%>
   <div class="errors">
     <%if notice%>
     <div class="alert alert-info yellow-alerts">
@@ -23,6 +25,7 @@
     <div class="alert alert-danger red-alerts"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><%= alert %></div>
     <%end%>
   </div>
+  
   <%= yield %>
 
 </body>

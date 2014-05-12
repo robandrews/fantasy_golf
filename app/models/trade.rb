@@ -26,7 +26,6 @@ class Trade < ActiveRecord::Base
   
   has_many :trade_groups
   
-  # not done yet!!
   def execute
     Trade.transaction do
       traders = 
@@ -41,7 +40,7 @@ class Trade < ActiveRecord::Base
         player_roster_memberships.each do |rm|
           p rm.update_attributes!(:league_membership_id => other_id[trader].id)
         end
-      end      
+      end
       self.update_attributes(:accepted => true, :pending => false)
     end
     

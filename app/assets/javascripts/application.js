@@ -18,6 +18,7 @@
 //= require advanced
 //= require wysihtml5.js
 //= require chart.js
+//= require countdown
 //= require turbolinks
 //= require select2
 //= require_tree .
@@ -45,7 +46,7 @@ var ready = function() {
   $("#submit-roster").click(function(event){
     var return_hash = {roster_changes: {}}
     
-    var makeData = function(){
+    var makeRosterData = function(){
       $("div.active").find(".portlet").each(function(){
         return_hash["roster_changes"][$(this).data("id")] = true
       });
@@ -55,7 +56,7 @@ var ready = function() {
       });
     }
     
-    makeData();
+    makeRosterData();
     
     $.ajax({
       url: document.URL.slice(0, -5),
@@ -197,6 +198,7 @@ var ready = function() {
   
   $(".trade-button").click(function(event){
     var accepted = $(event.target).text() == "Accept" ? true : false;
+    debugger
     $.ajax({
       url:document.URL + "/" + $(event.target).data("id"),
       type:"PUT",
@@ -296,9 +298,20 @@ var ready = function() {
       }
     })
   };
-
-
   
+  
+  // Scrolling javascript for landing
+  /* smooth scrolling for scroll to top */
+  $('.scroll-top').click(function(){
+    $('body,html').animate({scrollTop:0},1000);
+  })
+  /* smooth scrolling for scroll down */
+  $('.scroll-down').click(function(){
+    $('body,html').animate({scrollTop:$(window).scrollTop()+800},1000);
+  })
+
+  /* highlight the top nav as scrolling occurs */
+  $('body').scrollspy({ target: '#navbar' })
   
 };
 

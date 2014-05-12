@@ -25,10 +25,11 @@ class TradesController < ApplicationController
   
   def update
     @trade = Trade.find(params[:id])
+    p params
     Trade.transaction do      
       if @trade.update_attributes(:accepted => params[:accepted],
                                   :pending => params[:pending])
-        @trade.execute
+        @trade.execute if @trade.accepted
         flash[:notice] = "You #{@trade.accepted ? "accepted" : "denied"} trade."
         render :json => @trade, status: 200
       else

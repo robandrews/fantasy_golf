@@ -4,8 +4,9 @@
   <%= render partial: "layouts/league_nav", locals: {active: 6, league: @league, league_membership: @league_membership} %>
     
     
-  <h4><%= "Currently there are no pending trades..." if @trades.empty? %></h4>
-    
+  <% if @trades.empty? %>
+  <h4>"Currently there are no pending trades..."</h4>
+  <% else %>
   <div class="trades-list">
     <%@trades.each do |trade|%>
     <% proposer = @league_memberships.select{|lm| lm.id == trade.proposer_id}.first %>
@@ -60,6 +61,5 @@
     </div>
     <% end %>  
   </div>
-
-
+  <% end %>
 </div>

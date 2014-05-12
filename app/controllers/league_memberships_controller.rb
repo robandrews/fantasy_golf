@@ -23,10 +23,10 @@ class LeagueMembershipsController < ApplicationController
   
   def edit
     @league = League.friendly.find(params[:league_id])
-    @league_members = @league.league_memberships.map{|lm| lm if lm != @league_membership}.compact
     @league_membership = LeagueMembership.find(params[:id])
-    validate_ownership(@league, @league_membership)
+    @league_members = @league.league_memberships.map{|lm| lm if lm != @league_membership}.compact
     
+    validate_ownership(@league, @league_membership)  
     @available_players = Player.all
     @active_players, @bench_players = @league_membership.get_active_and_bench_players
   end
@@ -42,8 +42,14 @@ class LeagueMembershipsController < ApplicationController
         end
       end
       
+      if @league_membership.roster_memberships.count > 7
+        flash[:notice] = "Invalid Roster, you must have no more than 7 players on the roster."
+        success = false
+        raise ActiveRecord::Rollback
+      end
+      
       if @league_membership.roster_memberships.where(:active => true).count != 4
-        flash[:notice] = "Invalid Roster, please try again"
+        flash[:notice] = "Invalid Roster, you must have exactly 4 active players."
         success = false
         raise ActiveRecord::Rollback
       end
@@ -53,7 +59,6 @@ class LeagueMembershipsController < ApplicationController
       flash[:notice] = "Roster updated successfully"
       render status: 200
     else
-      flash[:errors] = "Invalid Roster, please try again"
       render status: 500
     end
   end  

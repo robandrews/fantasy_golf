@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140505212928) do
+ActiveRecord::Schema.define(version: 20140511212245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,9 @@ ActiveRecord::Schema.define(version: 20140505212928) do
     t.string   "name"
   end
 
+  add_index "league_memberships", ["league_id"], name: "index_league_memberships_on_league_id", using: :btree
+  add_index "league_memberships", ["user_id"], name: "index_league_memberships_on_user_id", using: :btree
+
   create_table "league_moderatorships", force: true do |t|
     t.integer  "league_id"
     t.integer  "user_id"
@@ -116,6 +119,8 @@ ActiveRecord::Schema.define(version: 20140505212928) do
     t.string   "sender_name"
   end
 
+  add_index "messages", ["league_id"], name: "index_messages_on_league_id", using: :btree
+
   create_table "players", force: true do |t|
     t.string   "first_name"
     t.datetime "created_at"
@@ -133,6 +138,8 @@ ActiveRecord::Schema.define(version: 20140505212928) do
     t.integer  "yahoo_id"
   end
 
+  add_index "players", ["yahoo_id"], name: "index_players_on_yahoo_id", using: :btree
+
   create_table "roster_memberships", force: true do |t|
     t.integer  "league_membership_id"
     t.integer  "player_id"
@@ -140,6 +147,9 @@ ActiveRecord::Schema.define(version: 20140505212928) do
     t.datetime "updated_at"
     t.boolean  "active",               default: false
   end
+
+  add_index "roster_memberships", ["league_membership_id"], name: "index_roster_memberships_on_league_membership_id", using: :btree
+  add_index "roster_memberships", ["player_id"], name: "index_roster_memberships_on_player_id", using: :btree
 
   create_table "season_performances", force: true do |t|
     t.integer  "user_id"
@@ -176,8 +186,8 @@ ActiveRecord::Schema.define(version: 20140505212928) do
 
   create_table "tournaments", force: true do |t|
     t.string   "name"
-    t.date     "start_date"
-    t.date     "end_date"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
