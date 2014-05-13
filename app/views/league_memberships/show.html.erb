@@ -3,10 +3,54 @@
     <h2><%=@league.name%></h2>
   <%= render partial: "layouts/league_nav", locals: {active: 1, league: @league, league_membership: @current_league_membership} %>
   
-  <h4>Summary for <%= @league_membership.name %></h4>  
+  <div class="document">
+  <h4>Season Summary for <%= @league_membership.name %></h4>  
+  <hr>
   <canvas id="canvas" height="450" width="800"></canvas>
 
+  <div class="roster">
+      <h4>Current Roster</h4>
+      <hr >
+        <div class="row">
+          <div class="col-md-5 col-offset-1 ">
+            <h5>Active</h5>
+          </div>
+          <div class="col-md-5">
+            <h5>Bench</h5>
+          </div>
+        </div>
 
+        <div class=row>
+          <div class="roster-selection">
+            <div class="col-md-5">
+              <ul class="list-group">
+                <div class="column active">
+                  <%@active_players.each do |roster_membership, player|%>
+                    <li class="list-group-item">
+                        <img src="<%=player.picture_url%>" width=40>
+                        <a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a>
+                    </li>
+                  <%end%> 
+                </div>
+              </ul>
+            </div>
+      
+            <div class="col-md-5">
+              <ul class="list-group">
+                <div class="column bench">
+                  <%@bench_players.each do |roster_membership, player|%>
+                    <li class="list-group-item">
+                        <img src="<%=player.picture_url%>" width=40>
+                        <a href="<%=player.url%>"><%=player.name%></a>
+                    </li>
+                  <%end%>
+                </div>
+              </ul>
+            </div>
+          </div>
+      </div>
+      <hr>
+  </div>
   	<script>
 
       // ajax request for the labels and the data...
@@ -30,5 +74,5 @@
 
   	</script>
     
-    
+  </div>
 </div>

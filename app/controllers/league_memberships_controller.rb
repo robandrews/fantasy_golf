@@ -19,6 +19,7 @@ class LeagueMembershipsController < ApplicationController
     @league = League.friendly.find(params[:league_id])
     @league_membership = LeagueMembership.find(params[:id])
     @current_league_membership = LeagueMembership.find_by_user_id_and_league_id(current_user.id, @league.id)
+    @active_players, @bench_players = @league_membership.get_active_and_bench_players
   end
   
   def edit
@@ -27,7 +28,16 @@ class LeagueMembershipsController < ApplicationController
     @league_members = @league.league_memberships.map{|lm| lm if lm != @league_membership}.compact
     
     validate_ownership(@league, @league_membership)
-    @available_players = Player.all #this might call for some custom SQL...
+    @available_players = Player.find_by_sql <<-SQL
+    SELECT * 
+      FROM players p 
+      WHERE p.id
+      NOT IN 
+        (SELECT pp.id 
+         FROM players pp 
+         INNER JOIN roster_memberships r on pp.id = r.player_id
+         WHERE r.league_id = 1)
+         SQL
     @active_players, @bench_players = @league_membership.get_active_and_bench_players
   end
   

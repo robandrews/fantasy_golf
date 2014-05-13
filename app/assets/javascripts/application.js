@@ -25,6 +25,93 @@
 
 
 var ready = function() {
+  
+  // START -- trades index -- //
+  
+  // Expose buttons for trades
+  $(".tradeable").hover(
+    function(){
+    $(this).parent().parent().find("button").fadeIn().removeClass("hidden");
+    return false;
+  }, 
+    function(){
+      $(this).parent().parent().find("button").fadeOut().addClass("hidden", 500);
+      return false;
+    }
+  );
+  
+  $(".trade-button").click(function(event){
+    var accepted = $(event.target).text() == "Accept" ? true : false;
+    $.ajax({
+      url:document.URL + "/" + $(event.target).data("id"),
+      type:"PUT",
+      data:{accepted: accepted, pending: false},
+      success:function(resp){
+        location.reload();
+      },
+      error:function(resp){
+        location.reload();
+      }
+    });
+  })
+  
+  $(".trade-button-delete").click(function(event){
+    $.ajax({
+      url:document.URL + "/" + $(event.target).data("id"),
+      type:"DELETE",
+      success:function(resp){
+        location.reload();
+      },
+      error:function(resp){
+        location.reload();
+      }
+    });
+  })
+  
+  $(".show-past-trades").click(function(event){
+    $.ajax({
+      url:document.URL + "?pending=false",
+      type:"GET",
+      success:function(resp){
+        $(".main").html(resp);
+        $(document).trigger("page:load");
+      }
+    });
+  })
+  
+  $(".show-pending-trades").click(function(event){
+    $.ajax({
+      url:document.URL + "?pending=true",
+      type:"GET",
+      success:function(resp){
+        $(".main").html(resp);
+        $(document).trigger("page:load")
+      }
+    });
+  })
+  // END -- trades index -- //
+
+
+  
+  
+  // START -- free agent offers index -- //
+  $(".contest-free-agent").click(function(event){
+    $.ajax({
+      url: document.URL + "/" + $(event.target).data("id"),
+      type: "PUT",
+      success:function(){
+        location.reload();
+      },
+      error:function(){
+        location.reload();
+      }
+    })
+  });
+  
+  // END -- free agent offers index -- //  
+  
+  
+  // START -- Edit league membership javascript -- //
   $( ".column" ).sortable({
     connectWith: ".column",
     handle: ".portlet-header",
@@ -85,20 +172,6 @@ var ready = function() {
     $("#free-agent-form").submit();
   })
   
-  // contest free agent on the free agent index page
-  $(".contest-free-agent").click(function(event){
-    $.ajax({
-      url: document.URL + "/" + $(event.target).data("id"),
-      type: "PUT",
-      success:function(){
-        location.reload();
-      },
-      error:function(){
-        location.reload();
-      }
-    })
-  });
-  
   // using the select2 plugin for searching/autocomplete in the free agent select dropdown
   $("#free-agent-select-list").select2();
   
@@ -119,18 +192,27 @@ var ready = function() {
   $( ".show-free-agent" ).click(function() {
     $( ".roster" ).addClass( "hidden");
     $( ".trade" ).addClass( "hidden");
+    $(".show-free-agent").addClass("active");
+    $( ".show-roster" ).removeClass( "active");
+    $(".show-trade").removeClass( "active");
     $( ".free-agent" ).removeClass( "hidden");
   });
   
   $( ".show-trade" ).click(function() {
     $( ".roster" ).addClass( "hidden");
     $( ".free-agent" ).addClass( "hidden");
+    $(".show-trade").addClass("active");
+    $( ".show-roster" ).removeClass( "active");
+    $( ".show-free-agent" ).removeClass( "active");
     $( ".trade" ).removeClass( "hidden");
   });
   
   $( ".show-roster" ).click(function() {
     $( ".free-agent" ).addClass( "hidden");
     $( ".trade" ).addClass( "hidden");
+    $(".show-roster").addClass("active");
+    $( ".show-free-agent" ).removeClass( "active");
+    $(".show-trade").removeClass( "active");
     $( ".roster" ).removeClass( "hidden");
     return false;
   });
@@ -158,7 +240,6 @@ var ready = function() {
   
   
   // Launches modal to confirm trade
-  
   $(".submit-trade").click(function(event){
     var name = $(".tradee-selector").find(":selected").text();
     $(".tradee-name").html(name);
@@ -182,51 +263,13 @@ var ready = function() {
   
   // using autosize plugin to handle textarea resizing
   $("textarea").autosize();
-  
-  
-  // Expose buttons for trades
-  $(".tradeable").hover(
-    function(){
-    $(this).parent().parent().find("button").fadeIn().removeClass("hidden");
-    return false;
-  }, 
-    function(){
-      $(this).parent().parent().find("button").fadeOut().addClass("hidden", 500);
-      return false;
-    }
-  );
-  
-  $(".trade-button").click(function(event){
-    var accepted = $(event.target).text() == "Accept" ? true : false;
-    $.ajax({
-      url:document.URL + "/" + $(event.target).data("id"),
-      type:"PUT",
-      data:{accepted: accepted, pending: false},
-      success:function(resp){
-        location.reload();
-      },
-      error:function(resp){
-        location.reload();
-      }
-    });
-  })
-  
-  $(".trade-button-delete").click(function(event){
-    $.ajax({
-      url:document.URL + "/" + $(event.target).data("id"),
-      type:"DELETE",
-      success:function(resp){
-        location.reload();
-      },
-      error:function(resp){
-        location.reload();
-      }
-    });
-  })
+    
+  // END -- Edit league membership javascript -- //
   
   
   
-  // Create league javascript
+  
+  // START -- Create league javascript -- //
   $.fn.pressEnter = function(fn) {  
     return this.each(function() {  
       $(this).bind('enterPress', fn);
@@ -310,7 +353,11 @@ var ready = function() {
       }
     })
   };
-  
+  // END -- Create league javascript -- //
+    
+    
+    
+    
   // google analytics
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

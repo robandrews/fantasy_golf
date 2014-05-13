@@ -22,6 +22,8 @@ class League < ActiveRecord::Base
   has_many :league_moderatorships
   has_many :moderators, :through => :league_moderatorships, :source => :user
   has_many :divisions
+  has_many :trades
+  has_many :roster_memberships
   has_one :bylaw
   
   def make_secret_sauce

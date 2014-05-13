@@ -24,6 +24,7 @@ class Trade < ActiveRecord::Base
   :foreign_key => :proposee_id,
   :primary_key => :id
   
+  belongs_to :league
   has_many :trade_groups
   
   def execute

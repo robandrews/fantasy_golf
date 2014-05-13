@@ -2,7 +2,7 @@ class TradesController < ApplicationController
   def create
     @league = League.friendly.find(params[:league_id])
     @league_membership = LeagueMembership.find_by_user_id_and_league_id(current_user.id, @league.id)
-    trade = Trade.new(:proposer_id => @league_membership.id, :proposee_id => params[:tradee_id])
+    trade = Trade.new(:proposer_id => @league_membership.id, :proposee_id => params[:tradee_id], :league_id => @league.id)
     t1, t2 = trade.trade_groups.build([{:league_membership_id => @league_membership.id}, {:league_membership_id => params[:tradee_id]}])
     params[:trader].each{|player_id| t1.trade_group_memberships.build(:player_id => player_id)}
     params[:tradee].each{|player_id| t2.trade_group_memberships.build(:player_id => player_id)}
@@ -18,9 +18,14 @@ class TradesController < ApplicationController
   
   def index
     @league = League.friendly.find(params[:league_id])
-    @league_memberships = LeagueMembership.all
+    @league_memberships = LeagueMembership.where(:league_id => @league.id)
     @league_membership = LeagueMembership.find_by_user_id_and_league_id(current_user.id, @league.id)
-    @trades = Trade.where(:pending => true)
+    @pending = params[:pending] == "false" ? false : true
+    @trades = Trade.where(:pending => @pending, :league_id => @league.id)
+    
+    if params[:pending]
+      render :index, :layout => false
+    end
   end
   
   def update

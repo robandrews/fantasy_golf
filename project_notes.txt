@@ -18,14 +18,7 @@ Cron jobs for free agents
 
 Mailers
 
-Trades should be league specific
-
 BUG: Trade doesn't check to see if players are actually in the rosters before the trade is made.
-
-WRITE THIS SQL - Free agents shouldn't be able to be added if they are in a league member's roster
-
-Player.find_by_sql("select * from players p inner join roster_memberships r on p.id = r.player_id inner join league_memberships l on
-l.id = r.league_membership_id where l.id = ? AND 
 
 
 

@@ -3,221 +3,223 @@
 
   <%= render partial: "layouts/league_nav", locals: {active: 2, league: @league, league_membership: @league_membership} %>
    
-  <div class="btn-group btn-group-justified">
-    <div class="btn-group">
-      <button type="button" class="btn btn-default show-roster">Set Roster</button>
+  <div class="document">
+    <div class="btn-group btn-group-justified">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default show-roster active">Set Roster</button>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default show-free-agent">Add Free Agent</button>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default show-trade">Propose Trade</button>
+      </div>
     </div>
-    <div class="btn-group">
-      <button type="button" class="btn btn-default show-free-agent">Add Free Agent</button>
-    </div>
-    <div class="btn-group">
-      <button type="button" class="btn btn-default show-trade">Propose Trade</button>
-    </div>
-  </div>
    
-  <div class="roster">  
-    <div class="row">
-      <div class="col-md-5 col-offset-1 ">
-        <h4>Active</h4>
-      </div>
-      <div class="col-md-5">
-        <h4>Bench</h4>
-      </div>
-    </div>
-
-    <div class=row>
-      <div class="roster-selection">
-        <div class="col-md-5 col-offset-1">
-          <ul class="list-group">
-            <div class="column active">
-              <%@active_players.each do |roster_membership, player|%>
-              <div class="portlet" data-id="<%=roster_membership.id%>">
-                <li class="list-group-item">
-                  <div class="portlet-header">
-                    <img src="<%=player.picture_url%>" width=40>
-                    <a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a>
-                    <button class="btn btn-sm btn-danger drop-player-button pull-right">Drop</button>
-                  </div>
-                </li>
-              </div>
-              <%end%> 
-            </div>
-          </ul>
+    <div class="roster">  
+      <div class="row">
+        <div class="col-md-5 col-offset-1 ">
+          <h4>Active</h4>
         </div>
-      
         <div class="col-md-5">
-          <ul class="list-group">
-            <div class="column bench">
-              <%@bench_players.each do |roster_membership, player|%>
-              <div class="portlet" data-id="<%=roster_membership.id%>">
-                <li class="list-group-item">
-                  <div class="portlet-header">
-                    <img src="<%=player.picture_url%>" width=40>
-                    <a href="<%=player.url%>"><%=player.name%></a>
-                    <button class="btn btn-sm btn-danger drop-player-button pull-right">Drop</button>
-                  </div>
-                </li>
-              </div>
-              <%end%>
-            </div>
-          </ul>
+          <h4>Bench</h4>
         </div>
       </div>
+
+      <div class=row>
+        <div class="roster-selection">
+          <div class="col-md-5 col-offset-1">
+            <ul class="list-group">
+              <div class="column active">
+                <%@active_players.each do |roster_membership, player|%>
+                <div class="portlet" data-id="<%=roster_membership.id%>">
+                  <li class="list-group-item">
+                    <div class="portlet-header">
+                      <img src="<%=player.picture_url%>" width=40>
+                      <a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a>
+                      <button class="btn btn-sm btn-danger drop-player-button pull-right">Drop</button>
+                    </div>
+                  </li>
+                </div>
+                <%end%> 
+              </div>
+            </ul>
+          </div>
+      
+          <div class="col-md-5">
+            <ul class="list-group">
+              <div class="column bench">
+                <%@bench_players.each do |roster_membership, player|%>
+                <div class="portlet" data-id="<%=roster_membership.id%>">
+                  <li class="list-group-item">
+                    <div class="portlet-header">
+                      <img src="<%=player.picture_url%>" width=40>
+                      <a href="<%=player.url%>"><%=player.name%></a>
+                      <button class="btn btn-sm btn-danger drop-player-button pull-right">Drop</button>
+                    </div>
+                  </li>
+                </div>
+                <%end%>
+              </div>
+            </ul>
+          </div>
+        </div>
     
-      <div class="col-md-4 col-md-offset-4">
-        <button type="button" class="btn btn-lg" id="submit-roster">Submit Roster</button>
+        <div class="col-md-4 col-md-offset-4">
+          <button type="button" class="btn btn-lg" id="submit-roster">Submit Roster</button>
+        </div>
       </div>
+  
+  
     </div>
   
-  
-  </div>
-  
-  <div class="free-agent hidden">
-    <h2>Add a free agent:</h2>
-    <div class="row">
+    <div class="free-agent hidden">
+      <h2>Add a free agent:</h2>
+      <div class="row">
 
       
-      <div class="col-md-12">
-        <form role="form" action="<%=league_free_agent_offers_url%>" method="POST" id="free-agent-form">
-          <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>" >
-          <div class="row">
+        <div class="col-md-12">
+          <form role="form" action="<%=league_free_agent_offers_url%>" method="POST" id="free-agent-form">
+            <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>" >
+            <div class="row">
 
           
-            <div class="form-group">
-              <div class="col-sm-10">
-                <select class="form-control" id="free-agent-select-list" name="player_id">
-                  <option value="" disabled selected>Choose a free agent</option>
-                  <%@available_players.each do |player|%>
-                  <option value="<%=player.id%>"><%=player.name%></option>
-                  <%end%>
-                </select>
+              <div class="form-group">
+                <div class="col-sm-10">
+                  <select class="form-control" id="free-agent-select-list" name="player_id">
+                    <option value="" disabled selected>Choose a free agent</option>
+                    <%@available_players.each do |player|%>
+                    <option value="<%=player.id%>"><%=player.name%></option>
+                    <%end%>
+                  </select>
+                </div>
               </div>
-            </div>
     
-            <div class="form-group">
-              <div class="col-sm-2">
-                <button class="btn btn-default" id='free-agent-add-button' type="button">Add</button>
-              </div>
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <button class="btn btn-default" id='free-agent-add-button' type="button">Add</button>
+                </div>
 
         
+              </div>
+              <div style="height:250px;"></div>
             </div>
-            <div style="height:250px;"></div>
-          </div>
-        </form>
+          </form>
         
+        </div>
       </div>
     </div>
-  </div>
   
-  <div class="trade hidden">
-    <h2>Trade with league member</h2>
+    <div class="trade hidden">
+      <h2>Trade with league member</h2>
   
-    <div class="row">
-      <div class="col-md-5">
-        <ul class="list-group trader-list">
-          <% @league_membership.players.each do |player| %>
-          <li data-id="<%= player.id %>" class="list-group-item selectable">
-            <img src="<%=player.picture_url%>" width=40>
-            <%= player.name %>
-          </li>
-          <% end %>
-        </ul>
-      </div>
-      
-      <div class="col-md-5">
-        <div class="form-group">
-          <select class="tradee-selector form-control">
-            <% @league_members.each do |member| %>
-            <option data-id="<%= member.id %>"><%= member.name %></option>
-            <% end %>
-          </select>
-      
-          <ul class="list-group tradee-list">
-            <% @league_members.first.players.each do |player|%>
+      <div class="row">
+        <div class="col-md-5">
+          <ul class="list-group trader-list">
+            <% @league_membership.players.each do |player| %>
             <li data-id="<%= player.id %>" class="list-group-item selectable">
               <img src="<%=player.picture_url%>" width=40>
               <%= player.name %>
             </li>
-            <%end%>
+            <% end %>
           </ul>
         </div>
+      
+        <div class="col-md-5">
+          <div class="form-group">
+            <select class="tradee-selector form-control">
+              <% @league_members.each do |member| %>
+              <option data-id="<%= member.id %>"><%= member.name %></option>
+              <% end %>
+            </select>
+      
+            <ul class="list-group tradee-list">
+              <% @league_members.first.players.each do |player|%>
+              <li data-id="<%= player.id %>" class="list-group-item selectable">
+                <img src="<%=player.picture_url%>" width=40>
+                <%= player.name %>
+              </li>
+              <%end%>
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+      <div>
+        <button class="btn btn-lg submit-trade">Submit Trade</button>
       </div>
     </div>
-    
-    <div>
-      <button class="btn btn-lg submit-trade">Submit Trade</button>
-    </div>
-  </div>
 
 
-  <div class="modal fade confirm-trade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
+    <div class="modal fade confirm-trade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
 
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Confirm Trade</h4>
-        </div>
-        <div class="modal-body">
-          <p>You are about to propose a trade with <span class="tradee-name"></span>.  They will have the opportunity to accept or reject the trade.</p><br />
-          <p>Are you sure you want to do this?</p>
-        </div>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Confirm Trade</h4>
+          </div>
+          <div class="modal-body">
+            <p>You are about to propose a trade with <span class="tradee-name"></span>.  They will have the opportunity to accept or reject the trade.</p><br />
+            <p>Are you sure you want to do this?</p>
+          </div>
                       
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
-          <button type="button" class="btn btn-primary" id="trade-request-confirmed">Let's do it</button>
-        </div>
-      </div>      
-    </div>
-  </div>  
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
+            <button type="button" class="btn btn-primary" id="trade-request-confirmed">Let's do it</button>
+          </div>
+        </div>      
+      </div>
+    </div>  
   
   
   
-  <div class="modal fade confirm-add-free-agent" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
+    <div class="modal fade confirm-add-free-agent" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
 
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Confirm Free Agent</h4>
-        </div>
-        <div class="modal-body">
-          <p>You are about to submit a request for: <h3><center><span class="player-name"></span></center></h3></p><br />
-          <p>This will make your intentions for acquring a free agent public to the league.  Pending contest, the free agent will join your roster in 12 hours.  If a league member contests the pick, the dispute will be handled per league bylaws.</p>
-        </div>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Confirm Free Agent</h4>
+          </div>
+          <div class="modal-body">
+            <p>You are about to submit a request for: <h3><center><span class="player-name"></span></center></h3></p><br />
+            <p>This will make your intentions for acquring a free agent public to the league.  Pending contest, the free agent will join your roster in 12 hours.  If a league member contests the pick, the dispute will be handled per league bylaws.</p>
+          </div>
                       
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
-          <button type="button" class="btn btn-primary" id="free-agent-confirmed">Let's do it</button>
-        </div>
-      </div>      
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
+            <button type="button" class="btn btn-primary" id="free-agent-confirmed">Let's do it</button>
+          </div>
+        </div>      
+      </div>
     </div>
-  </div>
 
-  <div class="modal fade drop-player" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
+    <div class="modal fade drop-player" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
         
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Drop Player</h4>
-        </div>
-        <div class="modal-body">
-          <p>Are you sure you want to drop <span class="player-name"></span>?</p><br />
-          <p>This will permanently remove the player from your roster.  To sign them again you will have to go through free agency channels.
-          </p>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Drop Player</h4>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to drop <span class="player-name"></span>?</p><br />
+            <p>This will permanently remove the player from your roster.  To sign them again you will have to go through free agency channels.
+            </p>
           
-          <form action="" method="POST" accept-charset="utf-8" class="drop-player-form">
-            <input name="_method" type="hidden" value="delete" />
-            <input name="authenticity_token" type="hidden" value="<%=form_authenticity_token%>" />
-          </form>
-        </div>
+            <form action="" method="POST" accept-charset="utf-8" class="drop-player-form">
+              <input name="_method" type="hidden" value="delete" />
+              <input name="authenticity_token" type="hidden" value="<%=form_authenticity_token%>" />
+            </form>
+          </div>
               
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
-          <button type="button" class="btn btn-danger" id="player-drop-confirmed">Drop Player</button>
-        </div>
-      </div>      
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
+            <button type="button" class="btn btn-danger" id="player-drop-confirmed">Drop Player</button>
+          </div>
+        </div>      
+      </div>
     </div>
   </div>
 </div>
