@@ -1,7 +1,7 @@
 FantasyGolf::Application.routes.draw do
   devise_for :users
   root to: "static_pages#welcome"
-  resources :users, :only => [:show]
+  resources :users, :only => [:show, :edit]
   resources :roster_memberships, :only => [:destroy]
   resources :players, :only => [:index]
   

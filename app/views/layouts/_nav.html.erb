@@ -22,9 +22,10 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=current_user.name%> <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href=<%=user_url(current_user)%>>Dashboard</a></li>
+          <li><a href=<%=user_url(current_user)%>>My Leagues</a></li>
           <li class="divider"></li>
           <li><%= link_to "Change password", edit_user_registration_path %></li>
+          <li><%= link_to "Account Settings", edit_user_url(current_user) %></li>
           <li><%=link_to "Sign Out", destroy_user_session_url, method: :delete%></li>
           
         </ul>

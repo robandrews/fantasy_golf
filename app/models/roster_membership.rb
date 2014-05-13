@@ -13,4 +13,5 @@
 class RosterMembership < ActiveRecord::Base
   belongs_to :league_membership 
   belongs_to :player
+  belongs_to :league
 end

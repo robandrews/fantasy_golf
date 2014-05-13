@@ -6,6 +6,7 @@
   <div class="jumbotron">
     <h2><%= @message.subject %></h2>
     <p><%= @message.body.html_safe %></p>
+    <hr><small>Authored by <%= link_to @message.sender_name, league_league_membership_url(@league.id, @message.sender_id) %> on <%= @message.created_at.to_s(:pretty) %></small>
   </div>
   <br />
 

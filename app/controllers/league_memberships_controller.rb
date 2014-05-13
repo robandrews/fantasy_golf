@@ -26,14 +26,15 @@ class LeagueMembershipsController < ApplicationController
     @league_membership = LeagueMembership.find(params[:id])
     @league_members = @league.league_memberships.map{|lm| lm if lm != @league_membership}.compact
     
-    validate_ownership(@league, @league_membership)  
-    @available_players = Player.all
+    validate_ownership(@league, @league_membership)
+    @available_players = Player.all #this might call for some custom SQL...
     @active_players, @bench_players = @league_membership.get_active_and_bench_players
   end
   
   def update
     @league_membership = LeagueMembership.find(params[:id])
     success = true
+    
     RosterMembership.transaction do
       params[:roster_changes].each do |roster_id, active_boolean|
         current_roster = RosterMembership.find(roster_id)
@@ -42,12 +43,14 @@ class LeagueMembershipsController < ApplicationController
         end
       end
       
+      # a valid roster should have no more than 7 players
       if @league_membership.roster_memberships.count > 7
         flash[:notice] = "Invalid Roster, you must have no more than 7 players on the roster."
         success = false
         raise ActiveRecord::Rollback
       end
       
+      # check for correct number of active players
       if @league_membership.roster_memberships.where(:active => true).count != 4
         flash[:notice] = "Invalid Roster, you must have exactly 4 active players."
         success = false
