@@ -47,8 +47,6 @@ class Player < ActiveRecord::Base
     attrs = {}
     attrs["url"] = url
     attrs["yahoo_id"] = url.match(/\A\D+(\d+)\z/)[1].to_i
-
-    p "got here"
     page = Nokogiri::HTML(RestClient.get(url))
     attrs["picture_url"] = page.css("div.playerPhoto").css("img").attr("src").value
     stats = page.css("div.playerStats").css("li")

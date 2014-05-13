@@ -12,15 +12,11 @@ Playoffs(take 10), top 2 in each division, 2 wildcard (point bonuses going into 
 
 To-Do in order of importance
 
-Ability to sort trades by active/all
-
 Cron jobs for free agents
 
 Mailers
 
 BUG: Trade doesn't check to see if players are actually in the rosters before the trade is made.
-
-
 
 Commissioner tools 
 - edit free agent pool

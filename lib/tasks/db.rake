@@ -1,7 +1,7 @@
 namespace :db do
   desc "Seed all the players from Yahoo! Golf database"
   task player_seed: :environment do
-    ('a'..'y').each do |letter|            
+    ('w'..'y').each do |letter|            
       url = "http://sports.yahoo.com/golf/pga/players?lname=#{letter}"
       page = Nokogiri::HTML(RestClient.get(url))
 
@@ -55,8 +55,7 @@ namespace :db do
     Player.find_by_yahoo_id(1685).update_attributes(:last_name => "Van Pelt")
     Player.find_by_yahoo_id(8073).update_attributes(:last_name => "Angel Carballo")
     Player.find_by_yahoo_id(553).update_attributes(:last_name => "Angel Jimenez")
-  end
-  
+  end 
   
   desc "Seed all tournaments"
   task season_seed: :environment do
@@ -122,7 +121,6 @@ namespace :db do
       tournament.get_scores
     end
   end
-  
   
   desc "Seed gunga galunga league"
   task gunga_seed: :environment do
@@ -423,8 +421,177 @@ namespace :db do
     
     RosterMembership.create(:league_membership_id => trent_busch_league.id, :player_id => 27, :active => false, :league_id => league.id)
     RosterMembership.create(:league_membership_id => trent_busch_league.id, :player_id => 228, :active => false, :league_id => league.id)
-    RosterMembership.create(:league_membership_id => trent_busch_league.id, :player_id => 60, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => trent_busch_league.id, :player_id => 60, :active => false, :league_id => league.id)    
+  end
+  
+  desc "Seed demo league"
+  task demo_seed: :environment do
+    league = League.create(:name => "The Caddy Shack")
+    
+    ben_hogan = Division.create(:name => "Ben Hogan", :league_id => league.id)
+    arnold_palmer = Division.create(:name => "Arnold Palmer", :league_id => league.id)
+    
+    guest = User.create(:first_name => "Guesty", :last_name => "MyGuesterson", :email => "guest@gmail.com",
+    :password => "password", :password_confirmation => "password")
+    guest_league = LeagueMembership.create(:user_id => guest.id, :league_id => league.id, :name => guest.name)
+    DivisionMembership.create(:league_membership_id => guest_league.id, :division_id => ben_hogan.id)
+
+    RosterMembership.create(:league_membership_id => guest_league.id, :player_id => 180, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => guest_league.id, :player_id => 185, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => guest_league.id, :player_id => 44, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => guest_league.id, :player_id => 96, :active => true, :league_id => league.id)
+    
+    RosterMembership.create(:league_membership_id => guest_league.id, :player_id => 74, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => guest_league.id, :player_id => 220, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => guest_league.id, :player_id => 35, :active => false, :league_id => league.id)
     
     
+    chevy_chase = User.create(:first_name => "Chevy", :last_name => "Chase", :email => "chevy@gmail.com",
+    :password => "password", :password_confirmation => "password")
+    chevy_chase_league = LeagueMembership.create(:user_id => chevy_chase.id, :league_id => league.id, :name => chevy_chase.name)
+    DivisionMembership.create(:league_membership_id => chevy_chase_league.id, :division_id => ben_hogan.id)
+
+    RosterMembership.create(:league_membership_id => chevy_chase_league.id, :player_id => 36, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => chevy_chase_league.id, :player_id => 380, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => chevy_chase_league.id, :player_id => 188, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => chevy_chase_league.id, :player_id => 85, :active => true, :league_id => league.id)
+    
+    RosterMembership.create(:league_membership_id => chevy_chase_league.id, :player_id => 181, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => chevy_chase_league.id, :player_id => 59, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => chevy_chase_league.id, :player_id => 170, :active => false, :league_id => league.id)
+    
+    
+    bill_murray = User.create(:first_name => "Bill", :last_name => "Murray", :email => "bill@gmail.com",
+    :password => "password", :password_confirmation => "password")
+    bill_murray_league = LeagueMembership.create(:user_id => bill_murray.id, :league_id => league.id, :name => bill_murray.name)
+    DivisionMembership.create(:league_membership_id => bill_murray_league.id, :division_id => ben_hogan.id)
+
+    RosterMembership.create(:league_membership_id => bill_murray_league.id, :player_id => 239, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => bill_murray_league.id, :player_id => 106, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => bill_murray_league.id, :player_id => 382, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => bill_murray_league.id, :player_id => 141, :active => true, :league_id => league.id)
+    
+    RosterMembership.create(:league_membership_id => bill_murray_league.id, :player_id => 174, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => bill_murray_league.id, :player_id => 115, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => bill_murray_league.id, :player_id => 320, :active => false, :league_id => league.id)    
+
+    rodney_dangerfield = User.create(:first_name => "Rodney", :last_name => "Dangerfield", :email => "rodney@gmail.com",
+    :password => "password", :password_confirmation => "password")
+    rodney_dangerfield_league = LeagueMembership.create(:user_id => rodney_dangerfield.id, :league_id => league.id, :name => rodney_dangerfield.name)
+    DivisionMembership.create(:league_membership_id => rodney_dangerfield_league.id, :division_id => ben_hogan.id)
+
+    RosterMembership.create(:league_membership_id => rodney_dangerfield_league.id, :player_id => 226, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => rodney_dangerfield_league.id, :player_id => 396, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => rodney_dangerfield_league.id, :player_id => 159, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => rodney_dangerfield_league.id, :player_id => 171, :active => true, :league_id => league.id)
+    
+    RosterMembership.create(:league_membership_id => rodney_dangerfield_league.id, :player_id => 264, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => rodney_dangerfield_league.id, :player_id => 206, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => rodney_dangerfield_league.id, :player_id => 377, :active => false, :league_id => league.id)
+    
+    
+    cindy_morgan = User.create(:first_name => "Cindy", :last_name => "Morgan", :email => "cindy@gmail.com",
+    :password => "password", :password_confirmation => "password")
+    cindy_morgan_league = LeagueMembership.create(:user_id => cindy_morgan.id, :league_id => league.id, :name => cindy_morgan.name)
+    DivisionMembership.create(:league_membership_id => cindy_morgan_league.id, :division_id => ben_hogan.id)
+
+    RosterMembership.create(:league_membership_id => cindy_morgan_league.id, :player_id => 327, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => cindy_morgan_league.id, :player_id => 381, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => cindy_morgan_league.id, :player_id => 149, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => cindy_morgan_league.id, :player_id => 16, :active => true, :league_id => league.id)
+    
+    RosterMembership.create(:league_membership_id => cindy_morgan_league.id, :player_id => 212, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => cindy_morgan_league.id, :player_id => 157, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => cindy_morgan_league.id, :player_id => 116, :active => false, :league_id => league.id)
+    
+    
+    ty_webb = User.create(:first_name => "Ty", :last_name => "Webb", :email => "ty@gmail.com",
+    :password => "password", :password_confirmation => "password")
+    ty_webb_league = LeagueMembership.create(:user_id => ty_webb.id, :league_id => league.id, :name => ty_webb.name)
+    DivisionMembership.create(:league_membership_id => ty_webb_league.id, :division_id => arnold_palmer.id)
+
+    RosterMembership.create(:league_membership_id => ty_webb_league.id, :player_id => 401, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => ty_webb_league.id, :player_id => 310, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => ty_webb_league.id, :player_id => 78, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => ty_webb_league.id, :player_id => 56, :active => true, :league_id => league.id)
+    
+    RosterMembership.create(:league_membership_id => ty_webb_league.id, :player_id => 334, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => ty_webb_league.id, :player_id => 176, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => ty_webb_league.id, :player_id => 186, :active => false, :league_id => league.id)
+
+
+    judge_smails = User.create(:first_name => "Judge", :last_name => "Smails", :email => "judgesmails@gmail.com",
+    :password => "password", :password_confirmation => "password")
+    judge_smails_league = LeagueMembership.create(:user_id => judge_smails.id, :league_id => league.id, :name => judge_smails.name)
+    DivisionMembership.create(:league_membership_id => judge_smails_league.id, :division_id => arnold_palmer.id)
+
+    RosterMembership.create(:league_membership_id => judge_smails_league.id, :player_id => 92, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => judge_smails_league.id, :player_id => 233, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => judge_smails_league.id, :player_id => 15, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => judge_smails_league.id, :player_id => 138, :active => true, :league_id => league.id)
+    
+    RosterMembership.create(:league_membership_id => judge_smails_league.id, :player_id => 331, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => judge_smails_league.id, :player_id => 244, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => judge_smails_league.id, :player_id => 191, :active => false, :league_id => league.id)
+
+
+    danny_noonan = User.create(:first_name => "Danny", :last_name => "Noonan", :email => "danny@gmail.com",
+    :password => "password", :password_confirmation => "password")
+    danny_noonan_league = LeagueMembership.create(:user_id => danny_noonan.id, :league_id => league.id, :name => danny_noonan.name)
+    DivisionMembership.create(:league_membership_id => danny_noonan_league.id, :division_id => arnold_palmer.id)
+
+    RosterMembership.create(:league_membership_id => danny_noonan_league.id, :player_id => 99, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => danny_noonan_league.id, :player_id => 129, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => danny_noonan_league.id, :player_id => 83, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => danny_noonan_league.id, :player_id => 296, :active => true, :league_id => league.id)
+    
+    RosterMembership.create(:league_membership_id => danny_noonan_league.id, :player_id => 268, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => danny_noonan_league.id, :player_id => 137, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => danny_noonan_league.id, :player_id => 387, :active => false, :league_id => league.id)
+
+
+    bishop_pickering = User.create(:first_name => "Bishop", :last_name => "Pickering", :email => "bishop@gmail.com",
+    :password => "password", :password_confirmation => "password")
+    bishop_pickering_league = LeagueMembership.create(:user_id => bishop_pickering.id, :league_id => league.id, :name => bishop_pickering.name)
+    DivisionMembership.create(:league_membership_id => bishop_pickering_league.id, :division_id => arnold_palmer.id)
+
+    RosterMembership.create(:league_membership_id => bishop_pickering_league.id, :player_id => 242, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => bishop_pickering_league.id, :player_id => 341, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => bishop_pickering_league.id, :player_id => 154, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => bishop_pickering_league.id, :player_id => 277, :active => true, :league_id => league.id)
+    
+    RosterMembership.create(:league_membership_id => bishop_pickering_league.id, :player_id => 357, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => bishop_pickering_league.id, :player_id => 124, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => bishop_pickering_league.id, :player_id => 42, :active => false, :league_id => league.id)
+
+
+
+    carl_spacker = User.create(:first_name => "Carl", :last_name => "Spacker", :email => "carl@gmail.com",
+    :password => "password", :password_confirmation => "password")
+    carl_spacker_league = LeagueMembership.create(:user_id => carl_spacker.id, :league_id => league.id, :name => carl_spacker.name)
+    DivisionMembership.create(:league_membership_id => carl_spacker_league.id, :division_id => arnold_palmer.id)
+
+    RosterMembership.create(:league_membership_id => carl_spacker_league.id, :player_id => 317, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => carl_spacker_league.id, :player_id => 205, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => carl_spacker_league.id, :player_id => 344, :active => true, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => carl_spacker_league.id, :player_id => 355, :active => true, :league_id => league.id)
+    
+    RosterMembership.create(:league_membership_id => carl_spacker_league.id, :player_id => 57, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => carl_spacker_league.id, :player_id => 255, :active => false, :league_id => league.id)
+    RosterMembership.create(:league_membership_id => carl_spacker_league.id, :player_id => 68, :active => false, :league_id => league.id)
+  end
+  
+  desc "Drop all tables except for players"
+  # this still needs work
+  task drop_all_except_players: :environment do
+    tables = ["archived_weeks", "bylaws", "division_memberships", "divisions", "free_agent_offers",
+      "friendly_id_slugs", "interested_parties", "league_memberships", "league_moderatorships", 
+      "leagues", "messages", "roster_memberships", "season_performances", "seasons", 
+      "tournament_standings", "tournaments", "trade_group_memberships", "trade_groups", "trades",
+      "users", "weeks"]
+    connection = ActiveRecord::Base.connection()
+    tables.each do |table|
+      connection.execute("drop table #{table}")
+    end
   end
 end

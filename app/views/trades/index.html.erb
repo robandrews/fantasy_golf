@@ -4,10 +4,6 @@
   <%= render partial: "layouts/league_nav", locals: {active: 6, league: @league, league_membership: @league_membership} %>
     
   <div class="document">
-    <% if @trades.empty? %>
-    <h4>Currently there are no pending trades...</h4>
-    <% else %>
-    
     <div class="btn-group btn-group-justified">
       <div class="btn-group">
         <button type="button" class="btn btn-default show-pending-trades <%= @pending ? "active" : "" %>">Pending Trades</button>
@@ -16,6 +12,12 @@
         <button type="button" class="btn btn-default show-past-trades <%= @pending ? "" : "active" %>">Past Trades</button>
       </div>
     </div>
+    
+    
+    
+    <% if @trades.empty? %>
+    <h4>Currently there are no pending trades...</h4>
+    <% else %>
     
     <div class="trades-list">
       <%@trades.each do |trade|%>
