@@ -25,7 +25,6 @@ class TradesController < ApplicationController
   
   def update
     @trade = Trade.find(params[:id])
-    p params
     Trade.transaction do      
       if @trade.update_attributes(:accepted => params[:accepted],
                                   :pending => params[:pending])
@@ -36,6 +35,17 @@ class TradesController < ApplicationController
         flash[:errors] = "Trade submission failed"
         render :json => @trade.errors.full_messages, status: :unprocessable_entity
       end
+    end
+  end
+  
+  def destroy
+    @trade = Trade.find(params[:id])
+    if @trade.delete
+      flash[:notice] = "You deleted the trade."
+      render :json => @trade, status: 200
+    else
+      flash[:errors] = "Request failed"
+      render :json => @trade.errors.full_messages, status: :unprocessable_entity
     end
   end
 end

@@ -24,6 +24,5 @@ class Message < ActiveRecord::Base
   has_many :replies,
   :class_name => "Message",
   :foreign_key => :parent_id,
-  :primary_key => :id
-  
+  :primary_key => :id  
 end

@@ -198,7 +198,6 @@ var ready = function() {
   
   $(".trade-button").click(function(event){
     var accepted = $(event.target).text() == "Accept" ? true : false;
-    debugger
     $.ajax({
       url:document.URL + "/" + $(event.target).data("id"),
       type:"PUT",
@@ -211,6 +210,20 @@ var ready = function() {
       }
     });
   })
+  
+  $(".trade-button-delete").click(function(event){
+    $.ajax({
+      url:document.URL + "/" + $(event.target).data("id"),
+      type:"DELETE",
+      success:function(resp){
+        location.reload();
+      },
+      error:function(resp){
+        location.reload();
+      }
+    });
+  })
+  
   
   
   // Create league javascript
@@ -241,7 +254,6 @@ var ready = function() {
   $(document).on('add', function() {
     $(".remove-invitee").click(function(event){
       $removedInvitee = $(event.target).parent()
-      // $removedInvitee.hide("slide",{direction:'right'}, 1000);
       $removedInvitee.hide('fast', function(){ $removedInvitee.remove(); });
     })
   });
@@ -272,7 +284,7 @@ var ready = function() {
 
   var throwTitleError = function(){
     $("#league-name").popover({
-      content: "The league tile cannot be blank!"
+      content: "The league title cannot be blank!"
     })
   };
 
@@ -298,20 +310,6 @@ var ready = function() {
       }
     })
   };
-  
-  
-  // Scrolling javascript for landing
-  /* smooth scrolling for scroll to top */
-  $('.scroll-top').click(function(){
-    $('body,html').animate({scrollTop:0},1000);
-  })
-  /* smooth scrolling for scroll down */
-  $('.scroll-down').click(function(){
-    $('body,html').animate({scrollTop:$(window).scrollTop()+800},1000);
-  })
-
-  /* highlight the top nav as scrolling occurs */
-  $('body').scrollspy({ target: '#navbar' })
   
 };
 
