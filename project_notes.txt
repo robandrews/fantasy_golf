@@ -31,3 +31,5 @@ Free agents shouldn't be able to be added if they are in a league member's roste
 Trophy Corner
 
 Flair (current champ has trophy next to their name, comissioner able to edit all flair)
+
+Image-picker

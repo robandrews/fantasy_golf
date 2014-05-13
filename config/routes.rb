@@ -2,10 +2,7 @@ FantasyGolf::Application.routes.draw do
   devise_for :users
   root to: "static_pages#welcome"
   resources :users, :only => [:show]
-  
   resources :roster_memberships, :only => [:destroy]
-  
-  
   resources :players, :only => [:index]
   
   resources :leagues do
@@ -24,4 +21,4 @@ FantasyGolf::Application.routes.draw do
   resources :seasons do
     resources :tournaments, :only => [:show]
   end
-end 
+end

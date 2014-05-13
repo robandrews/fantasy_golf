@@ -23,8 +23,10 @@ body {
   font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 
-/* fix bs3 horizontal scrollbar bug */
-.row { margin: 0; padding: 0 }
+.row { margin: 0; 
+       padding: 0;
+       width:100%;
+}
 
 h1 {
   font-size:45px; 
@@ -207,7 +209,7 @@ body
 background-image:url('https://s3-us-west-1.amazonaws.com/fantasy-golf/gopher1100.jpg');
 background-repeat:no-repeat;
 background-attachment:fixed;
-background-size:cover;
+background-size:100%;
 }
 
 img.golf-course-landing{
