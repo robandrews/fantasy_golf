@@ -16,8 +16,7 @@
 
 $font-family-sans-serif:  'Open Sans', sans-serif !default;
 
-html,
-body {
+html, body, .main {
   height: 100%;
   width: 100%;
   font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
@@ -81,11 +80,7 @@ h1 {
   background-color:#22dd56;
 }
 
-.vert {
-  vertical-align: middle;
-  width:100%;
-  padding-top:4%;
-}
+
 
 .header h1 {
   font-size:80px;
@@ -106,6 +101,12 @@ h1 {
   height: 100%;
   background: #7fbbda url('https://s3-us-west-1.amazonaws.com/fantasy-golf/a_grass_background_low.jpg') no-repeat center center fixed;
   background-size:100%;
+}
+
+.vert {
+  vertical-align: middle;
+  width:100%;
+  padding-top:4%;
 }
 
 .bottom{
@@ -433,6 +434,14 @@ td.number
 
 li.countdown{
   text-align:center;
+}
+
+.table-nonfluid {
+   width: auto;
+}
+
+#links-left{
+  margin-top:-10px;
 }
 
 

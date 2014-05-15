@@ -7,7 +7,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
-  # def update
-#     
-#   end
+  def demo
+    sign_in(:user, User.find_by_email("guest@gmail.com"))
+    redirect_to root_url
+  end
 end

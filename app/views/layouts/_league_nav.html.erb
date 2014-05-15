@@ -1,3 +1,5 @@
+
+
 <%= javascript_tag do %>
   window.tournamentDeadline = new Date(<%= current_week.tournaments.first.start_date.utc.to_i*1000 %>);
 <%end%>

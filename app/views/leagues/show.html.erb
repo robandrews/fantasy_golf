@@ -2,7 +2,7 @@
   <div class="row">
     <h2 class="col-md-6"><%=@league.name%></h2>
   </div>
-      <%= render partial: "layouts/league_nav", locals: {active: 1, league: @league, league_membership: @league_membership} %>
+  <%= render partial: "layouts/league_nav", locals: {active: 1, league: @league, league_membership: @league_membership} %>
       
   <div class="document">
     
@@ -10,26 +10,24 @@
       <%@divisions.each do |division|%>
       <h3><%=division.name%></h3>
       <table class="table table-condensed">
-      
         <thead>
           <tr>
-            <th>Position</th>
-            <th>Name</th>
-            <th>Season Points</th>
+            <th class="col-sm-2">Position</th>
+            <th class="col-sm-3">Name</th>
+            <th class="col-sm-3">Season Points</th>
           </tr>
         </thead>
-        <%division.members.each_with_index do |member, index|%>
+        <%division.members.sort_by{|member| member.season_points}.each_with_index do |member, index|%>
         <tr>
-          <td><%=index+1%>
-            <td><%=link_to member.name, league_league_membership_url(@league, member)%></td>
-            <td><%=member.season_points%></td>
-          </tr>
-          <%end%>
-        </table>
+          <td><%=index+1%></td>
+          <td><%=link_to member.name, league_league_membership_url(@league, member)%></td>
+          <td><%=member.season_points%></td>
+        </tr>
         <%end%>
-      </div>
+      </table>
+      <%end%>
     </div>
-    
-    
   </div>
+    
+    
 </div>

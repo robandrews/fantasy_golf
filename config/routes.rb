@@ -21,4 +21,6 @@ FantasyGolf::Application.routes.draw do
   resources :seasons do
     resources :tournaments, :only => [:show]
   end
+  
+  get "demo", to:'users#demo'
 end
