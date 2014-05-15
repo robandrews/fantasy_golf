@@ -1,7 +1,7 @@
 namespace :db do
   desc "Seed all the players from Yahoo! Golf database"
   task player_seed: :environment do
-    ('w'..'y').each do |letter|            
+    ('a'..'y').each do |letter|            
       url = "http://sports.yahoo.com/golf/pga/players?lname=#{letter}"
       page = Nokogiri::HTML(RestClient.get(url))
 
@@ -10,7 +10,7 @@ namespace :db do
   
         url = "http://sports.yahoo.com" + link["href"]
     
-        puts "scraping #{url}"
+        puts "Scraping... #{url}"
     
         attrs["url"] = url
         attrs["yahoo_id"] = url.match(/\A\D+(\d+)\z/)[1].to_i
@@ -581,17 +581,17 @@ namespace :db do
     RosterMembership.create(:league_membership_id => carl_spacker_league.id, :player_id => 68, :active => false, :league_id => league.id)
   end
   
-  desc "Drop all tables except for players"
-  # this still needs work
-  task drop_all_except_players: :environment do
-    tables = ["archived_weeks", "bylaws", "division_memberships", "divisions", "free_agent_offers",
-      "friendly_id_slugs", "interested_parties", "league_memberships", "league_moderatorships", 
-      "leagues", "messages", "roster_memberships", "season_performances", "seasons", 
-      "tournament_standings", "tournaments", "trade_group_memberships", "trade_groups", "trades",
-      "users", "weeks"]
-    connection = ActiveRecord::Base.connection()
-    tables.each do |table|
-      connection.execute("drop table #{table}")
-    end
-  end
+  # desc "Drop all tables except for players"
+  # # this still needs work
+  # task drop_all_except_players: :environment do
+  #   tables = ["archived_weeks", "bylaws", "division_memberships", "divisions", "free_agent_offers",
+  #     "friendly_id_slugs", "interested_parties", "league_memberships", "league_moderatorships", 
+  #     "leagues", "messages", "roster_memberships", "season_performances", "seasons", 
+  #     "tournament_standings", "tournaments", "trade_group_memberships", "trade_groups", "trades",
+  #     "users", "weeks"]
+  #   connection = ActiveRecord::Base.connection()
+  #   tables.each do |table|
+  #     connection.execute("drop table #{table}")
+  #   end
+  # end
 end

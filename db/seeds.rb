@@ -48,11 +48,18 @@ end
 # :week_id => weeks[7].id,
 # :complete => :true)
 
-Tournament.create(:name => "HP Byron Nelson", :url => "",
+Tournament.create(:name => "HP Byron Nelson", :url => "https://sports.yahoo.com/golf/pga/leaderboard/2014/19",
 :start_date => DateTime.new(2014, 5, 15, 14, 0, 0),
 :end_date => DateTime.new(2014, 5, 19, 7, 0, 0),
 :week_id => weeks[21].id,
 :complete => :true)
+
+Tournament.create(:name => "Crown Plaza Invitational", :url => "",
+:start_date => DateTime.new(2014, 5, 22, 14, 0, 0),
+:end_date => DateTime.new(2014, 5, 25, 7, 0, 0),
+:week_id => weeks[22].id,
+:complete => :true)
+
 
 print "#######################################################\n"
 print "Finished seeding database in #{Time.now - start} seconds"

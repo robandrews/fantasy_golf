@@ -18,7 +18,6 @@
 //= require advanced
 //= require wysihtml5.js
 //= require chart.js
-//= require countdown
 //= require turbolinks
 //= require select2
 //= require_tree .

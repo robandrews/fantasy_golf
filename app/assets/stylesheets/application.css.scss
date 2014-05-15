@@ -417,6 +417,25 @@ ol ol ol{
   box-shadow:         inset 0 0 20px #395D33;
 }
 
+#tournament-countdown
+{
+  border-collapse:separate;
+  border-spacing:10px 0px;
+  margin-top:-33px;
+  border-style:solid;
+}
+
+td.number
+{ 
+  text-align:center;
+  font-size:1.5em;
+}
+
+li.countdown{
+  text-align:center;
+}
+
+
 /*wysihtml5 styling*/
 #toolbar [data-wysihtml5-action] {
   float: right;

@@ -1,3 +1,7 @@
+<%= javascript_tag do %>
+  window.tournamentDeadline = new Date(<%= current_week.tournaments.first.start_date.utc.to_i*1000 %>);
+<%end%>
+
 <div class="row">
   <ul class="nav nav-tabs league-nav">
     <li class="<%= 'active' if active == 1  %>"><a href="<%=league_url(league.id)%>">Overview</a></li>
@@ -6,5 +10,65 @@
     <li class="<%= 'active' if active == 3  %>"><a href=<%=league_free_agent_offers_url(league)%>>Waiver Wire</a></li>
     <li class="<%= 'active' if active == 4  %>"><a href="<%=league_messages_url(league.id)%>">Messages</a></li>
     <li class="<%= 'active' if active == 5  %>"><a href="<%=league_bylaws_url(league)%>">Bylaws</a></li>
+    <li class="countdown pull-right">
+        <table id="tournament-countdown">
+          <tr>
+            <td class="number">
+              <span class="countdown-span" id="days"></span>
+            </td>
+            <td class="number">
+              <span class="countdown-span" id="hours"></span>
+            </td>
+            <td class="number">
+              <span class="countdown-span" id="minutes"></span>
+            </td>
+            <td class="number">
+              <span class="countdown-span" id="seconds"></span>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>days</td>
+            <td>hours</td>
+            <td>minutes</td>
+            <td>seconds</td>
+        </tr>
+        </table>
+        until the <%= current_week.tournaments.first.name %>
+      </li>
+      <%= javascript_tag do  %>
+        var days, hours, minutes, seconds;
+        var countdown = document.getElementById("countdown");
+        var days_span = document.getElementById("days");
+        var hours_span = document.getElementById("hours");
+        var minutes_span = document.getElementById("minutes");
+        var seconds_span = document.getElementById("seconds");
+        
+        setInterval(function () {
+ 
+          
+          var current_date = new Date().getTime();
+          var seconds_left = (window.tournamentDeadline - current_date) / 1000;
+ 
+          days = parseInt(seconds_left / 86400);
+          seconds_left = seconds_left % 86400;
+     
+          hours = parseInt(seconds_left / 3600);
+          seconds_left = seconds_left % 3600;
+     
+          minutes = parseInt(seconds_left / 60);
+          seconds = parseInt(seconds_left % 60);
+     
+          days_span.innerHTML = days
+          hours_span.innerHTML = hours
+          minutes_span.innerHTML = minutes
+          seconds_span.innerHTML = seconds
+          
+        }, 1000);
+     <% end %>
+
+
   </ul> 
+  
+  
 </div>

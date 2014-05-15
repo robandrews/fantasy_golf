@@ -18,6 +18,10 @@ Mailers
 
 BUG: Trade doesn't check to see if players are actually in the rosters before the trade is made.
 
+STYLE BUG: why isnt the grass background on the splash page filling the entire window
+
+roll own countdown
+
 Commissioner tools 
 - edit free agent pool
 - view secret hash for league
