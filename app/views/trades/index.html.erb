@@ -16,7 +16,7 @@
     
     
     <% if @trades.empty? %>
-    <h4>Currently there are no pending trades...</h4>
+    <h4>Currently there are no <%= @pending ? "pending" : "past" %> trades...</h4>
     <% else %>
     
     <div class="trades-list">
