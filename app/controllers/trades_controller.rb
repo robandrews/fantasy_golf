@@ -21,7 +21,7 @@ class TradesController < ApplicationController
     @league_memberships = LeagueMembership.where(:league_id => @league.id)
     @league_membership = LeagueMembership.find_by_user_id_and_league_id(current_user.id, @league.id)
     @pending = params[:pending] == "false" ? false : true
-    @trades = Trade.where(:pending => @pending, :league_id => @league.id)
+    @trades = Trade.where(:pending => @pending, :league_id => @league.id).reverse
     
     if params[:pending]
       render :index, :layout => false
