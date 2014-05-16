@@ -8,6 +8,7 @@
 #  created_at           :datetime
 #  updated_at           :datetime
 #  active               :boolean          default(FALSE)
+#  league_id            :integer
 #
 
 class RosterMembership < ActiveRecord::Base

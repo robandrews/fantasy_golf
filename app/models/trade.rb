@@ -9,6 +9,7 @@
 #  pending     :boolean          default(TRUE)
 #  created_at  :datetime
 #  updated_at  :datetime
+#  league_id   :integer
 #
 
 class Trade < ActiveRecord::Base

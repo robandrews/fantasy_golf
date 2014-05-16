@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140513191025) do
+ActiveRecord::Schema.define(version: 20140516055703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,7 +56,8 @@ ActiveRecord::Schema.define(version: 20140513191025) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "user_name"
-    t.boolean  "contested",   default: false
+    t.boolean  "contested",                    default: false
+    t.integer  "creator_league_membership_id"
   end
 
   create_table "friendly_id_slugs", force: true do |t|
