@@ -48,6 +48,13 @@ end
 # :week_id => weeks[7].id,
 # :complete => :true)
 
+Tournament.create(:name => "Players Championship", :url => "https://sports.yahoo.com/golf/pga/leaderboard/2014/13",
+:start_date => DateTime.new(2014, 5, 8, 14, 0, 0),
+:end_date => DateTime.new(2014, 5, 11, 7, 0, 0),
+:week_id => weeks[20].id,
+:complete => :true)
+
+
 Tournament.create(:name => "HP Byron Nelson", :url => "https://sports.yahoo.com/golf/pga/leaderboard/2014/19",
 :start_date => DateTime.new(2014, 5, 15, 14, 0, 0),
 :end_date => DateTime.new(2014, 5, 19, 7, 0, 0),

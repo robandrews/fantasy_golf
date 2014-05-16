@@ -1,12 +1,6 @@
-need to make a bylaws controller - allow for editing using htmyl5 and individualized bylaws on a per-league basis
-
-general optimization including prefetching message replies, among several others
-
-IR list (field in the player schema)
-
 Archives + mailer for summary weekend
 
-Team Page
+`Team Page
 
 Playoffs(take 10), top 2 in each division, 2 wildcard (point bonuses going into the playoffs) - majors are worth double, WCG events are worth 1.5, PGA is worth .5 that week.
 
@@ -17,8 +11,6 @@ Cron jobs for free agents
 Mailers
 
 BUG: Trade doesn't check to see if players are actually in the rosters before the trade is made.
-
--style FAO page
 
 Commissioner tools 
 - edit free agent pool

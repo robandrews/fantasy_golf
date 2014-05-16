@@ -1,6 +1,6 @@
 <div class="container">
   <h1><%=@tournament.name%></h1>
-  <h3><%=@tournament.start_date%> - <%=@tournament.end_date%></h3>
+  <h3><%=@tournament.start_date.to_s(:pretty)%> - <%=@tournament.end_date.to_s(:pretty)%></h3>
 
   <table class="table tournament">
     <thead>
