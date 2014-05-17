@@ -24,4 +24,5 @@ class TournamentStanding < ActiveRecord::Base
   :primary_key => :yahoo_id
     
   validates :tournament_id, :winnings, presence: true
+  validates :player_id, :uniqueness => { :scope => :tournament_id }
 end

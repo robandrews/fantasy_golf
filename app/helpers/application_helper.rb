@@ -1,5 +1,5 @@
 module ApplicationHelper
   def current_week
-    Week.find(22)
+    Week.find(20)
   end
 end

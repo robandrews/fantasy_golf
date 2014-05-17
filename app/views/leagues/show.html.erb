@@ -17,7 +17,7 @@
             <th class="col-sm-3">Season Points</th>
           </tr>
         </thead>
-        <%division.members.sort_by{|member| member.season_points}.each_with_index do |member, index|%>
+        <%division.members.sort_by{|member| member.season_points}.reverse.each_with_index do |member, index|%>
         <tr>
           <td><%=index+1%></td>
           <td><%=link_to member.name, league_league_membership_url(@league, member)%></td>

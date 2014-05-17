@@ -12,6 +12,8 @@ Mailers
 
 BUG: Trade doesn't check to see if players are actually in the rosters before the trade is made.
 
+FIX FA index on bushwood.us
+
 Commissioner tools 
 - edit free agent pool
 - view secret hash for league
