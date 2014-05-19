@@ -13,7 +13,11 @@ module ApplicationHelper
         :league_id => lm.league_id)
         
         offer.update_attributes(:completed => true)
-        lm.update_attributes(:ready => false)
+        
+        lm.ready = false
+        lm.monthly_fa_pickups += 1
+        lm.season_fa_pickups += 1
+        lm.save!
       end
     else
       # bid_hash = {}
