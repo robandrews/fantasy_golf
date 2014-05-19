@@ -44,4 +44,10 @@ class LeagueMembership < ActiveRecord::Base
     
     [active_players, bench_players]
   end
+  
+  def valid_roster?
+    active, bench = get_active_and_bench_players
+    return true if active.length == 4 and active.length + bench.length <= 7
+    false
+  end
 end

@@ -31,7 +31,8 @@ class Trade < ActiveRecord::Base
   def execute
     Trade.transaction do
       traders = 
-        [LeagueMembership.find(self.proposer_id), LeagueMembership.find(self.proposee_id)] 
+        [LeagueMembership.find(self.proposer_id), LeagueMembership.find(self.proposee_id)]
+      traders.each{|lm| lm.update_attributes(:ready => false) unless lm.valid_roster?}
       other_id = {traders[0] => traders[1], traders[1] => traders[0]}
       traders.each do |trader|
         puts "Trader: #{trader}"
