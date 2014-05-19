@@ -66,6 +66,8 @@ class LeagueMembershipsController < ApplicationController
         success = false
         raise ActiveRecord::Rollback
       end
+      
+      @league_membership.update_attributes(:ready => true)
     end
     
     if success == true

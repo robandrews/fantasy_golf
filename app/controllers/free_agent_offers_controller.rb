@@ -5,10 +5,11 @@ class FreeAgentOffersController < ApplicationController
     player = Player.find(params[:player_id])
     league_membership = LeagueMembership.find_by_user_id_and_league_id(current_user.id, @league.id)
     offer = FreeAgentOffer.new(:player_id => player.id, :name => player.name,
-                               :expiry_date => 12.hours.from_now,
+                               :expiry_date => 1.minute.from_now,
                                :name => player.name,
                                :user_name => current_user.name,
-                               :creator_league_membership_id => league_membership.id)
+                               :creator_league_membership_id => league_membership.id,
+                               :league_id => @league.id)
     offer.interested_parties.build(:league_membership_id => league_membership.id)
     
     if offer.save
@@ -31,10 +32,10 @@ class FreeAgentOffersController < ApplicationController
     league_membership = LeagueMembership.find_by_user_id_and_league_id(current_user.id, @league.id)
     @offer.interested_parties.build(:league_membership_id => league_membership.id)
     if @offer.save
-      flash.now[:notice] = "Bid submitted for #{@offer.name}"
+      flash[:notice] = "Bid submitted for #{@offer.name}"
       render status: 200
     else
-      flash.now[:errors] = "Unable to process free agent request at this time"
+      flash[:errors] = "Unable to process free agent request at this time"
       render status: 500
     end
   end

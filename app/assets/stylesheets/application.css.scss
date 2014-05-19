@@ -27,6 +27,22 @@ html, body, .main {
        width:100%;
 }
 
+.roster-blurb-success{
+  background-color:rgba(0, 255, 0, 0.5);
+  margin-top:10px;
+  padding:10px;
+  border-radius:5px;
+  text-align:center;
+}
+
+.roster-blurb-fail{
+  background-color:rgba(255, 0, 0, 0.5);
+  margin-top:10px;
+  padding:10px;
+  border-radius:5px;
+  text-align:center;
+}
+
 h1 {
   font-size:45px; 
 }

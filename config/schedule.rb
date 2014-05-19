@@ -10,9 +10,5 @@
 every 5.minutes do
   rake "cron:fa"
 end
-#
-# every 4.days do
-#   runner "AnotherModel.prune_old_records"
-# end
 
 # Learn more: http://github.com/javan/whenever

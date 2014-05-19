@@ -8,15 +8,15 @@
       
       <div data-id="<%= free_agent_offer.id %>" class="free-agent-card">
         <%=free_agent_offer.creator_league_membership_id == @league_membership.id ? "Your" : free_agent_offer.user_name%> bid for <%=free_agent_offer.name%>     
-        expires at <%= (free_agent_offer.expiry_date.to_s(:pretty)) %> PST 
-        (in <%=distance_of_time_in_words(Time.now, free_agent_offer.expiry_date)%>).
+        expires at <b><%= (free_agent_offer.expiry_date.to_s(:pretty)) %> PST 
+        (in <%=distance_of_time_in_words(Time.now, free_agent_offer.expiry_date)%>)</b>.
         Currently the bid is <%=free_agent_offer.interested_parties.length > 1 ? "contested." : "uncontested."%>  
         <% if free_agent_offer.interested_parties
                               .any?{|ip| ip.league_membership_id ==     
                               @league_membership.id} && 
                               @league_membership.id !=
                                  free_agent_offer.creator_league_membership_id%>
-          <br /><%= "You have contested this free agent." %>
+          <hr /><center><%= "You have contested this free agent." %></center>
           <% end %>
         
         <% if free_agent_offer.interested_parties.all?{|ip| ip.league_membership_id != @league_membership.id} %>
@@ -25,5 +25,4 @@
       </div>
       <%end%>
   </div>
-</div>
 </div>

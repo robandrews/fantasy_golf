@@ -17,6 +17,11 @@
     </div>
    
     <div class="roster">  
+      <% if @league_membership.ready %>
+      <div class="roster-blurb-success">You HAVE properly set your roster for this weekend.</div>
+      <% else %>
+      <div class="roster-blurb-fail">You HAVE NOT properly set your roster for this weekend.</div>
+      <% end %>
       <div class="row">
         <div class="col-md-5 col-offset-1 ">
           <h4>Active</h4>

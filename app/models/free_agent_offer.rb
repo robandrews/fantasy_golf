@@ -11,6 +11,8 @@
 #  user_name                    :string(255)
 #  contested                    :boolean          default(FALSE)
 #  creator_league_membership_id :integer
+#  league_id                    :integer
+#  completed                    :boolean          default(FALSE)
 #
 
 class FreeAgentOffer < ActiveRecord::Base
