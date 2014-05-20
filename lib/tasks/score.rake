@@ -16,18 +16,32 @@ namespace :score do
     League.all.each do |league|
       league.league_memberships.each do |league_membership|
         member_week_points = 0.0
+        
+        player_scores = Hash.new{|h, k| h[k]=0}
+        
         week.tournaments.each do |tournament|
+          
           league_membership.players.each do |player|
             standings = TournamentStanding.where("player_id = ? AND tournament_id = ?", player.yahoo_id, tournament.id)
             standings.each do |standing|
+              player_scores[player] += standing.fantasy_points
               member_week_points += standing.fantasy_points || 0
             end
           end
         end
+        
+        user = User.find(league_membership.user_id)
+        msg = UserMailer.weekly_summary_email(user, league, player_scores)
+        msg.deliver
+        
         new_pts = league_membership.season_points + member_week_points
         league_membership.update_attributes(:season_points => new_pts)
       end
-    end    
+    end
+  
+    
   end
+  
+  
 end
 

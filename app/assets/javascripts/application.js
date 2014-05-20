@@ -248,7 +248,7 @@ var ready = function() {
   // ajax request to submit trade
   $("#trade-request-confirmed").click(function(){
     $.ajax({
-      url:document.URL.slice(0,-26) + "trades",
+      url: $("#trade-url").val(),
       type:"POST",
       data:{trader: $.map($(".trader-list").find(".selected"), function(el){return $(el).data("id")}),
             tradee: $.map($(".tradee-list").find(".selected"), function(el){return $(el).data("id")}),

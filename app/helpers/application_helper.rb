@@ -1,6 +1,6 @@
 module ApplicationHelper
   def current_week
-    Week.find(20)
+    Week.find(22)
   end
   
   def settle_offer(offer)

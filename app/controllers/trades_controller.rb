@@ -10,6 +10,11 @@ class TradesController < ApplicationController
     if trade.save
       flash[:notice] = "Trade successfully submitted."
       render :json => trade, status: 200
+      
+      # asynchronously send notification to trade proposee
+      
+      msg = UserMailer.trade_proposee(trade, @league)
+      msg.deliver
     else
       flash[:errors] = "Trade submission failed"
       render :json => trade.errors.full_messages, status: :unprocessable_entity

@@ -1,5 +1,4 @@
 class LeagueMembershipsController < ApplicationController
-  
   def new
   end
   
