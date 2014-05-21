@@ -4,6 +4,7 @@ class FreeAgentOffersController < ApplicationController
     @league = League.friendly.find(params[:league_id])
     player = Player.find(params[:player_id])
     league_membership = LeagueMembership.find_by_user_id_and_league_id(current_user.id, @league.id)
+    
     offer = FreeAgentOffer.new(:player_id => player.id, :name => player.name,
                                :expiry_date => 1.minute.from_now,
                                :name => player.name,
@@ -15,7 +16,7 @@ class FreeAgentOffersController < ApplicationController
     if offer.save
       redirect_to league_free_agent_offers_url
     else
-      flash[:errors] = "Unable to process free agent request at this time"
+      flash[:alert] = "Unable to process free agent request.  You are only allowed one bid per free agent."
       redirect_to :back
     end
   end
@@ -35,7 +36,7 @@ class FreeAgentOffersController < ApplicationController
       flash[:notice] = "Bid submitted for #{@offer.name}"
       render status: 200
     else
-      flash[:errors] = "Unable to process free agent request at this time"
+      flash[:alert] = "Unable to process free agent request at this time"
       render status: 500
     end
   end

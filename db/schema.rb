@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519020304) do
+ActiveRecord::Schema.define(version: 20140521045801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(version: 20140519020304) do
     t.integer  "career_earnings"
     t.boolean  "playable",        default: true
     t.integer  "yahoo_id"
+    t.string   "twitter"
   end
 
   add_index "players", ["yahoo_id"], name: "index_players_on_yahoo_id", using: :btree
@@ -219,6 +220,7 @@ ActiveRecord::Schema.define(version: 20140519020304) do
     t.datetime "updated_at"
     t.boolean  "complete"
     t.integer  "week_id"
+    t.float    "multiplier"
   end
 
   create_table "trade_group_memberships", force: true do |t|

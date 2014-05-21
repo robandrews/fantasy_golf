@@ -3,7 +3,7 @@ FantasyGolf::Application.routes.draw do
   root to: "static_pages#welcome"
   resources :users, :only => [:show, :edit]
   resources :roster_memberships, :only => [:destroy]
-  resources :players, :only => [:index]
+  resources :players, :only => [:index, :edit, :update, :destroy]
   
   resources :leagues do
     resources :divisions
@@ -19,7 +19,7 @@ FantasyGolf::Application.routes.draw do
   resources :league_memberships, :only => [:new, :create]
   
   resources :seasons do
-    resources :tournaments, :only => [:show]
+    resources :tournaments, :only => [:show, :new, :create]
   end
   
   get "demo", to:'users#demo'

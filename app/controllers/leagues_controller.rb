@@ -9,7 +9,7 @@ class LeaguesController < ApplicationController
       LeagueMembership.create!(:user_id => current_user.id, :league_id => @league.id)
       render :json => [@league, league_url(@league)]
     else
-      flash[:errors] = @league.errors.full_messages
+      flash[:alert] = @league.errors.full_messages
     end
   end
   

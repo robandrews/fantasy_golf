@@ -4,7 +4,7 @@
 <p><%= @proposer.name %> proposes a trade with you.</p>
 
   <ul class="list-group">
-    <% trade.trade_groups.first.players.each do |player| %>       
+    <% @trade.trade_groups.first.players.each do |player| %>       
 
     <li class="list-group-item"><a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a></li>
     <% end %>
@@ -13,7 +13,7 @@
   FOR
               
   <ul class="list-group trade-group">
-    <% trade.trade_groups.last.players.each do |player| %>
+    <% @trade.trade_groups.last.players.each do |player| %>
     <li class="list-group-item"><a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a></li>
     <% end %>
   </ul>

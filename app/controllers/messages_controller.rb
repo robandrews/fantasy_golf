@@ -26,7 +26,7 @@ class MessagesController < ApplicationController
         redirect_to league_message_url(:league_id => params[:league_id], :id => @message.parent_id)
       end
     else
-      flash[:errors] = "Message failed to save"
+      flash[:alert] = "Message failed to save"
       redirect_to new_league_message_url(params[:league_id])
     end
   end

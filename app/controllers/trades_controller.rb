@@ -9,14 +9,15 @@ class TradesController < ApplicationController
     
     if trade.save
       flash[:notice] = "Trade successfully submitted."
-      render :json => trade, status: 200
+
       
       # asynchronously send notification to trade proposee
       
       msg = UserMailer.trade_proposee(trade, @league)
       msg.deliver
+      # redirect_to league_trades_url(@league)
     else
-      flash[:errors] = "Trade submission failed"
+      flash[:alert] = "Trade submission failed"
       render :json => trade.errors.full_messages, status: :unprocessable_entity
     end
   end
@@ -42,7 +43,7 @@ class TradesController < ApplicationController
         flash[:notice] = "You #{@trade.accepted ? "accepted" : "denied"} trade."
         render :json => @trade, status: 200
       else
-        flash[:errors] = "Trade submission failed"
+        flash[:alert] = "Trade submission failed"
         render :json => @trade.errors.full_messages, status: :unprocessable_entity
       end
     end
@@ -54,7 +55,7 @@ class TradesController < ApplicationController
       flash[:notice] = "You deleted the trade."
       render :json => @trade, status: 200
     else
-      flash[:errors] = "Request failed"
+      flash[:alert] = "Request failed"
       render :json => @trade.errors.full_messages, status: :unprocessable_entity
     end
   end
