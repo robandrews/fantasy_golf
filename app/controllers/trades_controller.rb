@@ -15,7 +15,7 @@ class TradesController < ApplicationController
       
       msg = UserMailer.trade_proposee(trade, @league)
       msg.deliver
-      # redirect_to league_trades_url(@league)
+      render :json => trade, status: 200
     else
       flash[:alert] = "Trade submission failed"
       render :json => trade.errors.full_messages, status: :unprocessable_entity
