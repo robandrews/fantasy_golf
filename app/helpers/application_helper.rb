@@ -1,6 +1,7 @@
 module ApplicationHelper
+  
   def current_week
-    Week.find(22)
+    Week.where("start_time < ? AND end_time > ?", DateTime.now, DateTime.now).take
   end
   
   def settle_offer(offer)
