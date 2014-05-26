@@ -8,7 +8,9 @@ To-Do in order of importance
 
 Cron jobs for free agents
 
-Mailers
+Mailers Settings
+
+I BROKE THE FREE AGENT CRON JOBS
 
 BUG: Trade doesn't check to see if players are actually in the rosters before the trade is made.
 

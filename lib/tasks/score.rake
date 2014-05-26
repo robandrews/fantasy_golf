@@ -24,7 +24,7 @@ namespace :score do
           league_membership.players.each do |player|
             standings = TournamentStanding.where("player_id = ? AND tournament_id = ?", player.yahoo_id, tournament.id)
             standings.each do |standing|
-              player_scores[player] += standing.fantasy_points
+              player_scores[player] += (standing.fantasy_points * tournament.multiplier)
               member_week_points += standing.fantasy_points || 0
             end
           end

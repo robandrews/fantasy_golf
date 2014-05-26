@@ -13,6 +13,7 @@
     <li class="<%= 'active' if active == 4  %>"><a href="<%=league_messages_url(league.id)%>">Messages</a></li>
     <li class="<%= 'active' if active == 5  %>"><a href="<%=league_bylaws_url(league)%>">Bylaws</a></li>
     <li class="countdown pull-right">
+        <% if current_week.tournaments.first.start_date > DateTime.now %>
         <table id="tournament-countdown">
           <tr>
             <td class="number">
@@ -37,37 +38,50 @@
         </tr>
         </table>
         until the <%= current_week.tournaments.first.name %>
-      </li>
-      <%= javascript_tag do  %>
-        var days, hours, minutes, seconds;
-        var countdown = document.getElementById("countdown");
-        var days_span = document.getElementById("days");
-        var hours_span = document.getElementById("hours");
-        var minutes_span = document.getElementById("minutes");
-        var seconds_span = document.getElementById("seconds");
         
-        setInterval(function () {
+         <%= javascript_tag do  %>
+           var days, hours, minutes, seconds;
+           var countdown = document.getElementById("countdown");
+           var days_span = document.getElementById("days");
+           var hours_span = document.getElementById("hours");
+           var minutes_span = document.getElementById("minutes");
+           var seconds_span = document.getElementById("seconds");
+        
+           setInterval(function () {
  
           
-          var current_date = new Date().getTime();
-          var seconds_left = (window.tournamentDeadline - current_date) / 1000;
+             var current_date = new Date().getTime();
+             var seconds_left = (window.tournamentDeadline - current_date) / 1000;
  
-          days = parseInt(seconds_left / 86400);
-          seconds_left = seconds_left % 86400;
+             days = parseInt(seconds_left / 86400);
+             seconds_left = seconds_left % 86400;
      
-          hours = parseInt(seconds_left / 3600);
-          seconds_left = seconds_left % 3600;
+             hours = parseInt(seconds_left / 3600);
+             seconds_left = seconds_left % 3600;
      
-          minutes = parseInt(seconds_left / 60);
-          seconds = parseInt(seconds_left % 60);
+             minutes = parseInt(seconds_left / 60);
+             seconds = parseInt(seconds_left % 60);
      
-          days_span.innerHTML = days
-          hours_span.innerHTML = hours
-          minutes_span.innerHTML = minutes
-          seconds_span.innerHTML = seconds
+             days_span.innerHTML = days
+             hours_span.innerHTML = hours
+             minutes_span.innerHTML = minutes
+             seconds_span.innerHTML = seconds
           
-        }, 1000);
-     <% end %>
+           }, 1000);
+        <% end %>
+        
+        
+        <% else %>
+        The <%= current_week.tournaments.first.name %> is
+                   <br />
+        <a href="<%= current_week.tournaments.first.url %>">
+
+          IN PROGRESS
+        </a>
+        <% end %>
+      </li>
+      
+      
 
 
   </ul> 
