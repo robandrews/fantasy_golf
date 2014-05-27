@@ -10,9 +10,9 @@ class TradesController < ApplicationController
     if trade.save
       flash[:notice] = "Trade successfully submitted."
 
-      # asynchronously send notification to trade proposee      
-      msg = UserMailer.trade_proposee(trade, @league)
-      msg.deliver
+      # # asynchronously send notification to trade proposee      
+      # msg = UserMailer.trade_proposee(trade, @league)
+      # msg.deliver
       render :json => trade, status: 200
     else
       flash[:alert] = "Trade submission failed"
