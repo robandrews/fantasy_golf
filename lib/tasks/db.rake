@@ -1020,7 +1020,7 @@ namespace :db do
     cindy_morgan = User.create(:first_name => "Cindy", :last_name => "Morgan", :email => "cindy@gmail.com",
     :password => "password", :password_confirmation => "password")
     cindy_morgan_league = LeagueMembership.create(:user_id => cindy_morgan.id, :league_id => league.id, :name => cindy_morgan.name,
-    [[["Hyundai", 1], 217.5],
+    :season_scores => [[["Hyundai", 1], 217.5],
          [["Sony Open", 2], 384.83],
          [["Humana Challenge", 3], 0.0],
          [["Farmers", 4], 340.0],
