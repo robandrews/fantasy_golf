@@ -1,7 +1,7 @@
 namespace :db do
   desc "Seed all the players from Yahoo! Golf database"
   task player_seed: :environment do
-    ('n'..'y').each do |letter|            
+    ('a'..'y').each do |letter|            
       url = "http://sports.yahoo.com/golf/pga/players?lname=#{letter}"
       page = Nokogiri::HTML(RestClient.get(url))
 
