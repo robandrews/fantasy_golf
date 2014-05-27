@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
     @league = League.friendly.find(params[:league_id])
     @message = Message.new(message_params)
     @message.league_id = @league.id
-    @message.sender_id = current_user.id
+    @message.sender_id = LeagueMembership.find_by_user_id_and_league_id(current_user.id, @league.id).id
     @message.sender_name = current_user.name
     @message.parent_id = 0 if @message.parent_id.nil?
     

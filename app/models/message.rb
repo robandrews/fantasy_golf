@@ -17,7 +17,7 @@ class Message < ActiveRecord::Base
   validates :league_id, :body, presence: true
   
   belongs_to :sender,
-  :class_name => "User",
+  :class_name => "LeagueMembership",
   :foreign_key => :sender_id,
   :primary_key => :id
   
