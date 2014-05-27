@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140526182440) do
+ActiveRecord::Schema.define(version: 20140527054032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 20140526182440) do
     t.boolean  "ready",              default: false
     t.integer  "monthly_fa_pickups", default: 0
     t.integer  "season_fa_pickups",  default: 0
+    t.text     "season_scores"
   end
 
   add_index "league_memberships", ["league_id"], name: "index_league_memberships_on_league_id", using: :btree

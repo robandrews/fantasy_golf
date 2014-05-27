@@ -30,14 +30,13 @@ var ready = function() {
   // Expose buttons for trades
   $(".tradeable").hover(
     function(){
-    $(this).parent().parent().find("button").fadeIn().removeClass("hidden");
+    $(this).parent().parent().find("button").removeClass("hidden");
     return false;
   }, 
     function(){
-      $(this).parent().parent().find("button").fadeOut().addClass("hidden", 500);
+      $(this).parent().parent().find("button").addClass("hidden");
       return false;
-    }
-  );
+    });
   
   $(".trade-button").click(function(event){
     var accepted = $(event.target).text() == "Accept" ? true : false;

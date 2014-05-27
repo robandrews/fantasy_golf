@@ -29,25 +29,23 @@
         <div class="row">
           <div class="col-md-12 <%= "tradeable" if (@league_membership == proposee ||  @league_membership == proposer) %>" data-id="trade<%= trade.id %>">
             <div class="trade-info">
-            <span class="trade-title">
-            <% if trade.pending %>        
+              <span class="trade-title">
+                <% if trade.pending %>        
                 <%= proposer == @league_membership ? "You" : proposer.name%> 
                 proposed a trade with 
                 <%= proposee == @league_membership ? "you" : proposee.name%>
                 on <%= trade.created_at.to_s(:pretty) %>.
-            <% else %>            
-              <%=  proposee == @league_membership ? "You" : proposee.name%>
-              <%= trade.accepted ? "ACCEPTED" : "DENIED" %> a trade with
-              <%= proposer == @league_membership ? "You" : proposer.name %> on <%= trade.updated_at.to_s(:pretty) %>.
-            <% end %>
+                <% else %>            
+                <%=  proposee == @league_membership ? "You" : proposee.name%>
+                <%= trade.accepted ? "ACCEPTED" : "DENIED" %> a trade with
+                <%= proposer == @league_membership ? "You" : proposer.name %> on <%= trade.updated_at.to_s(:pretty) %>.
+                <% end %>
                 
                 <% if @league_membership == proposee && @pending%>
-                <span>
-                  <div class="btn-group btn-group-xs">
-                    <button type="button" class="btn btn-success trade-button hidden" data-id="<%= trade.id %>">Accept</button>
-                    <button type="button" class="btn btn-danger trade-button hidden" data-id="<%= trade.id %>">Deny</button>
-                  </div>
-                </span>
+                <div class="btn-group btn-group-xs">
+                  <button type="button" class="btn btn-success trade-button hidden" data-id="<%= trade.id %>">Accept</button>
+                  <button type="button" class="btn btn-danger trade-button hidden" data-id="<%= trade.id %>">Deny</button>
+                </div>
                 <% elsif  @league_membership == proposer && @pending%>
                 <button type="button" class="btn btn-xs btn-danger trade-button-delete hidden" data-id="<%= trade.id %>">Delete</button>
                 <% end %>

@@ -6,7 +6,7 @@
   <div class="document">
   <h4>Season Summary for <%= @league_membership.name %></h4>  
   <hr>
-  <canvas id="canvas" height="450" width="800"></canvas>
+  <canvas id="canvas" height="450" width="1000"></canvas>
 
   <div class="roster">
       <h4>Current Roster</h4>
@@ -51,27 +51,46 @@
       </div>
       <hr>
   </div>
-  	<script>
+  	
+    <%= javascript_tag do %>
+    
+    <% end %>
+    
+    
+    <style>
+    		body { margin: 0; padding: 0; background-color: #ccc; }
+    		#canvas { width: 100%; padding:20px; border: solid 4px #999; background-color: White; }
+    	</style>
+      
+      
+      
+    <script>
 
       // ajax request for the labels and the data...
   		var lineChartData = {
-  			labels : ["RBC Championship","The Masters","TPC Sawgrass","The Players Championship","PGA Championship","Honda Open","Northern Trust Open"],
+  			labels : <%= @league_membership.tournament_names.to_s.html_safe %>,
   			datasets : [
   				{
   					fillColor : "rgba(151,187,205,0.5)",
   					strokeColor : "rgba(151,187,205,1)",
   					pointColor : "rgba(151,187,205,1)",
   					pointStrokeColor : "#fff",
-  					data : [28,48,40,19,96,27,100]
+  					data : <%= JSON.parse(@league_membership.season_scores).map{|tourn_arr, pts| pts} %>
   				}
   			]
 
   		}
 
-  	var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
-    
-    
+      function draw(){
+        var canvas = document.getElementById('canvas');
 
+        var w = canvas.width = $("#canvas").parent().width();
+      	var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
+      }
+    
+    onresize = draw;
+
+    draw();
   	</script>
     
   </div>

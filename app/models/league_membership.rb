@@ -50,4 +50,12 @@ class LeagueMembership < ActiveRecord::Base
     return true if active.length == 4 and active.length + bench.length <= 7
     false
   end
+  
+  def tournament_names
+    JSON.parse(self.season_scores.html_safe).map{|tourn_arr, pts| tourn_arr[0]}.to_json
+  end
+  
+  def calculate_season_points_from_season_scores
+    JSON.parse(self.season_scores).inject(0){|s, arr| s += arr[1]}
+  end
 end

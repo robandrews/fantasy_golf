@@ -41,6 +41,13 @@ namespace :score do
     end  
   end
   
-  
+  task update_league_members: :environment do
+    League.all.each do |league|
+      league.league_memberships.each do |league_membership|
+        score = league_membership.calculate_season_points_from_season_scores
+        league_membership.update_attributes(:season_points => score)
+      end
+    end
+  end
 end
 
