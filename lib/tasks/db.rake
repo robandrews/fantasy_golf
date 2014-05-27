@@ -875,7 +875,29 @@ namespace :db do
     
     guest = User.create(:first_name => "Guesty", :last_name => "MyGuesterson", :email => "guest@gmail.com",
     :password => "password", :password_confirmation => "password")
-    guest_league = LeagueMembership.create(:user_id => guest.id, :league_id => league.id, :name => guest.name)
+    guest_league = LeagueMembership.create(:user_id => guest.id, :league_id => league.id, :name => guest.name,
+    :season_scores => [[["Hyundai", 1], 303.0],
+     [["Sony Open", 2], 97.5],
+     [["Humana Challenge", 3], 336.7],
+     [["Farmers", 4], 23.5],
+     [["WM Phoenix Open", 5], 89.0],
+     [["Pebble Beach", 6], 88.5],
+     [["Northern Trust", 7], 154.0],
+     [["Accenture Match Play", 8], 111.0],
+     [["Honda", 9], 92.36],
+     [["Caddy/PR", 10], 275.25],
+     [["Valspar", 11], 150.67],
+     [["Arnold Palmer", 12], 304.0],
+     [["Valero", 13], 158.5],
+     [["Shell Houston", 14], 26.0],
+     [["Masters", 15], 308.0],
+     [["RBC Heritage", 16], 165.25],
+     [["Zurich Classic", 17], 0.0],
+     [["Wells Fargo", 18], 218.63],
+     [["The Players", 19], 498.75],
+     [["HP Byron", 20], 71.0],
+     [["Crowne Plaza", 21], 84.0]].to_json
+    )
     DivisionMembership.create(:league_membership_id => guest_league.id, :division_id => ben_hogan.id)
 
     RosterMembership.create(:league_membership_id => guest_league.id, :player_id => 180, :active => true, :league_id => league.id)
@@ -890,7 +912,28 @@ namespace :db do
     
     chevy_chase = User.create(:first_name => "Chevy", :last_name => "Chase", :email => "chevy@gmail.com",
     :password => "password", :password_confirmation => "password")
-    chevy_chase_league = LeagueMembership.create(:user_id => chevy_chase.id, :league_id => league.id, :name => chevy_chase.name)
+    chevy_chase_league = LeagueMembership.create(:user_id => chevy_chase.id, :league_id => league.id, :name => chevy_chase.name,
+    :season_scores => [[["Hyundai", 1], 75.0],
+     [["Sony Open", 2], 0.0],
+     [["Humana Challenge", 3], 26.5],
+     [["Farmers", 4], 95.1],
+     [["WM Phoenix Open", 5], 84.1],
+     [["Pebble Beach", 6], 52.0],
+     [["Northern Trust", 7], 227.0],
+     [["Accenture Match Play", 8], 284.75],
+     [["Honda", 9], 106.5],
+     [["Caddy/PR", 10], 269.63],
+     [["Valspar", 11], 269.5],
+     [["Arnold Palmer", 12], 0.0],
+     [["Valero", 13], 0.0],
+     [["Shell Houston", 14], 83.5],
+     [["Masters", 15], 219.0],
+     [["RBC Heritage", 16], 123.0],
+     [["Zurich Classic", 17], 150.0],
+     [["Wells Fargo", 18], 43.13],
+     [["The Players", 19], 31.5],
+     [["HP Byron", 20], 141.0],
+     [["Crowne Plaza", 21], 104.24]].to_json)
     DivisionMembership.create(:league_membership_id => chevy_chase_league.id, :division_id => ben_hogan.id)
 
     RosterMembership.create(:league_membership_id => chevy_chase_league.id, :player_id => 36, :active => true, :league_id => league.id)
@@ -905,7 +948,28 @@ namespace :db do
     
     bill_murray = User.create(:first_name => "Bill", :last_name => "Murray", :email => "bill@gmail.com",
     :password => "password", :password_confirmation => "password")
-    bill_murray_league = LeagueMembership.create(:user_id => bill_murray.id, :league_id => league.id, :name => bill_murray.name)
+    bill_murray_league = LeagueMembership.create(:user_id => bill_murray.id, :league_id => league.id, :name => bill_murray.name,
+    :season_scores => [[["Hyundai", 1], 260.5],
+     [["Sony Open", 2], 360.0],
+     [["Humana Challenge", 3], 93.2],
+     [["Farmers", 4], 0.0],
+     [["WM Phoenix Open", 5], 144.0],
+     [["Pebble Beach", 6], 32.0],
+     [["Northern Trust", 7], 193.0],
+     [["Accenture Match Play", 8], 305.25],
+     [["Honda", 9], 6.5],
+     [["Caddy/PR", 10], 92.44],
+     [["Valspar", 11], 85.5],
+     [["Arnold Palmer", 12], 101.75],
+     [["Valero", 13], 54.0],
+     [["Shell Houston", 14], 34.5],
+     [["Masters", 15], 710.0],
+     [["RBC Heritage", 16], 24.0],
+     [["Zurich Classic", 17], 244.5],
+     [["Wells Fargo", 18], 120.0],
+     [["The Players", 19], 31.5],
+     [["HP Byron", 20], 44.0],
+     [["Crowne Plaza", 21], 225.5]].to_json)
     DivisionMembership.create(:league_membership_id => bill_murray_league.id, :division_id => ben_hogan.id)
 
     RosterMembership.create(:league_membership_id => bill_murray_league.id, :player_id => 239, :active => true, :league_id => league.id)
@@ -919,7 +983,28 @@ namespace :db do
 
     rodney_dangerfield = User.create(:first_name => "Rodney", :last_name => "Dangerfield", :email => "rodney@gmail.com",
     :password => "password", :password_confirmation => "password")
-    rodney_dangerfield_league = LeagueMembership.create(:user_id => rodney_dangerfield.id, :league_id => league.id, :name => rodney_dangerfield.name)
+    rodney_dangerfield_league = LeagueMembership.create(:user_id => rodney_dangerfield.id, :league_id => league.id, :name => rodney_dangerfield.name,
+    :season_scores => [[["Hyundai", 1], 233.0],
+     [["Sony Open", 2], 132.17],
+     [["Humana Challenge", 3], 154.5],
+     [["Farmers", 4], 17.5],
+     [["WM Phoenix Open", 5], 219.5],
+     [["Pebble Beach", 6], 67.63],
+     [["Northern Trust", 7], 21.25],
+     [["Accenture Match Play", 8], 275.25],
+     [["Honda", 9], 176.0],
+     [["Caddy/PR", 10], 93.0],
+     [["Valspar", 11], 160.0],
+     [["Arnold Palmer", 12], 197.0],
+     [["Valero", 13], 229.0],
+     [["Shell Houston", 14], 67.64],
+     [["Masters", 15], 148.0],
+     [["RBC Heritage", 16], 109.0],
+     [["Zurich Classic", 17], 48.0],
+     [["Wells Fargo", 18], 91.93],
+     [["The Players", 19], 137.25],
+     [["HP Byron", 20], 168.0],
+     [["Crowne Plaza", 21], 0.0]].to_json)
     DivisionMembership.create(:league_membership_id => rodney_dangerfield_league.id, :division_id => ben_hogan.id)
 
     RosterMembership.create(:league_membership_id => rodney_dangerfield_league.id, :player_id => 226, :active => true, :league_id => league.id)
@@ -934,7 +1019,28 @@ namespace :db do
     
     cindy_morgan = User.create(:first_name => "Cindy", :last_name => "Morgan", :email => "cindy@gmail.com",
     :password => "password", :password_confirmation => "password")
-    cindy_morgan_league = LeagueMembership.create(:user_id => cindy_morgan.id, :league_id => league.id, :name => cindy_morgan.name)
+    cindy_morgan_league = LeagueMembership.create(:user_id => cindy_morgan.id, :league_id => league.id, :name => cindy_morgan.name,
+    [[["Hyundai", 1], 217.5],
+         [["Sony Open", 2], 384.83],
+         [["Humana Challenge", 3], 0.0],
+         [["Farmers", 4], 340.0],
+         [["WM Phoenix Open", 5], 159.7],
+         [["Pebble Beach", 6], 67.63],
+         [["Northern Trust", 7], 136.0],
+         [["Accenture Match Play", 8], 106.5],
+         [["Honda", 9], 165.0],
+         [["Caddy/PR", 10], 156.0],
+         [["Valspar", 11], 45.5],
+         [["Arnold Palmer", 12], 45.0],
+         [["Valero", 13], 73.5],
+         [["Shell Houston", 14], 104.5],
+         [["Masters", 15], 357.0],
+         [["RBC Heritage", 16], 66.14],
+         [["Zurich Classic", 17], 6.0],
+         [["Wells Fargo", 18], 99.0],
+         [["The Players", 19], 336.75],
+         [["HP Byron", 20], 175.0],
+         [["Crowne Plaza", 21], 248.43]].to_json)
     DivisionMembership.create(:league_membership_id => cindy_morgan_league.id, :division_id => ben_hogan.id)
 
     RosterMembership.create(:league_membership_id => cindy_morgan_league.id, :player_id => 327, :active => true, :league_id => league.id)
@@ -949,7 +1055,28 @@ namespace :db do
     
     ty_webb = User.create(:first_name => "Ty", :last_name => "Webb", :email => "ty@gmail.com",
     :password => "password", :password_confirmation => "password")
-    ty_webb_league = LeagueMembership.create(:user_id => ty_webb.id, :league_id => league.id, :name => ty_webb.name)
+    ty_webb_league = LeagueMembership.create(:user_id => ty_webb.id, :league_id => league.id, :name => ty_webb.name,
+    [[["Hyundai", 1], 207.5],
+         [["Sony Open", 2], 304.83],
+         [["Humana Challenge", 3], 0.0],
+         [["Farmers", 4], 340.0],
+         [["WM Phoenix Open", 5], 159.7],
+         [["Pebble Beach", 6], 45.63],
+         [["Northern Trust", 7], 136.0],
+         [["Accenture Match Play", 8], 16.5],
+         [["Honda", 9], 165.0],
+         [["Caddy/PR", 10], 156.0],
+         [["Valspar", 11], 45.5],
+         [["Arnold Palmer", 12], 45.0],
+         [["Valero", 13], 73.5],
+         [["Shell Houston", 14], 104.5],
+         [["Masters", 15], 357.0],
+         [["RBC Heritage", 16], 6.14],
+         [["Zurich Classic", 17], 60.0],
+         [["Wells Fargo", 18], 99.0],
+         [["The Players", 19], 336.75],
+         [["HP Byron", 20], 175.0],
+         [["Crowne Plaza", 21], 248.43]].to_json)
     DivisionMembership.create(:league_membership_id => ty_webb_league.id, :division_id => arnold_palmer.id)
 
     RosterMembership.create(:league_membership_id => ty_webb_league.id, :player_id => 401, :active => true, :league_id => league.id)
@@ -964,7 +1091,28 @@ namespace :db do
 
     judge_smails = User.create(:first_name => "Judge", :last_name => "Smails", :email => "judgesmails@gmail.com",
     :password => "password", :password_confirmation => "password")
-    judge_smails_league = LeagueMembership.create(:user_id => judge_smails.id, :league_id => league.id, :name => judge_smails.name)
+    judge_smails_league = LeagueMembership.create(:user_id => judge_smails.id, :league_id => league.id, :name => judge_smails.name,
+    :season_scores => [[["Hyundai", 1], 0.0],
+     [["Sony Open", 2], 266.0],
+     [["Humana Challenge", 3], 246.0],
+     [["Farmers", 4], 83.0],
+     [["WM Phoenix Open", 5], 428.0],
+     [["Pebble Beach", 6], 26.0],
+     [["Northern Trust", 7], 59.5],
+     [["Accenture Match Play", 8], 103.5],
+     [["Honda", 9], 81.61],
+     [["Caddy/PR", 10], 194.25],
+     [["Valspar", 11], 139.5],
+     [["Arnold Palmer", 12], 119.81],
+     [["Valero", 13], 89.5],
+     [["Shell Houston", 14], 53.0],
+     [["Masters", 15], 460.0],
+     [["RBC Heritage", 16], 159.67],
+     [["Zurich Classic", 17], 35.27],
+     [["Wells Fargo", 18], 220.0],
+     [["The Players", 19], 64.88],
+     [["HP Byron", 20], 220.0],
+     [["Crowne Plaza", 21], 104.24]].to_json)
     DivisionMembership.create(:league_membership_id => judge_smails_league.id, :division_id => arnold_palmer.id)
 
     RosterMembership.create(:league_membership_id => judge_smails_league.id, :player_id => 92, :active => true, :league_id => league.id)
@@ -979,7 +1127,28 @@ namespace :db do
 
     danny_noonan = User.create(:first_name => "Danny", :last_name => "Noonan", :email => "danny@gmail.com",
     :password => "password", :password_confirmation => "password")
-    danny_noonan_league = LeagueMembership.create(:user_id => danny_noonan.id, :league_id => league.id, :name => danny_noonan.name)
+    danny_noonan_league = LeagueMembership.create(:user_id => danny_noonan.id, :league_id => league.id, :name => danny_noonan.name,
+    :season_scores => [[["Hyundai", 1], 135.0],
+     [["Sony Open", 2], 0.0],
+     [["Humana Challenge", 3], 22.0],
+     [["Farmers", 4], 527.5],
+     [["WM Phoenix Open", 5], 350.0],
+     [["Pebble Beach", 6], 235.6],
+     [["Northern Trust", 7], 277.75],
+     [["Accenture Match Play", 8], 237.5],
+     [["Honda", 9], 38.25],
+     [["Caddy/PR", 10], 571.5],
+     [["Valspar", 11], 232.0],
+     [["Arnold Palmer", 12], 153.0],
+     [["Valero", 13], 135.0],
+     [["Shell Houston", 14], 116.0],
+     [["Masters", 15], 241.0],
+     [["RBC Heritage", 16], 0.0],
+     [["Zurich Classic", 17], 203.27],
+     [["Wells Fargo", 18], 302.13],
+     [["The Players", 19], 268.5],
+     [["HP Byron", 20], 250.0],
+     [["Crowne Plaza", 21], 302.75]].to_json)
     DivisionMembership.create(:league_membership_id => danny_noonan_league.id, :division_id => arnold_palmer.id)
 
     RosterMembership.create(:league_membership_id => danny_noonan_league.id, :player_id => 99, :active => true, :league_id => league.id)
@@ -994,7 +1163,28 @@ namespace :db do
 
     bishop_pickering = User.create(:first_name => "Bishop", :last_name => "Pickering", :email => "bishop@gmail.com",
     :password => "password", :password_confirmation => "password")
-    bishop_pickering_league = LeagueMembership.create(:user_id => bishop_pickering.id, :league_id => league.id, :name => bishop_pickering.name)
+    bishop_pickering_league = LeagueMembership.create(:user_id => bishop_pickering.id, :league_id => league.id, :name => bishop_pickering.name,
+    :season_scores => [[["Hyundai", 1], 228.0],
+     [["Sony Open", 2], 11.5],
+     [["Humana Challenge", 3], 169.0],
+     [["Farmers", 4], 312.43],
+     [["WM Phoenix Open", 5], 200.0],
+     [["Pebble Beach", 6], 217.63],
+     [["Northern Trust", 7], 38.0],
+     [["Accenture Match Play", 8], 363.5],
+     [["Honda", 9], 0.0],
+     [["Caddy/PR", 10], 326.63],
+     [["Valspar", 11], 182.0],
+     [["Arnold Palmer", 12], 219.5],
+     [["Valero", 13], 73.5],
+     [["Shell Houston", 14], 96.0],
+     [["Masters", 15], 286.0],
+     [["RBC Heritage", 16], 79.0],
+     [["Zurich Classic", 17], 250.0],
+     [["Wells Fargo", 18], 97.0],
+     [["The Players", 19], 228.25],
+     [["HP Byron", 20], 125.0],
+     [["Crowne Plaza", 21], 29.0]].to_json)
     DivisionMembership.create(:league_membership_id => bishop_pickering_league.id, :division_id => arnold_palmer.id)
 
     RosterMembership.create(:league_membership_id => bishop_pickering_league.id, :player_id => 242, :active => true, :league_id => league.id)
@@ -1010,7 +1200,28 @@ namespace :db do
 
     carl_spacker = User.create(:first_name => "Carl", :last_name => "Spacker", :email => "carl@gmail.com",
     :password => "password", :password_confirmation => "password")
-    carl_spacker_league = LeagueMembership.create(:user_id => carl_spacker.id, :league_id => league.id, :name => carl_spacker.name)
+    carl_spacker_league = LeagueMembership.create(:user_id => carl_spacker.id, :league_id => league.id, :name => carl_spacker.name,
+    :season_scores => [[["Hyundai", 1], 0.0],
+     [["Sony Open", 2], 26.0],
+     [["Humana Challenge", 3], 42.5],
+     [["Farmers", 4], 7.5],
+     [["WM Phoenix Open", 5], 0.0],
+     [["Pebble Beach", 6], 123.1],
+     [["Northern Trust", 7], 198.0],
+     [["Accenture Match Play", 8], 483.0],
+     [["Honda", 9], 128.5],
+     [["Caddy/PR", 10], 82.75],
+     [["Valspar", 11], 177.0],
+     [["Arnold Palmer", 12], 16.5],
+     [["Valero", 13], 417.0],
+     [["Shell Houston", 14], 185.0],
+     [["Masters", 15], 291.0],
+     [["RBC Heritage", 16], 445.0],
+     [["Zurich Classic", 17], 147.0],
+     [["Wells Fargo", 18], 235.0],
+     [["The Players", 19], 380.5],
+     [["HP Byron", 20], 254.0],
+     [["Crowne Plaza", 21], 84.13]].to_json)
     DivisionMembership.create(:league_membership_id => carl_spacker_league.id, :division_id => arnold_palmer.id)
 
     RosterMembership.create(:league_membership_id => carl_spacker_league.id, :player_id => 317, :active => true, :league_id => league.id)
