@@ -1056,7 +1056,7 @@ namespace :db do
     ty_webb = User.create(:first_name => "Ty", :last_name => "Webb", :email => "ty@gmail.com",
     :password => "password", :password_confirmation => "password")
     ty_webb_league = LeagueMembership.create(:user_id => ty_webb.id, :league_id => league.id, :name => ty_webb.name,
-    [[["Hyundai", 1], 207.5],
+    :season_scores => [[["Hyundai", 1], 207.5],
          [["Sony Open", 2], 304.83],
          [["Humana Challenge", 3], 0.0],
          [["Farmers", 4], 340.0],
