@@ -9,7 +9,12 @@
   <table class="table">   
     <tr><th>League</th><th>Standing</th></tr>
     <%@user.leagues.each do |league|%>
-    <tr><td><a href="<%=league_url(league)%>"><%=league.name%></a></td><td>0</td></tr>
+    <tr>
+      <td><a href="<%=league_url(league)%>"><%=league.name%></a></td>
+      <td>
+        <%= league.member_standing( LeagueMembership.find_by_user_id_and_league_id(@user, league.id)) %>
+      </td>
+    </tr>
     <%end%>
   </table>
   <%=link_to "Create a new league", new_league_url%> ||

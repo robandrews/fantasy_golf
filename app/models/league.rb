@@ -29,4 +29,12 @@ class League < ActiveRecord::Base
   def make_secret_sauce
     self.secret_sauce = SecureRandom.base64(16)
   end
+  
+  def member_standing(league_member)
+    self.league_memberships
+        .sort_by{|lm| lm.season_points}
+        .reverse
+        .find_index(league_member) + 1
+
+  end
 end

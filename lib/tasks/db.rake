@@ -1234,17 +1234,37 @@ namespace :db do
     RosterMembership.create(:league_membership_id => carl_spacker_league.id, :player_id => 68, :active => false, :league_id => league.id)
   end
   
-  # desc "Drop all tables except for players"
-  # # this still needs work
-  # task drop_all_except_players: :environment do
-  #   tables = ["archived_weeks", "bylaws", "division_memberships", "divisions", "free_agent_offers",
-  #     "friendly_id_slugs", "interested_parties", "league_memberships", "league_moderatorships", 
-  #     "leagues", "messages", "roster_memberships", "season_performances", "seasons", 
-  #     "tournament_standings", "tournaments", "trade_group_memberships", "trade_groups", "trades",
-  #     "users", "weeks"]
-  #   connection = ActiveRecord::Base.connection()
-  #   tables.each do |table|
-  #     connection.execute("drop table #{table}")
-  #   end
-  # end
+  desc "Drop all tables except for players"
+  # this still needs work
+  task drop_all_except_players: :environment do
+    tables = ["archived_weeks", "bylaws", "division_memberships", "divisions", "free_agent_offers",
+      "friendly_id_slugs", "interested_parties", "league_memberships", "league_moderatorships", 
+      "leagues", "messages", "roster_memberships", "season_performances", "seasons", 
+      "tournament_standings", "tournaments", "trade_group_memberships", "trade_groups", "trades",
+      "users", "weeks"]
+    connection = ActiveRecord::Base.connection()
+    tables.each do |table|
+      connection.execute("drop table #{table}")
+    end
+  end
+
+  desc "Reset all data except for players"
+  task reset_user_data: :environment do
+    League.delete_all
+    LeagueMembership.delete_all
+    RosterMembership.delete_all
+    Division.delete_all
+    DivisionMembership.delete_all
+    ArchivedWeek.delete_all
+    FreeAgentOffer.delete_all
+    Trade.delete_all
+    Season.delete_all
+    TradeGroup.delete_all
+    TradeGroupMembership.delete_all
+    Tournament.delete_all
+    TournamentStanding.delete_all
+    User.delete_all
+    Week.delete_all
+  end
+
 end

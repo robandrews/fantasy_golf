@@ -6,6 +6,8 @@ I BROKE THE FREE AGENT CRON JOBS
 
 BUG: Trade doesn't check to see if players are actually in the rosters before the trade is made.
 
+BUG: chart resize works well for width, height goes CRAZY.
+
 Commissioner tools 
 - edit free agent pool
 - view secret hash for league
