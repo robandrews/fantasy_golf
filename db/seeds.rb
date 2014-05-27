@@ -1,7 +1,6 @@
 require 'open-uri'
 start = Time.now
 
-
 season = Season.create(:name => "2013-2014", 
 :start_date => Date.new(2014, 1, 3),
 :end_date => Date.new(2014, 9, 28))
@@ -13,44 +12,6 @@ time_zero = DateTime.new(2013, 12, 30, 0, 0, 0)
   end_week = start_week + 7.days - 1.second
   weeks[w+1] = Week.create(:week_order => w+1, :season_id => season.id, :start_time => start_week, :end_time => end_week)
 end
-
-# 
-# Tournament.create(:name => "Sony Open", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/7",
-# :start_date => Date.new(2014, 1, 9),
-# :end_date => Date.new(2014, 1, 12),
-# :week_id => weeks[2].id,
-# :complete => :true)
-# 
-# Tournament.create(:name => "Humana Challenge", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/3",
-# :start_date => Date.new(2014, 1, 16),
-# :end_date => Date.new(2014, 1, 19),
-# :week_id => weeks[3].id,
-# :complete => :true)
-# 
-# Tournament.create(:name => "Farmers", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/6",
-# :start_date => Date.new(2014, 1, 23),
-# :end_date => Date.new(2014, 1, 26),
-# :week_id => weeks[4].id,
-# :complete => :true)
-# 
-# Tournament.create(:name => "WM Phoenix Open", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/4",
-# :start_date => Date.new(2014, 1, 30),
-# :end_date => Date.new(2014, 2, 2),
-# :week_id => weeks[5].id,
-# :complete => :true)
-# 
-# 
-# Tournament.create(:name => "Pebble Beach", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/5",
-# :start_date => Date.new(2014, 2, 6),
-# :end_date => Date.new(2014, 2, 9),
-# :week_id => weeks[6].id,
-# :complete => :true)
-# 
-# Tournament.create(:name => "Northern Trust", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/8",
-# :start_date => Date.new(2014, 2, 13),
-# :end_date => Date.new(2014, 2, 16),
-# :week_id => weeks[7].id,
-# :complete => :true)
 
 Tournament.create(:name => "Players Championship", :url => "https://sports.yahoo.com/golf/pga/leaderboard/2014/13",
 :start_date => DateTime.new(2014, 5, 8, 14, 0, 0),

@@ -12,7 +12,7 @@
 #  ready              :boolean          default(FALSE)
 #  monthly_fa_pickups :integer
 #  season_fa_pickups  :integer
-#
+# 
 
 class LeagueMembership < ActiveRecord::Base  
   belongs_to :league

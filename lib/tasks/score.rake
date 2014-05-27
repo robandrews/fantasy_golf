@@ -3,6 +3,7 @@ include ApplicationHelper
 
 namespace :score do
   desc "Score league data"
+  
   task week: :environment do
     current_date = Date.parse(Time.now.to_s)
     season = Season.where("start_date < ? AND end_date > ?", current_date, current_date).take
@@ -37,9 +38,7 @@ namespace :score do
         new_pts = league_membership.season_points + member_week_points
         league_membership.update_attributes(:season_points => new_pts)
       end
-    end
-  
-    
+    end  
   end
   
   

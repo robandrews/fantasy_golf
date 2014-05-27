@@ -1,5 +1,6 @@
 namespace :archive do
   desc "Archive league data"
+  
   task week: :environment do
     League.all.each do |league|
       
@@ -15,8 +16,8 @@ namespace :archive do
       ArchivedWeek.create!(:roster => member_rosters.to_json, 
                           :league_id => league.id, 
                           :season_id => season.id,
-                          :week_id => week.id)
-        
+                          :week_id => week.id)        
     end
   end
+  
 end

@@ -5,10 +5,9 @@
 
 # Example:
 #
-# set :output, "/path/to/my/cron_log.log"
+# set :output, "../log/cron.log"
 #
+
 every 1.minute do
   rake "cron:fa"
 end
-
-# Learn more: http://github.com/javan/whenever

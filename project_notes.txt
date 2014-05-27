@@ -1,12 +1,4 @@
-Archives + mailer for summary weekend
-
-`Team Page
-
-Playoffs(take 10), top 2 in each division, 2 wildcard (point bonuses going into the playoffs) - majors are worth double, WCG events are worth 1.5, PGA is worth .5 that week.
-
 To-Do in order of importance
-
-Cron jobs for free agents
 
 Mailers Settings
 
@@ -18,7 +10,6 @@ Commissioner tools
 - edit free agent pool
 - view secret hash for league
 - divisions (later)
-
 
 Trophy Corner
 

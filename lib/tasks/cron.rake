@@ -15,4 +15,3 @@ namespace :cron do
     end
   end
 end
-
