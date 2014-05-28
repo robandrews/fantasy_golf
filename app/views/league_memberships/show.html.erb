@@ -59,7 +59,7 @@
     
     <style>
     		body { margin: 0; padding: 0; background-color: #ccc; }
-    		#canvas { width: 100%; padding:20px; border: solid 4px #999; background-color: White; }
+    		#canvas { width: 100%; padding:20px; border: solid 4px #999; background-color: white; }
     	</style>
       
       
@@ -83,7 +83,7 @@
 
       function draw(){
         var canvas = document.getElementById('canvas');
-
+        var h = canvas.height = 450;
         var w = canvas.width = $("#canvas").parent().width();
       	var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
       }
