@@ -1,7 +1,6 @@
-== README
+== Bushwood Country Club
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A fantasy golf application live here:
 
 Things you may want to cover:
 

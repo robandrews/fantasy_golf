@@ -49,4 +49,8 @@ module ApplicationHelper
     min_num_bids = bid_hash.values.min
     bid_hash.select{|id, bids| bids == min_num_bids}
   end
+  
+  def pre_tourney?
+    current_week.tournaments.first.start_date > DateTime.now
+  end
 end
