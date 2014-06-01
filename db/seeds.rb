@@ -42,6 +42,15 @@ Tournament.create(:name => "The Memorial", :url => "https://sports.yahoo.com/gol
 :complete => :true,
 :multiplier => 1.0)
 
+Tournament.create(:name => "FedEx/St. Jude", :url => "https://sports.yahoo.com/golf/pga/leaderboard/2014/25",
+:start_date => DateTime.new(2014, 6, 5, 14, 0, 0),
+:end_date => DateTime.new(2014, 6, 8, 7, 0, 0),
+:week_id => weeks[23].id,
+:complete => :true,
+:multiplier => 1.0)
+
+
+
 
 print "#######################################################\n"
 print "Finished seeding database in #{Time.now - start} seconds"

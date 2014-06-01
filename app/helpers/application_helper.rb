@@ -5,9 +5,9 @@ module ApplicationHelper
   end
   
   def settle_offer(offer)
-    if interested_parties.length == 1
-      awardee = LeagueMembership.find(interested_parties.first.league_membership_id)
-    else   
+    if offer.interested_parties.length == 1
+      awardee = LeagueMembership.find(offer.interested_parties.take.league_membership_id)
+    else
       awardee = decide_fa_winner(offer)
     end
     award_free_agent(awardee, offer)

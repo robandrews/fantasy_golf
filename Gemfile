@@ -19,6 +19,7 @@ gem 'rest-client'
 gem 'uglifier', '>= 1.3.0'
 gem 'whenever', :require => false
 gem 'delayed_job_active_record'
+gem 'pry-rails'
 
 group :doc do
   gem 'sdoc', require: false
@@ -28,7 +29,6 @@ end
 group :development, :test do
   gem 'annotate'
   gem 'debugger'
-  gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem "letter_opener"

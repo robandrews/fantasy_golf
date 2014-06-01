@@ -37,7 +37,7 @@
             <td>seconds</td>
         </tr>
         </table>
-        until the <%= current_week.tournaments.first.name %>
+        until the <a href="<%= current_week.tournaments.first.url %>" class="no-style-link"><%= current_week.tournaments.first.name %></a>
         
          <%= javascript_tag do  %>
            var days, hours, minutes, seconds;
@@ -74,7 +74,7 @@
         <% else %>
         The <%= current_week.tournaments.first.name %> is
                    <br />
-        <a href="<%= current_week.tournaments.first.url %>">
+        <a href="<%= current_week.tournaments.first.url %>" class="no-style-link">
 
           IN PROGRESS
         </a>
