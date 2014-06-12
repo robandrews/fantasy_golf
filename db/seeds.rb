@@ -1,8 +1,8 @@
 require 'open-uri'
 start = Time.now
 
-season = Season.create(:name => "2013-2014", 
-:start_date => Date.new(2014, 1, 3),
+season = Season.create(:name => "2013-2014",
+:start_date => Date.new(2016, 1, 3),
 :end_date => Date.new(2014, 9, 28))
 
 weeks = {}
@@ -48,6 +48,14 @@ Tournament.create(:name => "FedEx/St. Jude", :url => "https://sports.yahoo.com/g
 :week_id => weeks[23].id,
 :complete => :true,
 :multiplier => 1.0)
+
+Tournament.create(:name => "U.S. Open", :url => "https://sports.yahoo.com/golf/pga/leaderboard/2014/24",
+:start_date => DateTime.new(2014, 6, 12, 14, 0, 0),
+:end_date => DateTime.new(2014, 6, 15, 7, 0, 0),
+:week_id => weeks[24].id,
+:complete => :false,
+:multiplier => 1.5)
+
 
 
 
