@@ -1,5 +1,13 @@
 To-Do in order of importance
 
+Mailers
+
+-Weekly reminder for setting lineup (if not set, goes out Wednesday 5pm EST)
+-Free Agency and trades not allowed during the tournament
+-Free agency reminder
+-Make sure to handle trades during tournament
+
+
 Mailers Settings
 
 BUG: Trade doesn't check to see if players are actually in the rosters before the trade is made.

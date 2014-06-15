@@ -1,31 +1,36 @@
 <div class="container">
   <h2>Free Agent Activity</h2>
   <%= render partial: "layouts/league_nav", locals: {active: 3, league: @league, league_membership: @league_membership} %>
-  
+
   <div class="document">
     <h4><%= "Currently no free agent activity..." if @offers.empty? %></h4>
-      <%@offers.each do |free_agent_offer|%>
-      
-      <div data-id="<%= free_agent_offer.id %>" class="free-agent-card">
-        <%=free_agent_offer.creator_league_membership_id == @league_membership.id ? "Your" : free_agent_offer.user_name%> bid for <%=free_agent_offer.name%>     
-        expires at <b><%= (free_agent_offer.expiry_date.to_s(:pretty)) %> PST 
-        (in <%=distance_of_time_in_words(Time.now, free_agent_offer.expiry_date)%>)</b>.
-        Currently the bid is <%=free_agent_offer.interested_parties.length > 1 ? "contested." : "uncontested."%>  
-        <% if free_agent_offer.interested_parties
-                              .any?{|ip| ip.league_membership_id ==     
-                              @league_membership.id} && 
-                              @league_membership.id !=
-                                 free_agent_offer.creator_league_membership_id%>
-          <hr /><center><%= "You have contested this free agent." %></center>
-          <% end %>
-        
-        <% if free_agent_offer.interested_parties.all?{|ip| ip.league_membership_id != @league_membership.id} %>
+    <%@offers.each do |free_agent_offer|%>
+      <div class="row">
+        <% player = Player.find(free_agent_offer.player_id) %>
+
+        <div data-id="<%= free_agent_offer.id %>" class="free-agent-card">
+          <img src="<%= player.picture_url %>" class="free-agent-picture">
+          <div class="col-md-11 pull-right free-agent-text">
+            <%=free_agent_offer.creator_league_membership_id == @league_membership.id ? "Your" : free_agent_offer.user_name%> bid for <a href="<%=player.url%>"><%=free_agent_offer.name%></a>     
+            expires at <b><%= (free_agent_offer.expiry_date.to_s(:pretty)) %> PST 
+              (in <%=distance_of_time_in_words(Time.now, free_agent_offer.expiry_date)%>)</b>.
+            Currently the bid is <%=free_agent_offer.interested_parties.length > 1 ? "contested." : "uncontested."%>  
+          <% if free_agent_offer.interested_parties
+            .any?{|ip| ip.league_membership_id ==     
+          @league_membership.id} && 
+          @league_membership.id !=
+          free_agent_offer.creator_league_membership_id%>
+        <hr /><center><%= "You have contested this free agent." %></center>
+      <% end %>
+
+      <% if free_agent_offer.interested_parties.all?{|ip| ip.league_membership_id != @league_membership.id} %>
         <button class="contest-free-agent" data-id="<%= free_agent_offer.id %>">Contest Bid</button>
-        <% end %>
-      </div>
-      <%end%>
-      
-      <hr />
-      <small>Please allow up to 5 minutes for free agents to appear in your roster.  No one will be allowed to contest the free agent after the expiration date.</small>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%end%>
+    <hr />
+    <small>Please allow up to 5 minutes for free agents to appear in your roster.  No one will be allowed to contest the free agent after the expiration date.</small>
   </div>
 </div>

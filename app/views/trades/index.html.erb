@@ -2,7 +2,7 @@
   <h2>Trades</h2>
 
   <%= render partial: "layouts/league_nav", locals: {active: 6, league: @league, league_membership: @league_membership} %>
-    
+
   <div class="document">
     <div class="btn-group btn-group-justified">
       <div class="btn-group">
@@ -12,73 +12,77 @@
         <button type="button" class="btn btn-default show-past-trades <%= @pending ? "" : "active" %>">Past Trades</button>
       </div>
     </div>
-    
-    
-    
+
+
+
     <% if @trades.empty? %>
-    <h4>Currently there are no <%= @pending ? "pending" : "past" %> trades...</h4>
+      <h4>Currently there are no <%= @pending ? "pending" : "past" %> trades...</h4>
     <% else %>
-    
-    <div class="trades-list">
-      <%@trades.each do |trade|%>
-      <% proposer = @league_memberships.select{|lm| lm.id == trade.proposer_id}.first %>
-      <% proposee = @league_memberships.select{|lm| lm.id == trade.proposee_id}.first %>
-    
-      <div class="trade-card">
-      
-        <div class="row">
-          <div class="col-md-12 <%= "tradeable" if (@league_membership == proposee ||  @league_membership == proposer) %>" data-id="trade<%= trade.id %>">
-            <div class="trade-info">
-              <span class="trade-title">
-                <% if trade.pending %>        
-                <%= proposer == @league_membership ? "You" : proposer.name%> 
-                proposed a trade with 
-                <%= proposee == @league_membership ? "you" : proposee.name%>
-                on <%= trade.created_at.to_s(:pretty) %>.
-                <% else %>            
-                <%=  proposee == @league_membership ? "You" : proposee.name%>
-                <%= trade.accepted ? "ACCEPTED" : "DENIED" %> a trade with
-                <%= proposer == @league_membership ? "You" : proposer.name %> on <%= trade.updated_at.to_s(:pretty) %>.
-                <% end %>
-                
-                <% if @league_membership == proposee && @pending%>
-                <div class="btn-group btn-group-xs">
-                  <button type="button" class="btn btn-success trade-button hidden" data-id="<%= trade.id %>">Accept</button>
-                  <button type="button" class="btn btn-danger trade-button hidden" data-id="<%= trade.id %>">Deny</button>
+
+      <div class="trades-list">
+        <%@trades.each do |trade|%>
+          <% proposer = @league_memberships.select{|lm| lm.id == trade.proposer_id}.first %>
+          <% proposee = @league_memberships.select{|lm| lm.id == trade.proposee_id}.first %>
+
+          <div class="trade-card">
+
+            <div class="row">
+              <div class="col-md-12 <%= "tradeable" if (@league_membership == proposee ||  @league_membership == proposer) %>" data-id="trade<%= trade.id %>">
+                <div class="trade-info">
+                  <span class="trade-title">
+                    <% if trade.pending %>        
+                      <%= proposer == @league_membership ? "You" : proposer.name%> 
+                      proposed a trade with 
+                      <%= proposee == @league_membership ? "you" : proposee.name%>
+                      on <%= trade.created_at.to_s(:pretty) %>.
+                    <% else %>            
+                      <%=  proposee == @league_membership ? "You" : proposee.name%>
+                      <%= trade.accepted ? "ACCEPTED" : "DENIED" %> a trade with
+                      <%= proposer == @league_membership ? "You" : proposer.name %> on <%= trade.updated_at.to_s(:pretty) %>.
+                    <% end %>
+
+                    <% if @league_membership == proposee && @pending%>
+                      <div class="btn-group btn-group-xs">
+                        <button type="button" class="btn btn-success trade-button hidden" data-id="<%= trade.id %>">Accept</button>
+                        <button type="button" class="btn btn-danger trade-button hidden" data-id="<%= trade.id %>">Deny</button>
+                      </div>
+                    <% elsif  @league_membership == proposer && @pending%>
+                      <button type="button" class="btn btn-xs btn-danger trade-button-delete hidden" data-id="<%= trade.id %>">Delete</button>
+                    <% end %>
+                  </span>
+                  <hr>
+
+                  <div class="col-md-4 col-md-offset-1 trade-group">
+                    <ul class="list-group">
+                      <% trade.trade_groups.first.players.each do |player| %>       
+
+                        <li class="list-group-item">
+                          <img src="<%=player.picture_url%>">
+                          <a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a></li>
+                      <% end %>
+                    </ul>
+                  </div>
+
+                  <div class="col-md-2 trade-group-for">
+                    FOR
+                  </div>
+
+                  <div class="col-md-4">
+                    <ul class="list-group trade-group">
+                      <% trade.trade_groups.last.players.each do |player| %>
+                        <li class="list-group-item">
+                          <img src="<%=player.picture_url%>">
+                          <a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a></li>
+                      <% end %>
+                    </ul>
+                  </div>
                 </div>
-                <% elsif  @league_membership == proposer && @pending%>
-                <button type="button" class="btn btn-xs btn-danger trade-button-delete hidden" data-id="<%= trade.id %>">Delete</button>
-                <% end %>
-              </span>
-              <hr>
-        
-              <div class="col-md-4 col-md-offset-1 trade-group">
-                <ul class="list-group">
-                  <% trade.trade_groups.first.players.each do |player| %>       
 
-                  <li class="list-group-item"><a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a></li>
-                  <% end %>
-                </ul>
               </div>
-            
-              <div class="col-md-2 trade-group-for">
-                FOR
-              </div>
-              
-              <div class="col-md-4">
-                <ul class="list-group trade-group">
-                  <% trade.trade_groups.last.players.each do |player| %>
-                  <li class="list-group-item"><a href="<%=player.url%>" data-id="<%=player.id%>"><%=player.name%></a></li>
-                  <% end %>
-                </ul>
-              </div>
-            </div>
-
+            </div>     
           </div>
-        </div>     
+        <% end %>  
       </div>
-      <% end %>  
-    </div>
     <% end %>
   </div>
 </div>
