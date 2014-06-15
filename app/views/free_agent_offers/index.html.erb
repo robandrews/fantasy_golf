@@ -24,7 +24,7 @@
       <% end %>
 
       <% if free_agent_offer.interested_parties.all?{|ip| ip.league_membership_id != @league_membership.id} %>
-        <button class="contest-free-agent" data-id="<%= free_agent_offer.id %>">Contest Bid</button>
+        <button class="contest-free-agent" data-id="<%= free_agent_offer.id %>">Undercut</button>
       <% end %>
     </div>
   </div>
