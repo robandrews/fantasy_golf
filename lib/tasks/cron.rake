@@ -19,7 +19,7 @@ namespace :cron do
   task reminder: :environment do
     League.all.each do |league|
       league.members.each do |member|
-        UserMailer.weekly_reminder(member)
+        UserMailer.weekly_reminder(member).deliver if member.league_membership.any?{|lm| !lm.ready}
       end
     end
   end

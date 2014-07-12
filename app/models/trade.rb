@@ -49,4 +49,8 @@ class Trade < ActiveRecord::Base
       self.update_attributes(:accepted => true, :pending => false)
     end
   end
+  
+  def valid?
+    #this method will determine whether or not the trade is valid, returns bool true/false to decide whether the trade should execute.
+  end
 end

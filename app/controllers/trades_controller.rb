@@ -39,6 +39,7 @@ class TradesController < ApplicationController
                                   :pending => params[:pending])
         @trade.execute if @trade.accepted
         flash[:notice] = "You #{@trade.accepted ? "accepted" : "denied"} trade."
+        
         render :json => @trade, status: 200
       else
         flash[:alert] = "Trade submission failed"
