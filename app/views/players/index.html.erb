@@ -9,26 +9,27 @@
         <th>Height</th>
         <th>Weight</th>
         <th>Career Earnings</th>
-     </tr>
+      </tr>
     </thead>
     <tbody>
       <%@players.each do |player|%>
-      <a href=<%=player.url%>>
-        <div class=player>
-          <tr>
-            <td><img src=<%=player.picture_url%> width=40> </td>
-            <td><%=link_to player.name, player.url%></td>
-            <td><%=player.birthdate%></td>
-            <td><%=player.string_height%></td>
-            <td><%=player.weight%></td>
-            <td><%="$#{number_with_delimiter(player.career_earnings, :delimiter => ",")}"%>
-          </tr>
-        </div>
-      </a>
+        <a href=<%=player.url%>>
+          <div class=player>
+            <tr>
+              <td><img src=<%=player.picture_url%> width=40> </td>
+              <td><%=link_to player.name, player.url%></td>
+              <td><%=player.birthdate%></td>
+              <td><%=player.string_height%></td>
+              <td><%=player.weight%></td>
+              <td><%="$#{number_with_delimiter(player.career_earnings, :delimiter => ",")}"%>
+              <td><%= button_to "Delete Player", { id: player.id }, method: :delete, data: { confirm: "Are you sure?" } %>
+            </tr>
+          </div>
+        </a>
       <%end%>
     </tbody>
   </table>
-  
+
   <%= paginate @players, :outer_window => 3, :theme => 'twitter-bootstrap-3' %>
-  
+
 </div>

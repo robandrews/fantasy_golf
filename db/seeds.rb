@@ -57,6 +57,19 @@ Tournament.create(:name => "U.S. Open", :url => "https://sports.yahoo.com/golf/p
 :multiplier => 1.5)
 
 
+Tournament.create(:name => "Travelers", :url => "https://sports.yahoo.com/golf/pga/leaderboard/2014/26",
+:start_date => DateTime.new(2014, 6, 19, 14, 0, 0),
+:end_date => DateTime.new(2014, 6, 22, 7, 0, 0),
+:week_id => 105,
+:complete => :true,
+:multiplier => 1.0)
+
+Tournament.create(:name => "Quicken Loans National", :url => "",
+:start_date => DateTime.new(2014, 6, 26, 14, 0, 0),
+:end_date => DateTime.new(2014, 6, 29, 7, 0, 0),
+:week_id => 106,
+:complete => :true,
+:multiplier => 1.0)
 
 
 

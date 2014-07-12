@@ -14,4 +14,13 @@ namespace :cron do
       end
     end
   end
+  
+  desc "Email all league members reminder to set lineup"
+  task reminder: :environment do
+    League.all.each do |league|
+      league.members.each do |member|
+        UserMailer.weekly_reminder(member)
+      end
+    end
+  end
 end

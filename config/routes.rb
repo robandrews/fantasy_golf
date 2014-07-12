@@ -4,7 +4,7 @@ FantasyGolf::Application.routes.draw do
   resources :users, :only => [:show, :edit]
   resources :roster_memberships, :only => [:destroy]
   resources :players, :only => [:index, :edit, :update, :destroy]
-  
+
   resources :leagues do
     resources :divisions
     resources :league_memberships do
@@ -15,12 +15,12 @@ FantasyGolf::Application.routes.draw do
     resource :bylaws
     resources :trades
   end
-  
+
   resources :league_memberships, :only => [:new, :create]
-  
+
   resources :seasons do
     resources :tournaments, :only => [:show, :new, :create]
   end
-  
+
   get "demo", to:'users#demo'
 end

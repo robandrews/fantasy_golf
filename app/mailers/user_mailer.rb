@@ -16,4 +16,9 @@ class UserMailer < ActionMailer::Base
     user = User.find(@proposee.user_id)
     mail(to: user.email, subject: "Trade Proposed by #{@proposer.name}")
   end  
+  
+  def weekly_reminder(user)
+    @user = user
+    mail(to: user.email, subject: "Set your roster NOW!")
+  end
 end

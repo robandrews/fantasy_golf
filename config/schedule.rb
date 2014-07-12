@@ -11,3 +11,7 @@
 every 1.minute do
   rake "cron:fa"
 end
+
+every :wednesday, :at => '9:00pm' do
+  rake "cron:reminder"
+end
