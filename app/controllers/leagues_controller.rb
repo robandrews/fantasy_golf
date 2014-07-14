@@ -1,4 +1,5 @@
 class LeaguesController < ApplicationController
+  
   def new
   end
 
@@ -23,6 +24,10 @@ class LeaguesController < ApplicationController
     @league = League.friendly.find(params[:league_id])
   end
 
+  def admin
+    
+  end
+  
   protected
   def league_params
     params.require(:league).permit(:name)

@@ -4,6 +4,8 @@
   <%= render partial: "layouts/league_nav", locals: {active: 2, league: @league, league_membership: @league_membership} %>
    
   <div class="document">
+   
+   <% if pre_tourney? %>
     <div class="btn-group btn-group-justified">
       <div class="btn-group">
         <button type="button" class="btn btn-default show-roster active">Set Roster</button>
@@ -15,6 +17,7 @@
         <button type="button" class="btn btn-default show-trade">Propose Trade</button>
       </div>
     </div>
+   <% end %>
    
     <div class="roster">  
       <% if pre_tourney? %>

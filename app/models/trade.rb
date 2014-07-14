@@ -31,7 +31,7 @@ class Trade < ActiveRecord::Base
   def execute
     Trade.transaction do
       traders =
-        [LeagueMembership.find(self.proposer_id), LeagueMembership.find(self.proposee_id)]
+      [LeagueMembership.find(self.proposer_id), LeagueMembership.find(self.proposee_id)]
       traders.each{|lm| lm.update_attributes(:ready => false) unless lm.valid_roster?}
       other_id = {traders[0] => traders[1], traders[1] => traders[0]}
 
@@ -50,7 +50,9 @@ class Trade < ActiveRecord::Base
     end
   end
   
-  def valid?
-    #this method will determine whether or not the trade is valid, returns bool true/false to decide whether the trade should execute.
-  end
+  # def valid?
+  #   #this method will determine whether or not the trade is valid, returns bool true/false to decide whether the trade should execute.
+  #
+  #   true
+  # end
 end

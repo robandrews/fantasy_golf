@@ -36,7 +36,7 @@ class TradesController < ApplicationController
     @trade = Trade.find(params[:id])
     Trade.transaction do      
       if @trade.update_attributes(:accepted => params[:accepted],
-                                  :pending => params[:pending])
+                                  :pending => params[:pending]) && trade.valid?
         @trade.execute if @trade.accepted
         flash[:notice] = "You #{@trade.accepted ? "accepted" : "denied"} trade."
         
