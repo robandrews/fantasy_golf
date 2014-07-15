@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
 //= require jquery.autosize.min
 //= require bootstrap
 //= require advanced
@@ -220,7 +219,7 @@ var ready = function() {
     var lm_id = $(".lm-selector").find(":selected").data("id")
     $.ajax({
       url: document.URL.slice(0,-5) + "league_memberships/" + lm_id + "/droppable_players",
-      type: "GET",
+      type: "post",
       dataType:"html",
       data: {tradee: lm_id},
       success:function(resp){
@@ -229,7 +228,7 @@ var ready = function() {
       }
     });
     
-    
+     //
     // //this is not done...needs to fetch and update score on admin page
     // $.ajax({
     //   url: document.URL.slice(0,-5) + "league_memberships/" + lm_id + "/score",
@@ -240,14 +239,14 @@ var ready = function() {
     //     $(".lm-list").html(resp);
     //   }
     // });
-    
+
     
   });
   
   //admin page
   $(".tradee-selector").on("change", function(){
     $.ajax({
-      url: document.URL.slice(0,-6) + "/players",
+      url: document.URL.slice(0,-7) + "/players",
       type: "GET",
       dataType:"html",
       data: {tradee: $(".tradee-selector").find(":selected").data("id")},

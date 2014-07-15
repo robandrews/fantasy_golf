@@ -19,8 +19,21 @@ class RosterMembershipsController < ApplicationController
     end
   end
   
+  def create
+    @roster_membership = RosterMembership.new(roster_membership_params)
+    if @roster_membership.save
+      render :json => :nothing, status: :ok 
+    else
+      render json: @roster_memberships.errors.full_messages, status: :unprocessable_entity
+    end
+  end
+  
   private
   def is_admin?
     current_user.admin
+  end
+  
+  def roster_membership_params
+    params.require(:roster_membership).permit(:league_membership_id, :player_id)
   end
 end

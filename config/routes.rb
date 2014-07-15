@@ -2,14 +2,14 @@ FantasyGolf::Application.routes.draw do
   devise_for :users
   root to: "static_pages#welcome"
   resources :users, :only => [:show, :edit]
-  resources :roster_memberships, :only => [:destroy]
+  resources :roster_memberships, :only => [:create, :destroy]
   resources :players, :only => [:index, :edit, :update, :destroy]
 
   resources :leagues do
     resources :divisions
     resources :league_memberships do
-      get "players", to: 'league_memberships#players'
-      get "droppable_players", to: 'league_memberships#droppable_players'
+      post "players", to: 'league_memberships#players'
+      post "droppable_players", to: 'league_memberships#droppable_players'
     end
     resources :free_agent_offers
     resources :messages

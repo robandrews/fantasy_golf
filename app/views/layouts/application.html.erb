@@ -9,6 +9,8 @@
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <%= javascript_tag "var AUTH_TOKEN = '#{form_authenticity_token}';" if protect_against_forgery? %>
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
   <%= favicon_link_tag 'favicon.ico' %>
 </head>
 
