@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <h2 class="col-md-6"><%=@league.name%></h2>
+  </div>
+      
+  <div class="document">
+    <div class="form-group">
+      <select class="lm-selector form-control">
+        <% @league.league_memberships.each do |member| %>
+        <option data-id="<%= member.id %>"><%= member.name %></option>
+        <% end %>
+      </select>
+      <br />
+      <h3>Season Points:</h3>
+      <input type="text" name="league_membership[score]" value="<%= @league.league_memberships.first.season_points %>" id="" class="form-control">
+      
+      <h3>Roster</h3>
+      <ul class="list-group lm-list">
+        <% @league.league_memberships.first.players.each do |player|%>
+        <li data-id="<%= player.id %>" class="list-group-item">
+          <img src="<%=player.picture_url%>" width=40>
+          <%= player.name %>
+          
+          <button class="btn btn-sm btn-danger pull-right delete-roster-membership" style="margin-top:10px;" data-id="<%= player.id %>">
+            Drop
+          </button>
+        </li>
+        <%end%>
+      </ul>
+    </div>
+  </div>    
+</div>

@@ -53,4 +53,8 @@ module ApplicationHelper
   def pre_tourney?
     current_week.tournaments.first.start_date > DateTime.now
   end
+  
+  def is_admin?
+    current_user.admin
+  end
 end

@@ -535,7 +535,7 @@ namespace :db do
 
 
     mike_desantis = User.create(:first_name => "Mike", :last_name => "DeSantis", :email => "fantasygolfleaguechamp2012@gmail.com",
-    :password => "password", :password_confirmation => "password")
+    :password => "password", :password_confirmation => "password", :admin => true)
      
     mike_desantis_league = LeagueMembership.create(:user_id => mike_desantis.id, :league_id => league.id, :name => mike_desantis.name,
     :season_scores => [[["Hyundai", 1], 69.0],

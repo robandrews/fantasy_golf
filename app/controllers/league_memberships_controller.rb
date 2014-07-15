@@ -86,9 +86,32 @@ class LeagueMembershipsController < ApplicationController
     render text: resp.join("\n").html_safe
   end
   
+  def droppable_players
+    league_membership = LeagueMembership.find(params[:tradee])
+    resp = []
+    league_membership.players.each do |player|
+      resp << build_droppable_player_resp(player)
+    end
+    render text: resp.join("\n").html_safe
+  end
+  
+  
+  def score
+    league_membership = LeagueMembership.find(params[:tradee])
+    render json: league_membership.score, status: :ok
+  end
+  
   def build_player_resp(player)
     "<li data-id='#{player.id}' class='list-group-item selectable-resp'>
     <img src='#{player.picture_url}' width=40>#{player.name}</li>"
+  end
+  
+  def build_droppable_player_resp(player)
+    "<li data-id='#{player.id}' class='list-group-item selectable-resp'>
+    <img src='#{player.picture_url}' width=40>#{player.name}
+    <button class='btn btn-sm btn-danger pull-right delete-roster-membership' style='margin-top:10px;' data-id='#{player.id}'>
+    Drop</button></li>
+"
   end
   
   protected

@@ -216,9 +216,38 @@ var ready = function() {
   });
   
   // This will hit the server for a given league members player and update the trade list accordingly.
+  $(".lm-selector").on("change", function(){
+    var lm_id = $(".lm-selector").find(":selected").data("id")
+    $.ajax({
+      url: document.URL.slice(0,-5) + "league_memberships/" + lm_id + "/droppable_players",
+      type: "GET",
+      dataType:"html",
+      data: {tradee: lm_id},
+      success:function(resp){
+        $(".lm-list").html(resp);
+        $(document).trigger("page:load")
+      }
+    });
+    
+    
+    // //this is not done...needs to fetch and update score on admin page
+    // $.ajax({
+    //   url: document.URL.slice(0,-5) + "league_memberships/" + lm_id + "/score",
+    //   type: "GET",
+    //   dataType:"html",
+    //   data: {tradee: lm_id},
+    //   success:function(resp){
+    //     $(".lm-list").html(resp);
+    //   }
+    // });
+    
+    
+  });
+  
+  //admin page
   $(".tradee-selector").on("change", function(){
     $.ajax({
-      url: document.URL.slice(0,-5) + "/players",
+      url: document.URL.slice(0,-6) + "/players",
       type: "GET",
       dataType:"html",
       data: {tradee: $(".tradee-selector").find(":selected").data("id")},

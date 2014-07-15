@@ -25,7 +25,7 @@ class LeaguesController < ApplicationController
   end
 
   def admin
-    
+    @league = League.friendly.find(params[:league_id])
   end
   
   protected
