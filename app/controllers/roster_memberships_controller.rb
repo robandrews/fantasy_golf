@@ -21,8 +21,8 @@ class RosterMembershipsController < ApplicationController
   
   def create
     @rm = RosterMembership.new(:player_id => params[:player_id], :league_membership_id => params[:league_membership_id])
-    debugger    
     if @rm.save
+      flash[:notice] = "Player successfully added."
       render :json => :nothing, status: :ok
     else
       render :json => @rm.errors.full_messages, status: :unprocessable_entity

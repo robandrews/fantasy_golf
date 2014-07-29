@@ -1,11 +1,10 @@
 <div class="container">
   <div class="row">
     <h2 class="col-md-6"><%=@league.name%></h2>
-  </div>
-      
+
+    <h4 class="col-md-6 hidden league-id"><%= @league.id %></h4>
+  </div>      
   <div class="document">
-    
-    
     
     <div class="form-group">
       <h3>League Member</h3>
@@ -15,9 +14,9 @@
         <% end %>
       </select>
       <br />
-      <h3>Season Points:</h3>
+      <h3>Season Points: <span id="season-points"></span></h3>
       <div class="horizontal-form">
-      <input type="text" name="league_membership[score]" value="<%= @league.league_memberships.first.season_points %>" id="" class="form-control">
+      <input type="text" name="league_membership[score]" value="<%= @league.league_memberships.first.season_points %>" id="" class="form-control admin-season-points-box">
           <button class="btn btn-default admin-submit-score">Submit</button>
       </div>
       
@@ -58,3 +57,17 @@
     </div>
   </div>    
 </div>
+
+
+<script>
+  var leagueMembershipId = $(".lm-selector").find(":selected").data("id");
+  var leagueId = $(".league-id").text();
+
+  $.ajax({
+    type: "GET",
+          url:"/leagues/"+leagueId+"/league_memberships/"+leagueMembershipId+"/season_points",
+    success: function(resp){
+      $(".admin-season-points-box").val(parseFloat(resp))
+    }
+  })
+</script>

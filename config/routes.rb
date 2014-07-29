@@ -10,6 +10,8 @@ FantasyGolf::Application.routes.draw do
     resources :league_memberships do
       get "players", to: 'league_memberships#players'
       get "droppable_players", to: 'league_memberships#droppable_players'
+      get "season_points", to: 'league_memberships#season_points'
+      post "update_score", to: 'league_memberships#update_score'
     end
     resources :free_agent_offers
     resources :messages

@@ -11,9 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require jquery.autosize.min
-//= require jqueryui
 //= require bootstrap
 //= require advanced
 //= require wysihtml5.js
@@ -229,19 +229,16 @@ var ready = function() {
       }
     });
     
-    
-    // //this is not done...needs to fetch and update score on admin page
-    // $.ajax({
-    //   url: document.URL.slice(0,-5) + "league_memberships/" + lm_id + "/score",
-    //   type: "GET",
-    //   dataType:"html",
-    //   data: {tradee: lm_id},
-    //   success:function(resp){
-    //     $(".lm-list").html(resp);
-    //   }
-    // });
-    
-    
+    var leagueMembershipId = $(".lm-selector").find(":selected").data("id");
+    var leagueId = $(".league-id").text();
+
+    $.ajax({
+      type: "GET",
+      url:"/leagues/"+leagueId+"/league_memberships/"+leagueMembershipId+"/season_points",
+      success: function(resp){
+        $(".admin-season-points-box").val(parseFloat(resp))
+      }
+    })
   });
   
   //admin page
@@ -260,19 +257,44 @@ var ready = function() {
     });
   });
   
+  $('.admin-submit-score').click(function(){
+    var leagueMembershipId = $(".lm-selector").find(":selected").data("id");
+    var leagueId = $(".league-id").text();
+    $.ajax({
+      type: 'POST',
+      data: {points: $(".admin-season-points-box").val(), 
+             authenticity_token:AUTH_TOKEN, 
+             league_membership_id: leagueMembershipId,
+             league_id: leagueId},
+      url:"/leagues/"+leagueId+"/league_memberships/"+leagueMembershipId+"/update_score",
+      success: function(resp){
+        window.location.reload();
+      },
+      error: function(){
+        alert("Player score update failed.")
+      }
+    })
+  })
+  
   $("#free-agent-add-button").click(function(event){
     var playerId = $( "#free-agent-select-list option:selected" ).val();
     var leagueMembershipId = $(".lm-selector").find(":selected").data("id");
-    var leagueId = $("#league-id");
+    var leagueId = $(".league-id").text();
     $.ajax({
       type: 'POST',
       dataType:'text',
       data: {player_id: playerId, 
              authenticity_token:AUTH_TOKEN, 
-             league_membership_id: leagueMembershipId
+             league_membership_id: leagueMembershipId,
              league_id: leagueId},
-      url:'/roster_memberships'
-    })
+      url:'/roster_memberships',
+      success: function(resp){
+        window.location.reload();
+      },
+      error: function(){
+        alert("Player add failed.")
+      }
+    });
   });
   
   // highlight divs for trading
