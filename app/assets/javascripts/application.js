@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
 //= require jquery.autosize.min
+//= require jqueryui
 //= require bootstrap
 //= require advanced
 //= require wysihtml5.js
@@ -258,6 +258,21 @@ var ready = function() {
         });
       }
     });
+  });
+  
+  $("#free-agent-add-button").click(function(event){
+    var playerId = $( "#free-agent-select-list option:selected" ).val();
+    var leagueMembershipId = $(".lm-selector").find(":selected").data("id");
+    var leagueId = $("#league-id");
+    $.ajax({
+      type: 'POST',
+      dataType:'text',
+      data: {player_id: playerId, 
+             authenticity_token:AUTH_TOKEN, 
+             league_membership_id: leagueMembershipId
+             league_id: leagueId},
+      url:'/roster_memberships'
+    })
   });
   
   // highlight divs for trading

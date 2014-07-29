@@ -4,6 +4,9 @@
   </div>
       
   <div class="document">
+    
+    
+    
     <div class="form-group">
       <h3>League Member</h3>
       <select class="lm-selector form-control">
@@ -35,6 +38,7 @@
       
       <h3>Add Player</h3>
       <div class="form-group">
+        <input type="hidden" name="league_id" value="<%= @league.id %>" id="league-id">
         <div class="col-sm-10">
           <select class="form-control" id="free-agent-select-list" name="player_id">
             <option value="" disabled selected>Choose a free agent</option>

@@ -1,5 +1,5 @@
 class RosterMembershipsController < ApplicationController
-  before_action :is_admin?, :only => [:admin_delete]
+  before_action :is_admin?, :only => [:admin_delete, :create]
   
   def destroy
     @roster_membership = RosterMembership.find(params[:id])
@@ -16,6 +16,16 @@ class RosterMembershipsController < ApplicationController
       render :json => :nothing, status: :ok
     else
       render :json => @roster_membership.errors.full_messages, status: :unprocessable_entity
+    end
+  end
+  
+  def create
+    @rm = RosterMembership.new(:player_id => params[:player_id], :league_membership_id => params[:league_membership_id])
+    debugger    
+    if @rm.save
+      render :json => :nothing, status: :ok
+    else
+      render :json => @rm.errors.full_messages, status: :unprocessable_entity
     end
   end
   

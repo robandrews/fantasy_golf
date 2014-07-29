@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem "activeadmin", github: "gregbell/active_admin"
 gem 'bootstrap-kaminari-views'
 gem 'devise'
 gem 'friendly_id', '~> 5.0.0'
