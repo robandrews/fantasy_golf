@@ -1,4 +1,5 @@
 class LeaguesController < ApplicationController
+  before_action :is_admin?, :only => [:admin]
   
   def new
   end
@@ -26,6 +27,7 @@ class LeaguesController < ApplicationController
 
   def admin
     @league = League.friendly.find(params[:league_id])
+    @league_membership = LeagueMembership.find_by_user_id_and_league_id(current_user.id, @league.id)
     @available_players = Player.find_by_sql <<-SQL
     SELECT * 
       FROM players p 
@@ -42,5 +44,9 @@ class LeaguesController < ApplicationController
   protected
   def league_params
     params.require(:league).permit(:name)
+  end
+  
+  def is_admin?
+    redirect_to :root unless current_user.admin
   end
 end

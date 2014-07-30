@@ -1,11 +1,9 @@
 <div class="container">
-  <div class="row">
-    <h2 class="col-md-6"><%=@league.name%></h2>
+      <h2><%=@league.name%></h2>
+    <%= render partial: "layouts/league_nav", locals: {active: 7, league: @league, league_membership: @league_membership} %>
 
-    <h4 class="col-md-6 hidden league-id"><%= @league.id %></h4>
-  </div>      
   <div class="document">
-    
+    <h4 class="col-md-6 hidden league-id"><%= @league.id %></h4>    
     <div class="form-group">
       <h3>League Member</h3>
       <select class="lm-selector form-control">
