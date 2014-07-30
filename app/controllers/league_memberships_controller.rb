@@ -105,9 +105,10 @@ class LeagueMembershipsController < ApplicationController
     def season_points
       lm = LeagueMembership.find(params[:league_membership_id])
       if lm
-        render text: lm.season_points, status:200
+        flash[:notice] = "Score updated successfully"
+        render text: lm.season_points.to_s, status:200
       else
-        render :nothing
+        render :nothing, status: :unprocessable_entity
       end
     end
   

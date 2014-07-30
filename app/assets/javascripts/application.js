@@ -270,8 +270,8 @@ var ready = function() {
       success: function(resp){
         window.location.reload();
       },
-      error: function(){
-        alert("Player score update failed.")
+      error: function(resp){
+        window.location.reload();
       }
     })
   })
@@ -279,6 +279,7 @@ var ready = function() {
   $("#free-agent-add-button").click(function(event){
     var playerId = $( "#free-agent-select-list option:selected" ).val();
     var leagueMembershipId = $(".lm-selector").find(":selected").data("id");
+    $("#free-agent-add-button").prop('disabled', true);
     var leagueId = $(".league-id").text();
     $.ajax({
       type: 'POST',
