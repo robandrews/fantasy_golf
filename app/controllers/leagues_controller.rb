@@ -34,8 +34,8 @@ class LeaguesController < ApplicationController
         (SELECT pp.id 
          FROM players pp 
          INNER JOIN roster_memberships r on pp.id = r.player_id
-         WHERE r.league_id = 1)
-         SQL
+         WHERE r.league_id = #{@league.id})
+    SQL
          
   end
   

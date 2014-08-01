@@ -159,11 +159,14 @@ var ready = function() {
   // Launches modal to confirm free agent petition
   $("#free-agent-add-button").click(function(event){
     var name = $("#free-agent-select-list").find(":selected").text()
+    $('#free-agent-add-button').prop('disabled', true);
+    $("#free-agent-add-button").text("Adding...")
     if(name != "Choose a free agent"){
       $(".player-name").html(name)
       $('.confirm-add-free-agent').modal();
     }
   });
+
   // submits free agent request
   $("#free-agent-confirmed").click(function(event){
     $("#free-agent-form").submit();
@@ -227,22 +230,35 @@ var ready = function() {
         $(document).trigger("page:load")
       }
     });
-    
-     //
-    // //this is not done...needs to fetch and update score on admin page
-    // $.ajax({
-    //   url: document.URL.slice(0,-5) + "league_memberships/" + lm_id + "/score",
-    //   type: "GET",
-    //   dataType:"html",
-    //   data: {tradee: lm_id},
-    //   success:function(resp){
-    //     $(".lm-list").html(resp);
-    //   }
-    // });
 
-    
+    $.ajax({
+      url: "league_memberships/" + lm_id + "/score",
+      type:"GET",
+      sucess:function(resp){
+        console.log(resp)
+        $("#admin-score-input").text(resp);
+      }
+    });
+
   });
   
+
+  $(".admin-submit-score").click(function(){
+    $("#admin-submit-score").prop('disabled', true);
+    $("#admin-submit-score").text("Sumbitting...");
+    $.ajax({
+      type: "POST",
+      url: "league_memberships/" + $(".lm-selector").find(":selected").data("id") + "/update_score",
+      data: {season_points: $("#admin-score-input").text()},
+      success:function(resp){
+        location.reload();
+      },
+      error:function(resp){
+        alert("Update score failed");
+      }
+    })
+  });
+
   //admin page
   $(".tradee-selector").on("change", function(){
     $.ajax({
@@ -258,6 +274,8 @@ var ready = function() {
       }
     });
   });
+
+
   
   // highlight divs for trading
   $(".selectable").click(function(event){
@@ -335,7 +353,6 @@ var ready = function() {
     if(league_name){
       saveLeague(event, league_name);
     }else{
-      debugger
       $(".red-alerts").html("The league must have a title")
     }
   });

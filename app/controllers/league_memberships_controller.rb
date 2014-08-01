@@ -114,6 +114,16 @@ class LeagueMembershipsController < ApplicationController
 "
   end
   
+  def update_score
+    @lm = LeagueMembership.find(params[:league_membership_id])
+    if @lm.update_attributes(season_points: params[:season_points])
+      flash[:notice] = "Score updated successfully"
+      render json: :nothing, status: 200
+    else
+      render @lm.errors.full_messages, status: :unprocessable_entity
+    end
+  end
+
   protected
   def validate_ownership(league, league_membership)
     current_membership = LeagueMembership.find_by_user_id_and_league_id(current_user.id, league.id)

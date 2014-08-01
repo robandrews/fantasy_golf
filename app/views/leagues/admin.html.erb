@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <h2 class="col-md-6"><%=@league.name%></h2>
+    <span class="hidden league-id"><%= @league.id %></span>
   </div>
       
   <div class="document">
@@ -14,7 +15,7 @@
       <br />
       <h3>Season Points:</h3>
       <div class="horizontal-form">
-      <input type="text" name="league_membership[score]" value="<%= @league.league_memberships.first.season_points %>" id="" class="form-control">
+      <input type="text" name="league_membership[score]" value="<%= @league.league_memberships.first.season_points %>" id="admin-score-input" class="form-control">
           <button class="btn btn-default admin-submit-score">Submit</button>
       </div>
       
@@ -38,7 +39,7 @@
         <div class="col-sm-10">
           <select class="form-control" id="free-agent-select-list" name="player_id">
             <option value="" disabled selected>Choose a free agent</option>
-            <%@available_players.each do |player|%>
+            <% @available_players.each do |player| %>
             <option value="<%=player.id%>"><%=player.name%></option>
             <%end%>
           </select>
