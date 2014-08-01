@@ -97,8 +97,8 @@ class LeagueMembershipsController < ApplicationController
   
   
   def score
-    league_membership = LeagueMembership.find(params[:tradee])
-    render json: league_membership.score, status: :ok
+    league_membership = LeagueMembership.find(params[:league_membership_id])
+    render json: league_membership.season_points, status: :ok
   end
   
   def build_player_resp(player)

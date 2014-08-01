@@ -235,8 +235,8 @@ var ready = function() {
       url: "league_memberships/" + lm_id + "/score",
       type:"GET",
       sucess:function(resp){
-        console.log(resp)
-        $("#admin-score-input").text(resp);
+        console.log(resp);
+        $("#admin-score-input").val(resp);
       }
     });
 
