@@ -21,7 +21,6 @@
 //= require select2
 //= require_tree .
 
-
 var ready = function() {
   
   // START -- trades index -- //
@@ -405,8 +404,6 @@ var ready = function() {
   ga('create', 'UA-50948207-1', 'bushwood.us');
   ga('send', 'pageview');
 };
-
-
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
