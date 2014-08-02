@@ -234,7 +234,7 @@ var ready = function() {
     $.ajax({
       url: "league_memberships/" + lm_id + "/score",
       type:"GET",
-      sucess:function(resp){
+      success:function(resp){
         console.log(resp);
         $("#admin-score-input").val(resp);
       }
@@ -244,17 +244,14 @@ var ready = function() {
   
 
   $(".admin-submit-score").click(function(){
-    $("#admin-submit-score").prop('disabled', true);
-    $("#admin-submit-score").text("Sumbitting...");
+    $(".admin-submit-score").prop('disabled', true);
+    $(".admin-submit-score").text("Sumbitting...");
     $.ajax({
       type: "POST",
       url: "league_memberships/" + $(".lm-selector").find(":selected").data("id") + "/update_score",
-      data: {season_points: $("#admin-score-input").text()},
+      data: {season_points: $("#admin-score-input").val()},
       success:function(resp){
         location.reload();
-      },
-      error:function(resp){
-        alert("Update score failed");
       }
     })
   });
