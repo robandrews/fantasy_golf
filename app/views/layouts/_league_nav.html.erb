@@ -12,6 +12,7 @@
     <li class="<%= 'active' if active == 3  %>"><a href=<%=league_free_agent_offers_url(league)%>>Waiver Wire</a></li>
     <li class="<%= 'active' if active == 4  %>"><a href="<%=league_messages_url(league.id)%>">Messages</a></li>
     <li class="<%= 'active' if active == 5  %>"><a href="<%=league_bylaws_url(league)%>">Bylaws</a></li>
+    <li class="<%= 'active' if active == 7  %>"><a href="<%=league_admin_url(league)%>">Admin</a></li>
     <li class="countdown pull-right">
         <% if pre_tourney? %>
         <table id="tournament-countdown">

@@ -1,6 +1,8 @@
 <div class="container">
   <div class="row">
-    <h2 class="col-md-6"><%=@league.name%></h2>
+    <h2><%=@league.name%></h2>
+    <%= render partial: "layouts/league_nav", locals: {active: 7, league: @league, league_membership: @league_membership} %>
+
     <span class="hidden league-id"><%= @league.id %></span>
   </div>
       

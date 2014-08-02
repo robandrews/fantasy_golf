@@ -26,6 +26,7 @@ class LeaguesController < ApplicationController
 
   def admin
     @league = League.friendly.find(params[:league_id])
+    @league_membership = LeagueMembership.find_by_user_id_and_league_id(current_user.id, @league.id)
     @available_players = Player.find_by_sql <<-SQL
     SELECT * 
       FROM players p 
