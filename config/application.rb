@@ -12,7 +12,6 @@ Bundler.require(:default, Rails.env)
 
 module FantasyGolf
   class Application < Rails::Application
-    
     config.time_zone = 'Pacific Time (US & Canada)'
     config.i18n.enforce_available_locales = true    
     config.assets.enabled = true
