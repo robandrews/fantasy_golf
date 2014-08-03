@@ -1,9 +1,8 @@
 <div class="container roster-edit">
   <div class="row">
-  <h2>Roster Management</h2>
-
+    <h2 class="col-md-6">Roster Management</h2>
+  </div>
   <%= render partial: "layouts/league_nav", locals: {active: 2, league: @league, league_membership: @league_membership} %>
-   </div>
    
   <div class="document">
    
@@ -23,7 +22,7 @@
    
     <div class="roster">  
       <% if pre_tourney? %>
-        <% if @league_membership.ready &&  %>
+        <% if @league_membership.ready%>
         <div class="roster-blurb-success">You HAVE properly set your roster for this weekend.</div>
         <% else %>
         <div class="roster-blurb-fail">You HAVE NOT properly set your roster for this weekend.</div>
