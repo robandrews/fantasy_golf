@@ -16,7 +16,7 @@ var ready = function(){
     });
   });
   
-  $("#free-agent-add-button").click(function(event){
+  $("#admin-player-add-button").click(function(event){
     event.preventDefault();
     var name = $("#free-agent-select-list").find(":selected").text();
     var player_id = $("#free-agent-select-list").find(":selected").val();

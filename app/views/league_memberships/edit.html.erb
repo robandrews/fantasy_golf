@@ -6,7 +6,7 @@
    
   <div class="document">
    
-   <% if pre_tourney? %>
+   <% if !pre_tourney? %>
     <div class="btn-group btn-group-justified">
       <div class="btn-group">
         <button type="button" class="btn btn-default show-roster active">Set Roster</button>
@@ -42,7 +42,7 @@
       <% if pre_tourney? %>
         <%= render partial: "layouts/roster_editable", locals: {active_players: @active_players, bench_players: @bench_players} %>
       <% else %>
-        <%= render partial: "layouts/roster_uneditable",locals: {active_players: @active_players, bench_players: @bench_players} %>
+        <%= render partial: "layouts/roster_editable",locals: {active_players: @active_players, bench_players: @bench_players} %>
       <% end %>
   
     </div>

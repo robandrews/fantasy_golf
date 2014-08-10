@@ -8,7 +8,6 @@ FantasyGolf::Application.routes.draw do
   resources :leagues do
     resources :divisions
     resources :league_memberships do
-      post "players", to: 'league_memberships#players'
       post "droppable_players", to: 'league_memberships#droppable_players'
       post "update_score", to: 'league_memberships#update_score'
       get "score", to: 'league_memberships#score'
@@ -18,6 +17,7 @@ FantasyGolf::Application.routes.draw do
     resource :bylaws
     resources :trades
     get "admin", to: 'leagues#admin'
+    post "/league_memberships/players", to: 'league_memberships#players'
   end
 
   resources :league_memberships, :only => [:new, :create]

@@ -13,7 +13,6 @@ Mailers Settings
 BUG: Trade doesn't check to see if players are actually in the rosters before the trade is made.
 
 Commissioner tools 
-- edit free agent pool
 - view secret hash for league
 - divisions (later)
 
@@ -22,3 +21,14 @@ Trophy Corner
 Flair (current champ has trophy next to their name, comissioner able to edit all flair)
 
 Image-picker
+
+
+
+==========================================================================================
+==========================================================================================
+
+- Fix trading within a league...messed up (I assume) with the admin page
+- 
+
+==========================================================================================
+==========================================================================================

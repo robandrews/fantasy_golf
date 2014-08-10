@@ -1,5 +1,4 @@
-class LeaguesController < ApplicationController
-  
+class LeaguesController < ApplicationController  
   def new
   end
 

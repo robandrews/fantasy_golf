@@ -259,7 +259,7 @@ var ready = function() {
   $(".tradee-selector").on("change", function(){
     $.ajax({
       url: document.URL.slice(0,-7) + "/players",
-      type: "GET",
+      type: "POST",
       dataType:"html",
       data: {tradee: $(".tradee-selector").find(":selected").data("id")},
       success:function(resp){
