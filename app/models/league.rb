@@ -24,6 +24,7 @@ class League < ActiveRecord::Base
   has_many :divisions
   has_many :trades
   has_many :roster_memberships
+  has_many :tournaments
   has_one :bylaw
   
   def make_secret_sauce

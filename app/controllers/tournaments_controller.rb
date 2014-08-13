@@ -1,6 +1,13 @@
 class TournamentsController < ApplicationController
+
+  def index
+    
+  end
+
   def show
     @tournament = Tournament.find(params[:id])
+    @season = Season.friendly.find(params[:season_id])
+    @league = League.friendly.find(params[:league_id])
     @players = {}
     @id_matcher = {}
     @tournament.players.each do |player|

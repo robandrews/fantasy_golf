@@ -1,0 +1,9 @@
+<div class="container">
+    <h2>Seasons</h2>
+
+  <ul>
+  <% @seasons.each do |season| %>
+      <li><%= link_to season.name, league_season_url(@league, season.id) %></li>
+  <% end %>
+  </ul>
+</div>

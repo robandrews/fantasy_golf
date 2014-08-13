@@ -1,0 +1,11 @@
+<div class="container">
+    <h2>Season <%= @season.name %></h2>
+
+  <ul>
+  <% @season.weeks.each do |week| %>
+    <% week.tournaments.each do |tournament| %>
+      <li><%= link_to tournament.name, league_season_tournament_url(@league, @season, tournament) %> (<%= tournament.tournament_standings.size %>)</li>
+    <%end%>
+  <% end %>
+  </ul>
+</div>

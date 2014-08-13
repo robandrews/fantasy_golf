@@ -17,11 +17,11 @@
         <% end %>
       </select>
       <br />
-      <h3>Season Points:</h3>
-      <div class="horizontal-form">
+      <h3>Season Points: </h3>
+<!--       <div class="horizontal-form">
       <input type="text" name="league_membership[score]" value="<%= @league.league_memberships.first.season_points %>" id="admin-score-input" class="form-control">
           <button class="btn btn-default admin-submit-score">Submit</button>
-      </div>
+      </div> -->
       
       
       <h3>Roster</h3>
@@ -37,7 +37,7 @@
         </li>
         <%end%>
       </ul>
-      
+      <br />
       <h3>Add Player</h3>
       <div class="form-group">
         <div class="col-sm-10">
@@ -49,13 +49,34 @@
           </select>
         </div>
       </div>
-      
+      <br />
       <div class="form-group">
         <div class="col-sm-2">
           <button class="btn btn-default" id='admin-player-add-button' type="button" style="margin-top:-8px;">Add</button>
         </div>
       </div>
+
+      <br /><br />
+      <h3>Update League Member Scores</h3>
+      
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th class="col-sm-4">Tournament</th>
+            <th class="col-sm-4">Points</th>
+          </tr>
+        </thead>
         
+
+        <% JSON.parse(@league.league_memberships.first.season_scores).each do |t| %>
+          <tr>
+            <td><%= t[0][0] %></td>
+            <td><input type="text" class="form-control" value="<%=t[1].to_s%>"></td>
+          </tr>
+        <% end %>
+      </table>
+
+      <div class="col-md-offset-5"><button class="btn btn-standard" id="submit-tournament-standings">Submit</button>
     </div>
   </div>    
 </div>

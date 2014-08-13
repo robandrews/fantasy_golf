@@ -69,7 +69,7 @@ Tournament.create(:name => "WCG Accenture", :url => "http://sports.yahoo.com/gol
 :complete => :true,
 :multiplier => 1.0)
 
-Tournament.create(:name => "Honda Classic", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/8",
+Tournament.create(:name => "Honda Classic", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/10",
 :start_date => DateTime.new(2014, 2, 27, 14, 0, 0),
 :end_date => DateTime.new(2014, 3, 2, 7, 0, 0),
 :week_id => weeks[9].id,
@@ -210,42 +210,42 @@ Tournament.create(:name => "John Deere Classic", :url => "http://sports.yahoo.co
 :complete => :true,
 :multiplier => 1.0)
 
-Tournament.create(:name => "The Open Championship", :url => "",
+Tournament.create(:name => "The Open Championship", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/29",
 :start_date => DateTime.new(2014, 7, 17, 14, 0, 0),
 :end_date => DateTime.new(2014, 7, 20, 7, 0, 0),
 :week_id => weeks[29].id,
 :complete => :true,
 :multiplier => 1.0)
 
-Tournament.create(:name => "RBC Canadian Open", :url => "",
+Tournament.create(:name => "RBC Canadian Open", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/38",
 :start_date => DateTime.new(2014, 7, 24, 14, 0, 0),
 :end_date => DateTime.new(2014, 7, 27, 7, 0, 0),
 :week_id => weeks[30].id,
 :complete => :true,
 :multiplier => 1.0)
 
-Tournament.create(:name => "WCG-Bridgestone", :url => "",
+Tournament.create(:name => "WCG-Bridgestone", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/35",
 :start_date => DateTime.new(2014, 7, 31, 14, 0, 0),
 :end_date => DateTime.new(2014, 8, 3, 7, 0, 0),
 :week_id => weeks[31].id,
 :complete => :true,
 :multiplier => 1.0)
 
-Tournament.create(:name => "Reno-Tahoe Open", :url => "",
+	Tournament.create(:name => "Reno-Tahoe Open", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/232",
 :start_date => DateTime.new(2014, 7, 31, 14, 0, 0),
 :end_date => DateTime.new(2014, 8, 3, 7, 0, 0),
 :week_id => weeks[31].id,
 :complete => :true,
 :multiplier => 1.0)
 
-Tournament.create(:name => "PGA Championship", :url => "",
+Tournament.create(:name => "PGA Championship", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/33",
 :start_date => DateTime.new(2014, 8, 7, 14, 0, 0),
 :end_date => DateTime.new(2014, 8, 10, 7, 0, 0),
 :week_id => weeks[32].id,
 :complete => :true,
 :multiplier => 1.0)
 
-Tournament.create(:name => "Wyndham Championship", :url => "",
+Tournament.create(:name => "Wyndham Championship", :url => "http://sports.yahoo.com/golf/pga/leaderboard/2014/17",
 :start_date => DateTime.new(2014, 8, 14, 14, 0, 0),
 :end_date => DateTime.new(2014, 8, 17, 7, 0, 0),
 :week_id => weeks[33].id,

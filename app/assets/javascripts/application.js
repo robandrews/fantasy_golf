@@ -62,7 +62,7 @@ var ready = function() {
         location.reload();
       }
     });
-  })
+  });
   
   $(".show-past-trades").click(function(event){
     $.ajax({
@@ -73,7 +73,7 @@ var ready = function() {
         $(document).trigger("page:load");
       }
     });
-  })
+  });
   
   $(".show-pending-trades").click(function(event){
     $.ajax({
@@ -84,12 +84,10 @@ var ready = function() {
         $(document).trigger("page:load")
       }
     });
-  })
+  });
+
   // END -- trades index -- //
 
-
-  
-  
   // START -- free agent offers index -- //
   $(".contest-free-agent").click(function(event){
     $.ajax({

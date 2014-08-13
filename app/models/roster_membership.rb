@@ -12,7 +12,10 @@
 #
 
 class RosterMembership < ActiveRecord::Base
-  belongs_to :league_membership 
-  belongs_to :player
-  belongs_to :league
+	belongs_to :league_membership 
+	belongs_to :player
+	belongs_to :league
+
+	validates_uniqueness_of :player, :scope => :league_membership_id
+  validates_uniqueness_of :player, :scope => :league_id
 end

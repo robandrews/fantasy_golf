@@ -1232,20 +1232,44 @@ namespace :db do
     RosterMembership.create(:league_membership_id => carl_spacker_league.id, :player_id => 57, :active => false, :league_id => league.id)
     RosterMembership.create(:league_membership_id => carl_spacker_league.id, :player_id => 255, :active => false, :league_id => league.id)
     RosterMembership.create(:league_membership_id => carl_spacker_league.id, :player_id => 68, :active => false, :league_id => league.id)
+
+    LeagueMembership.each do |lm|
+      arr = JSON.parse(lm.season_scores)
+      arr.each do |entry|
+        Week.where("entry")
+      end
+    end
   end
   
-  desc "Drop all tables except for players"
-  # this still needs work
-  task drop_all_except_players: :environment do
-    tables = ["archived_weeks", "bylaws", "division_memberships", "divisions", "free_agent_offers",
-      "friendly_id_slugs", "interested_parties", "league_memberships", "league_moderatorships", 
-      "leagues", "messages", "roster_memberships", "season_performances", "seasons", 
-      "tournament_standings", "tournaments", "trade_group_memberships", "trade_groups", "trades",
-      "users", "weeks"]
-    connection = ActiveRecord::Base.connection()
-    tables.each do |table|
-      connection.execute("drop table #{table}")
+  desc "Add zero scores for tournaments"
+  task add_zero_scores: :environment do
+    weeks = Week.where("week_order > ?", 21)
+    weeks.each do |week|
+      tournament = week.tournaments.first
+      LeagueMembership.all.each do |lm|
+        arr = JSON.parse(lm.season_scores)
+        p "Adding #{[[tournament.name, week.week_order], 0.0]}"
+        arr.push([[tournament.name, week.week_order], 0.0])
+        lm.season_scores = arr.to_json
+        lm.save
+      end if tournament
     end
+  end
+
+  desc "Score all tournaments"
+  task pull_all_tournament_scores: :environment do
+    Tournament.all.each{|t| t.get_scores}
+  end
+
+  desc "Update player score from array"
+  task update_lm_scores: :environment do
+    LeagueMembership.all.each do |lm| 
+      puts "Updating #{lm.name}"
+      pts = lm.calculate_season_points_from_season_scores
+      lm.season_points = pts
+      lm.save
+    end
+    puts "Done."
   end
 
   desc "Reset all data except for players"

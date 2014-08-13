@@ -30,6 +30,11 @@ class Tournament < ActiveRecord::Base
     validates :week_id, :name, :presence => true
   
     def get_scores
+      puts '####################################################'
+      puts '####################################################'
+      puts "Scoring: #{self.name}"
+      puts '####################################################'
+      puts '####################################################'
       page = Nokogiri::HTML(RestClient.get(self.url))
 
       players = page.xpath('//table/tbody/tr/td/a')
@@ -38,8 +43,18 @@ class Tournament < ActiveRecord::Base
       players.each do |player|
         entry = {}
         td = player.parent().parent()
+        puts "position"
+        puts "#{td.css(".position").text.gsub("\n", "")}"
         entry["position"] = td.css(".position").text.gsub("\n", "")
-        entry["int_position"] = entry["position"].match(/\A\D*(\d+)\z/)[1].to_i
+
+        int = entry["position"].match(/\A\D*(\d+)\z/)
+
+        if int
+          entry["int_position"] = int[1].to_i
+        else
+          next
+        end
+
         entry["player_id"] = player.attributes["href"].value.match(/\A\D+(\d+).+\z/)[1].to_i
         entry["to_par"] = td.css(".total").text.gsub("\n", "")
         entry["winnings"] = td.css(".earnings")
@@ -77,7 +92,5 @@ class Tournament < ActiveRecord::Base
       end
     
       leaderboard
-    end
-    
-    
+    end    
   end
