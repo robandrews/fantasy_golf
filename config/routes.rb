@@ -8,7 +8,7 @@ FantasyGolf::Application.routes.draw do
   resources :leagues do
     resources :league_memberships do
       post "droppable_players", to: 'league_memberships#droppable_players'
-      post "update_score", to: 'league_memberships#update_score'
+      post "update_scores", to: 'league_memberships#update_scores'
       get "score", to: 'league_memberships#score'
       get "season_scores", to: 'league_memberships#season_scores'
     end

@@ -270,18 +270,47 @@ var ready = function() {
     })
   });
 
-  $(".admin-submit-score").click(function(){
-  $(".admin-submit-score").prop('disabled', true);
-  $(".admin-submit-score").text("Sumbitting...");
-  $.ajax({
-    type: "POST",
-    url: "league_memberships/" + $(".lm-selector").find(":selected").data("id") + "/update_score",
-    data: {season_points: $("#admin-score-input").val()},
-    success:function(resp){
-      location.reload();
+    $("#submit-tournament-standings").click(function(){
+      $("#submit-tournament-standings").prop('disabled', true);
+      $("#submit-tournament-standings").text("Sumbitting...");
+
+      $.ajax({
+        type: "POST",
+        url: "league_memberships/" + $(".lm-selector").find(":selected").data("id") + "/update_scores",
+        
+        // This method needs to run through the table, serialize it to json in proper format
+        data: {season_scores: serializeTable("#score-table")},
+        success:function(resp){
+          location.reload();
+        }
+      });
+    })
+
+
+    function serializeTable(tableIdentifier){
+      var arr = []
+      $(tableIdentifier).find(".tournament-entry").each(function(index){
+        var score = $(this).find(".score").val();
+        var name = $(this).find(".name").html();
+        var order = index
+        var push = [[name, order], score]
+        arr.push(push);
+      })
+      console.log(arr);
+      return JSON.stringify(arr);
     }
-  })
-});
+  //   $(".admin-submit-score").click(function(){
+  //   $(".admin-submit-score").prop('disabled', true);
+  //   $(".admin-submit-score").text("Sumbitting...");
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "league_memberships/" + $(".lm-selector").find(":selected").data("id") + "/update_scores",
+  //     data: {season_points: $("#admin-score-input").val()},
+  //     success:function(resp){
+  //       location.reload();
+  //     }
+  //   })
+  // });
 
     $(".delete-roster-membership").click(function(event){
     event.preventDefault();

@@ -119,9 +119,11 @@ class LeagueMembershipsController < ApplicationController
 "
   end
   
-  def update_score
+  def update_scores
     @lm = LeagueMembership.find(params[:league_membership_id])
-    if @lm.update_attributes(season_points: params[:season_points])
+    @lm.season_scores = params[:season_scores]
+    @lm.season_points = @lm.calculate_season_points_from_season_scores
+    if @lm.save
       flash[:notice] = "Score updated successfully"
       render json: :nothing, status: 200
     else

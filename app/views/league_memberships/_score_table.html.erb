@@ -9,8 +9,8 @@
 
   <% JSON.parse(@league_membership.season_scores).each do |t| %>
     <tr>
-      <td><%= t[0][0] %></td>
-      <td><input type="text" class="form-control" value="<%=t[1].to_s%>"></td>
+      <td class="name"><%= t[0][0] %></td>
+      <td><input type="text" class="form-control score" value="<%=t[1].to_s%>"></td>
     </tr>
   <% end %>
 </table>
