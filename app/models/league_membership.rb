@@ -57,6 +57,6 @@ class LeagueMembership < ActiveRecord::Base
   end
   
   def calculate_season_points_from_season_scores
-    JSON.parse(self.season_scores).inject(0){|s, arr| s += arr[1]}
+    JSON.parse(self.season_scores).inject(0){|s, arr| s += arr[1].to_f}
   end
 end
