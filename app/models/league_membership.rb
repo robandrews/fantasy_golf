@@ -10,9 +10,10 @@
 #  season_points      :float            default(0.0)
 #  name               :string(255)
 #  ready              :boolean          default(FALSE)
-#  monthly_fa_pickups :integer
-#  season_fa_pickups  :integer
-# 
+#  monthly_fa_pickups :integer          default(0)
+#  season_fa_pickups  :integer          default(0)
+#  season_scores      :text
+#
 
 class LeagueMembership < ActiveRecord::Base  
   belongs_to :league

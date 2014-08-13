@@ -100,6 +100,11 @@ class LeagueMembershipsController < ApplicationController
     league_membership = LeagueMembership.find(params[:league_membership_id])
     render json: league_membership.season_points, status: :ok
   end
+
+  def season_scores
+    @league_membership = LeagueMembership.find(params[:league_membership_id])
+    render partial: "league_memberships/score_table", status: :ok
+  end
   
   def build_player_resp(player)
     "<li data-id='#{player.id}' class='list-group-item selectable-resp'>

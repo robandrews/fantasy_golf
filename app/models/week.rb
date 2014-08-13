@@ -7,6 +7,8 @@
 #  created_at :datetime
 #  updated_at :datetime
 #  week_order :integer
+#  start_time :datetime
+#  end_time   :datetime
 #
 
 class Week < ActiveRecord::Base

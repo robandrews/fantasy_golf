@@ -11,6 +11,7 @@
 #  updated_at :datetime
 #  complete   :boolean
 #  week_id    :integer
+#  multiplier :float
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

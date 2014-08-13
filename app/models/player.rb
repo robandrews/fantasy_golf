@@ -17,6 +17,7 @@
 #  career_earnings :integer
 #  playable        :boolean          default(TRUE)
 #  yahoo_id        :integer
+#  twitter         :string(255)
 #
 
 class Player < ActiveRecord::Base

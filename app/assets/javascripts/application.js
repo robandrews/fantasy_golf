@@ -215,6 +215,29 @@ var ready = function() {
   });
   
   // This will hit the server for a given league members player and update the trade list accordingly.
+  
+  
+
+
+
+  
+  $(".tradee-selector").on("change", function(){
+
+    $.ajax({
+      url: document.URL.slice(0,-7) + "/players",
+      type: "POST",
+      dataType:"html",
+      data: {tradee: $(".tradee-selector").find(":selected").data("id")},
+      success:function(resp){
+        $(".tradee-list").html(resp);
+        $(".selectable-resp").click(function(event){
+          $(event.target).toggleClass("selected");
+        });
+      }
+    });
+  });
+
+  //admin page
   $(".lm-selector").on("change", function(){
     var lm_id = $(".lm-selector").find(":selected").data("id")
     $.ajax({
@@ -232,43 +255,70 @@ var ready = function() {
       url: "league_memberships/" + lm_id + "/score",
       type:"GET",
       success:function(resp){
-        console.log(resp);
         $("#admin-score-input").val(resp);
       }
     });
 
-  });
-  
 
-  $(".admin-submit-score").click(function(){
-    $(".admin-submit-score").prop('disabled', true);
-    $(".admin-submit-score").text("Sumbitting...");
     $.ajax({
-      type: "POST",
-      url: "league_memberships/" + $(".lm-selector").find(":selected").data("id") + "/update_score",
-      data: {season_points: $("#admin-score-input").val()},
+      url: "league_memberships/" + lm_id + "/season_scores",
+      type:"GET",
       success:function(resp){
-        location.reload();
+        //parse json
+        $("#score-table").html(resp);
       }
     })
   });
 
-  //admin page
-  $(".tradee-selector").on("change", function(){
+  $(".admin-submit-score").click(function(){
+  $(".admin-submit-score").prop('disabled', true);
+  $(".admin-submit-score").text("Sumbitting...");
+  $.ajax({
+    type: "POST",
+    url: "league_memberships/" + $(".lm-selector").find(":selected").data("id") + "/update_score",
+    data: {season_points: $("#admin-score-input").val()},
+    success:function(resp){
+      location.reload();
+    }
+  })
+});
+
+    $(".delete-roster-membership").click(function(event){
+    event.preventDefault();
+    $(event.currentTarget).prop('disabled', true);
     $.ajax({
-      url: document.URL.slice(0,-7) + "/players",
-      type: "POST",
-      dataType:"html",
-      data: {tradee: $(".tradee-selector").find(":selected").data("id")},
+      url:"/roster_membership/admin_delete",
+      type:"POST",
+      data: {player_id: $(event.currentTarget).attr("data-id"),
+            league_membership_id: $(".lm-selector").find(":selected").attr("data-id")},
       success:function(resp){
-        $(".tradee-list").html(resp);
-        $(".selectable-resp").click(function(event){
-          $(event.target).toggleClass("selected");
-        });
+        $(event.currentTarget).parent().hide();
+      },
+      failure:function(resp){
+        alert("Unable to drop player");
       }
     });
   });
-
+  
+  $("#admin-player-add-button").click(function(event){
+    event.preventDefault();
+    var name = $("#free-agent-select-list").find(":selected").text();
+    var player_id = $("#free-agent-select-list").find(":selected").val();
+    if(name != "Choose a free agent"){
+      $.ajax({
+        url:"/roster_memberships",
+        type:"POST",
+        data:{roster_membership: {player_id: player_id, 
+              league_membership_id: $(".lm-selector").find(":selected").attr("data-id")}},
+        success: function(resp){
+          location.reload();
+        },
+        failure: function(resp){
+          alert("Unable to add player!")
+        }
+      })
+    }
+  });
 
   
   // highlight divs for trading
