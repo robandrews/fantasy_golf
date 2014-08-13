@@ -247,7 +247,6 @@ var ready = function() {
       data: {tradee: lm_id},
       success:function(resp){
         $(".lm-list").html(resp);
-        $(document).trigger("page:load")
       }
     });
 
@@ -255,7 +254,7 @@ var ready = function() {
       url: "league_memberships/" + lm_id + "/score",
       type:"GET",
       success:function(resp){
-        $("#admin-score-input").val(resp);
+        $("#lm-points").html(resp);
       }
     });
 
