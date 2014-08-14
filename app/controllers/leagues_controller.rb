@@ -26,17 +26,13 @@ class LeaguesController < ApplicationController
   def admin
     @league = League.friendly.find(params[:league_id])
     @league_membership = LeagueMembership.find_by_user_id_and_league_id(current_user.id, @league.id)
-    @available_players = Player.find_by_sql <<-SQL
-    SELECT * 
-      FROM players p 
-      WHERE p.id
-      NOT IN 
-        (SELECT pp.id 
-         FROM players pp 
-         INNER JOIN roster_memberships r on pp.id = r.player_id
-         WHERE r.league_id = #{@league.id})
-    SQL
-         
+    taken = []
+    @league.league_memberships.each do |lm|
+      lm.players.each do |player|
+        taken << player.id
+      end
+    end
+    @available_players = Player.where('id not in (?)',taken)
   end
   
   protected

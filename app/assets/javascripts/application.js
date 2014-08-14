@@ -217,10 +217,6 @@ var ready = function() {
   // This will hit the server for a given league members player and update the trade list accordingly.
   
   
-
-
-
-  
   $(".tradee-selector").on("change", function(){
 
     $.ajax({
@@ -238,6 +234,8 @@ var ready = function() {
   });
 
   //admin page
+
+
   $(".lm-selector").on("change", function(){
     var lm_id = $(".lm-selector").find(":selected").data("id")
     $.ajax({
@@ -247,7 +245,7 @@ var ready = function() {
       data: {tradee: lm_id},
       success:function(resp){
         $(".lm-list").html(resp);
-        $(document).trigger("drop-player-refresh");
+        $(document).trigger("page:load")
       }
     });
 
@@ -255,6 +253,7 @@ var ready = function() {
       url: "league_memberships/" + lm_id + "/score",
       type:"GET",
       success:function(resp){
+        console.log(resp);
         $("#lm-points").html(resp);
       }
     });
@@ -272,23 +271,6 @@ var ready = function() {
     
   });
 
-  $(".delete-roster-membership").on("click",function(event){
-    event.preventDefault();
-    
-    $(event.currentTarget).prop('disabled', true);
-    $.ajax({
-      url:"/roster_membership/admin_delete",
-      type:"POST",
-      data: {player_id: $(event.currentTarget).attr("data-id"),
-            league_membership_id: $(".lm-selector").find(":selected").attr("data-id")},
-      success:function(resp){
-        $(event.currentTarget).parent().hide();
-      },
-      failure:function(resp){
-        alert("Unable to drop player");
-      }
-    });
-  });
 
 
     $("#submit-tournament-standings").click(function(){
