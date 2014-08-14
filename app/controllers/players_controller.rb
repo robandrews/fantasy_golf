@@ -1,4 +1,6 @@
 class PlayersController < ApplicationController
+  before_action :check_admin
+
   def index
     @all_players = Player.all
     @players = Player.order(:last_name).page params[:page]
@@ -36,5 +38,9 @@ class PlayersController < ApplicationController
   protected
   def player_params
     params.require(:player).permit(:first_name, :last_name, :url, :twitter)
+  end
+
+  def check_admin
+    redirect_to :root unless current_user.admin
   end
 end

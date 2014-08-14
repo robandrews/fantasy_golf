@@ -9,6 +9,7 @@
         <th>Height</th>
         <th>Weight</th>
         <th>Career Earnings</th>
+        <th>Twitter</th>
       </tr>
     </thead>
     <tbody>
@@ -22,7 +23,9 @@
               <td><%=player.string_height%></td>
               <td><%=player.weight%></td>
               <td><%="$#{number_with_delimiter(player.career_earnings, :delimiter => ",")}"%>
-              <td><%= button_to "Delete Player", { id: player.id }, method: :delete, data: { confirm: "Are you sure?" } %>
+              <td><%=link_to player.twitter, "http://www.twitter.com/#{player.twitter}" %></td>
+              <td><%= link_to "Edit", edit_player_url(player) %></td>
+              <td><%= link_to "Delete", player, :method => :delete, data: { confirm: "Are you sure?" } %>
             </tr>
           </div>
         </a>

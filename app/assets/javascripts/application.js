@@ -267,6 +267,9 @@ var ready = function() {
         $("#score-table").html(resp);
       }
     })
+
+    $( "*" ).trigger( "click" );
+
   });
 
     $("#submit-tournament-standings").click(function(){
@@ -312,21 +315,21 @@ var ready = function() {
   // });
 
     $(".delete-roster-membership").click(function(event){
-    event.preventDefault();
-    $(event.currentTarget).prop('disabled', true);
-    $.ajax({
-      url:"/roster_membership/admin_delete",
-      type:"POST",
-      data: {player_id: $(event.currentTarget).attr("data-id"),
-            league_membership_id: $(".lm-selector").find(":selected").attr("data-id")},
-      success:function(resp){
-        $(event.currentTarget).parent().hide();
-      },
-      failure:function(resp){
-        alert("Unable to drop player");
-      }
+      event.preventDefault();
+      $(event.currentTarget).prop('disabled', true);
+      $.ajax({
+        url:"/roster_membership/admin_delete",
+        type:"POST",
+        data: {player_id: $(event.currentTarget).attr("data-id"),
+             league_membership_id: $(".lm-selector").find(":selected").attr("data-id")},
+        success:function(resp){
+          $(event.currentTarget).parent().hide();
+        },
+        failure:function(resp){
+          alert("Unable to drop player");
+        }
+      });
     });
-  });
   
   $("#admin-player-add-button").click(function(event){
     event.preventDefault();
