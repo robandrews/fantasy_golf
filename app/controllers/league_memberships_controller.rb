@@ -27,16 +27,14 @@ class LeagueMembershipsController < ApplicationController
     @league_members = @league.league_memberships.map{|lm| lm if lm != @league_membership}.compact
     
     validate_ownership(@league, @league_membership)
-    @available_players = Player.find_by_sql <<-SQL
-    SELECT * 
-      FROM players p 
-      WHERE p.id
-      NOT IN 
-        (SELECT pp.id 
-         FROM players pp 
-         INNER JOIN roster_memberships r on pp.id = r.player_id
-         WHERE r.league_id = 1)
-         SQL
+    taken = []
+    @league.league_memberships.each do |lm|
+      lm.players.each do |player|
+        taken << player.id
+      end
+    end
+
+    @available_players = Player.where('id not in (?)',taken)
     @active_players, @bench_players = @league_membership.get_active_and_bench_players
   end
   

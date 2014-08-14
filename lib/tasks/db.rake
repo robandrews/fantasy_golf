@@ -169,7 +169,7 @@ namespace :db do
     RosterMembership.create(:league_membership_id => steve_doman_league.id, :player_id => 35, :active => false, :league_id => league.id)
     
     
-    jake_oconner = User.create(:first_name => "Jake", :last_name => "O'Conner", :email => "woconnerj@gmail.com",
+    jake_oconner = User.create(:first_name => "Jake", :last_name => "O'Connor", :email => "woconnerj@gmail.com",
     :password => "password", :password_confirmation => "password")
  
     jake_oconner_league = LeagueMembership.create(:user_id => jake_oconner.id, :league_id => league.id, :name => jake_oconner.name,
@@ -571,7 +571,7 @@ namespace :db do
     RosterMembership.create(:league_membership_id => mike_desantis_league.id, :player_id => 191, :active => false, :league_id => league.id)
 
 
-    sean_fox = User.create(:first_name => "SeanFox", :last_name => "PatDieters", :email => "shawngfox@gmail.com",
+    sean_fox = User.create(:first_name => "Sean Fox", :last_name => "Pat Dieters", :email => "shawngfox@gmail.com",
     :password => "password", :password_confirmation => "password")
      
     sean_fox_league = LeagueMembership.create(:user_id => sean_fox.id, :league_id => league.id, :name => sean_fox.name,
@@ -608,7 +608,7 @@ namespace :db do
     RosterMembership.create(:league_membership_id => sean_fox_league.id, :player_id => 387, :active => false, :league_id => league.id)
 
 
-    jay_billingsley = User.create(:first_name => "Jay", :last_name => "Billingsly", :email => "billingsley2211@gmail.com",
+    jay_billingsley = User.create(:first_name => "Jay", :last_name => "Billingsley", :email => "billingsley2211@gmail.com",
     :password => "password", :password_confirmation => "password")
      
     jay_billingsley_league = LeagueMembership.create(:user_id => jay_billingsley.id, :league_id => league.id, :name => jay_billingsley.name,
@@ -1290,5 +1290,4 @@ namespace :db do
     User.delete_all
     Week.delete_all
   end
-
 end
