@@ -1,5 +1,4 @@
 
-
 <%= javascript_tag do %>
   window.tournamentDeadline = new Date(<%= current_week.tournaments.first.start_date.utc.to_i*1000 %>);
 <%end%>
@@ -12,7 +11,9 @@
     <li class="<%= 'active' if active == 3  %>"><a href=<%=league_free_agent_offers_url(league)%>>Waiver Wire</a></li>
     <li class="<%= 'active' if active == 4  %>"><a href="<%=league_messages_url(league.id)%>">Messages</a></li>
     <li class="<%= 'active' if active == 5  %>"><a href="<%=league_bylaws_url(league)%>">Bylaws</a></li>
+    <% if current_user.admin %>
     <li class="<%= 'active' if active == 7  %>"><a href="<%=league_admin_url(league)%>">Admin</a></li>
+    <%end%>
     <li class="countdown pull-right">
         <% if pre_tourney? %>
         <table id="tournament-countdown">
