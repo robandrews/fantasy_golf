@@ -268,9 +268,27 @@ var ready = function() {
       }
     })
 
-    $( "*" ).trigger( "click" );
-
+    $(document).trigger("drop-player-refresh")
   });
+
+  $(".delete-roster-membership").on("click",function(event){
+    event.preventDefault();
+    
+    $(event.currentTarget).prop('disabled', true);
+    $.ajax({
+      url:"/roster_membership/admin_delete",
+      type:"POST",
+      data: {player_id: $(event.currentTarget).attr("data-id"),
+            league_membership_id: $(".lm-selector").find(":selected").attr("data-id")},
+      success:function(resp){
+        $(event.currentTarget).parent().hide();
+      },
+      failure:function(resp){
+        alert("Unable to drop player");
+      }
+    });
+  });
+
 
     $("#submit-tournament-standings").click(function(){
       $("#submit-tournament-standings").prop('disabled', true);
@@ -485,4 +503,29 @@ var ready = function() {
 };
 
 $(document).ready(ready);
-$(document).on('page:load', ready);
+$(document).on('page:change', ready);
+
+
+
+// var dropPlayerRefresh = function(){
+//   console.log("dropPlayerRefresh exectured")
+//   $(".delete-roster-membership").on("click",function(event){
+//       event.preventDefault();
+      
+//       $(event.currentTarget).prop('disabled', true);
+//       $.ajax({
+//         url:"/roster_membership/admin_delete",
+//         type:"POST",
+//         data: {player_id: $(event.currentTarget).attr("data-id"),
+//               league_membership_id: $(".lm-selector").find(":selected").attr("data-id")},
+//         success:function(resp){
+//           $(event.currentTarget).parent().hide();
+//         },
+//         failure:function(resp){
+//           alert("Unable to drop player");
+//         }
+//       });
+//     });
+// }
+
+// $(document).on('drop-player-refresh', dropPlayerRefresh);
