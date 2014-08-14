@@ -247,6 +247,7 @@ var ready = function() {
       data: {tradee: lm_id},
       success:function(resp){
         $(".lm-list").html(resp);
+        $(document).trigger("drop-player-refresh");
       }
     });
 
@@ -268,7 +269,7 @@ var ready = function() {
       }
     })
 
-    $(document).trigger("drop-player-refresh")
+    
   });
 
   $(".delete-roster-membership").on("click",function(event){
