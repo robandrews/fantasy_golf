@@ -121,7 +121,7 @@ class LeagueMembershipsController < ApplicationController
   
   def update_scores
     @lm = LeagueMembership.find(params[:league_membership_id])
-    @lm.season_scores = params[:season_scores]
+    @lm.season_scores = JSON.parse(params[:season_scores]).map{|el| [el[0], el[1].to_f]}.to_json
     @lm.season_points = @lm.calculate_season_points_from_season_scores
     if @lm.save
       flash[:notice] = "Score updated successfully"
